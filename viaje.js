@@ -172,10 +172,10 @@ window.initViaje = function (slideEl) {
     return 1;
   }
 
-  let lastNow = 0;
+  let lastNow = 0, frameId = null;
   function animate(now) {
     if (!active) { lastNow = 0; return; }
-    requestAnimationFrame(animate);
+    frameId = requestAnimationFrame(animate);
     const t = now * 0.001, dt = lastNow ? (now - lastNow) / 1000 : 0; lastNow = now;
     let spinRate = 0.55;
     if (flight) { const kk = Math.min(1, (now - flight.t0) / flight.dur); const bump = Math.sin(kk * Math.PI); const dir = Math.sign(flight.yearTo - flight.yearFrom) || 1; spinRate = dir * (2 + 30 * bump); }
@@ -202,8 +202,8 @@ window.initViaje = function (slideEl) {
   }
 
   return {
-    enter() { if (active) return; active = true; camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); requestAnimationFrame(animate); },
-    leave() { active = false; },
+    enter() { if (active) return; active = true; camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); frameId = requestAnimationFrame(animate); },
+    leave() { active = false; cancelAnimationFrame(frameId); frameId = null; lastNow = 0; },
     handle
   };
 };

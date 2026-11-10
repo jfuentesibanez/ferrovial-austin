@@ -120,25 +120,26 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 #pag { position: fixed; right: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .7; z-index: 9; }
 .pie { position: fixed; left: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .5; z-index: 9; }
 </style>
+<link rel="stylesheet" href="stage.css">
 </head>
 <body>
 
 <!-- COVER -->
-<section class="slide"><div class="inner">
+<section class="slide cover" data-chapter="Session I · Digital disruption"><div class="inner">
   <div class="kicker">Ferrovial · Austin · 18 November 2026</div>
   <div class="gigante">Leading in the Age of<br><strong>Digital Disruption</strong></div>
   <div class="sub">Session I · 9:30 – 11:00</div>
 </div></section>
 
 <!-- TIME MACHINE (opening) -->
-<section class="slide viaje">
+<section class="slide viaje" data-title="A journey through time">
   <canvas class="vj-canvas"></canvas>
   <div class="vj-hud"><div class="vj-year">2026</div><div class="vj-underline"></div></div>
   <div class="vj-minimap"><div class="vj-track"></div><div class="vj-cursor"></div></div>
   <div class="vj-flash"></div>
 </section>
 
-<section class="slide negro"><div class="inner">
+<section class="slide negro impact"><div class="inner">
   <div class="statement" style="text-align:center">Every jump is shorter than the one before.<br><strong>The next one fits inside your career.</strong></div>
 </div></section>
 
@@ -155,14 +156,14 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </div></section>
 
 <!-- NINETY DAYS -->
-<section class="slide"><div class="inner">
+<section class="slide chapter" data-mark="90" data-chapter="Ninety days"><div class="inner">
   <div class="kicker">Part one</div>
   <div class="gigante">Ninety <strong>days.</strong></div>
   <div class="sub">What happened since the summer.</div>
 </div></section>
 
-<section class="slide foto contain steps">
-  <img src="img/perelman.png" alt="">
+<section class="slide foto contain steps" data-title="Grigori Perelman">
+  <img src="img/perelman.png" alt="Grigori Perelman" decoding="sync">
   <div class="caps">
     <div class="cap">Who is this man?</div>
     <div class="cap step">Grigori Perelman. In 2003 he solved a problem that had been open for a century.</div>
@@ -170,21 +171,21 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   </div>
 </section>
 
-<section class="slide foto contain claro"><img src="img/millennium.png" alt=""></section>
+<section class="slide foto contain claro" data-title="The Millennium Prize Problems"><img src="img/millennium.png" alt="Overview of the seven Millennium Prize Problems" decoding="sync"></section>
 
-<section class="slide negro"><div class="inner">
+<section class="slide negro impact"><div class="inner">
   <div class="statement" style="text-align:center">For twenty-six years, the score stayed at<br><strong>one out of seven.</strong></div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence single"><div class="inner">
   <div class="kicker">5 September 2026</div>
   <div class="statement">An AI system produced a proof for a <strong>second one</strong>.<br>10,000 agents. 88 hours.</div>
   <div class="clips">
-    <div class="clip r1 big step"><img src="img/clip-quartz-navier.png" alt=""><div class="src">Quartz · September 2026</div></div>
+    <div class="clip r1 big step"><img src="img/clip-quartz-navier.png" alt="News clipping: quartz navier" decoding="sync"><div class="src">Quartz · September 2026</div></div>
   </div>
 </div></section>
 
-<section class="slide foto contain claro"><img src="img/millennium-progress.png" alt=""></section>
+<section class="slide foto contain claro" data-title="Millennium Prize Problems: progress"><img src="img/millennium-progress.png" alt="Status of the Millennium Prize Problems" decoding="sync"></section>
 
 <section class="slide"><div class="inner">
   <div class="kicker">Read the small print</div>
@@ -197,9 +198,9 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="sub">The machine did the work in under four days. <strong>Trust and credit are still on human time.</strong></div>
 </div></section>
 
-<section class="slide foto contain claro"><img src="img/horizon.png" alt=""></section>
+<section class="slide foto contain claro" data-title="The AI capability horizon"><img src="img/horizon.png" alt="Chart of the AI capability horizon" decoding="sync"></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence"><div class="inner">
   <div class="kicker">Meanwhile, in the same ninety days</div>
   <ul class="lista compact">
     <li class="step"><span class="n">SEP</span>Anthropic, OpenAI, Google and xAI each ship a new frontier model. Within four weeks.</li>
@@ -207,16 +208,16 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
     <li class="step"><span class="n">NOW</span>Every one of them is sold on the same promise: it works alone, for longer.</li>
   </ul>
   <div class="clips">
-    <div class="clip r2 step"><img src="img/clip-cnbc-argon.png" alt=""><div class="src">CNBC · October 2026</div></div>
+    <div class="clip r2 step"><img src="img/clip-cnbc-argon.png" alt="News clipping: cnbc argon" decoding="sync"><div class="src">CNBC · October 2026</div></div>
   </div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence"><div class="inner">
   <div class="kicker">And it left the screen</div>
   <div class="statement">Autonomous excavators are doing <strong>paid work</strong> on live jobsites.<br>Their maker raised $600 million in October.</div>
   <div class="clips">
-    <div class="clip r1 step"><img src="img/clip-cdive-bedrock.png" alt=""><div class="src">Construction Dive · August 2026</div></div>
-    <div class="clip r2 step"><img src="img/clip-cdive-icon.png" alt=""><div class="src">Construction Dive · October 2026</div></div>
+    <div class="clip r1 step"><img src="img/clip-cdive-bedrock.png" alt="News clipping: cdive bedrock" decoding="sync"><div class="src">Construction Dive · August 2026</div></div>
+    <div class="clip r2 step"><img src="img/clip-cdive-icon.png" alt="News clipping: cdive icon" decoding="sync"><div class="src">Construction Dive · October 2026</div></div>
   </div>
 </div></section>
 
@@ -226,52 +227,52 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </div></section>
 
 <!-- FOUR DEMOS -->
-<section class="slide"><div class="inner">
+<section class="slide chapter" data-mark="04" data-chapter="Four demos"><div class="inner">
   <div class="kicker">Part two</div>
   <div class="gigante">Four <strong>demos.</strong></div>
   <div class="sub">One story: a real tender, SH 99 Grand Parkway (TxDOT, Houston), due Friday. Each demo starts from a leader's task, not from a feature.</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide demo" data-mark="04"><div class="inner">
   <div class="num">DEMO 4 · AGENT · WE START IT NOW</div>
   <div class="statement">One public tender. One paragraph of instructions.<br><strong>It will work alone while we do the other three.</strong></div>
   <div class="sub">We come back to it in twenty-five minutes.</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide demo" data-mark="01"><div class="inner">
   <div class="num">DEMO 1 · REASONING</div>
   <div class="statement">A 400-page tender. Due on Friday.<br><strong>Do not ask for a summary. Ask it to argue against you.</strong></div>
   <div class="sub">Watch for: a co-thinker, not an intern.</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide demo" data-mark="02"><div class="inner">
   <div class="num">DEMO 2 · AGENT WITH A BROWSER</div>
   <div class="statement">Thursday night, the owner publishes an addendum.<br><strong>Nobody touches the mouse. Watch it move.</strong></div>
   <div class="sub">SH 99 Grand Parkway, Segment B-1 · TxDOT · three public addenda · you won this one.</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide demo" data-mark="03"><div class="inner">
   <div class="num">DEMO 3 · SYNTHETIC VIDEO</div>
   <div class="statement">One message to the team. Recorded once.<br><strong>Delivered by you, in four languages.</strong></div>
   <div class="sub">Watch for: what is real on this screen.</div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps warning evidence single"><div class="inner">
   <div class="kicker" style="color:var(--coral)">The same technology, pointed at you</div>
   <div class="statement">An engineering firm lost <strong>$25 million</strong> in one video call.<br>Every face on the call was synthetic.</div>
   <div class="clips">
-    <div class="clip r1 big step"><img src="img/clip-fortune-arup.png" alt=""><div class="src">Fortune · May 2024</div></div>
+    <div class="clip r1 big step"><img src="img/clip-fortune-arup.png" alt="News clipping: fortune arup" decoding="sync"><div class="src">Fortune · May 2024</div></div>
   </div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide demo" data-mark="04"><div class="inner">
   <div class="num">DEMO 4 · AGENT · WE COLLECT IT</div>
   <div class="statement">Nobody has touched it since we started.<br><strong>A working bid / no-bid tool, built while we talked.</strong></div>
   <div class="sub">Watch for: what it decided on its own. And what it got wrong.</div>
 </div></section>
 
 <!-- WHAT IT CANNOT DO -->
-<section class="slide"><div class="inner">
+<section class="slide warning" data-chapter="Brilliant and unreliable"><div class="inner">
   <div class="kicker" style="color:var(--coral)">Part two and a half</div>
   <div class="gigante">Brilliant and unreliable.<br><strong>In the same minute.</strong></div>
 </div></section>
@@ -283,10 +284,10 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="sub">The same models that pass the bar exam. <strong>Capability is jagged, and you cannot see the edge from outside.</strong></div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence single"><div class="inner">
   <div class="statement">A 237-page report for a government. Invented citations. A partial refund.<br><strong>The model did not sign the report. The firm did.</strong></div>
   <div class="clips">
-    <div class="clip r2 big step"><img src="img/clip-fortune-deloitte.png" alt=""><div class="src">Fortune · October 2025</div></div>
+    <div class="clip r2 big step"><img src="img/clip-fortune-deloitte.png" alt="News clipping: fortune deloitte" decoding="sync"><div class="src">Fortune · October 2025</div></div>
   </div>
 </div></section>
 
@@ -295,7 +296,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </div></section>
 
 <!-- THREE LAYERS -->
-<section class="slide"><div class="inner">
+<section class="slide chapter" data-mark="03" data-chapter="Three layers"><div class="inner">
   <div class="kicker">Part three</div>
   <div class="gigante">Three <strong>layers.</strong></div>
   <div class="sub">The most expensive mistake of the year is using the wrong one.</div>
@@ -341,14 +342,14 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </div></section>
 
 <!-- BRIDGE -->
-<section class="slide negro"><div class="inner">
+<section class="slide negro impact"><div class="inner">
   <div class="statement" style="text-align:center">That was the technology.<br><strong>After coffee, we talk about you.</strong></div>
   <div class="sub" style="text-align:center">11:30. Bring something to write with.</div>
 </div></section>
 
 <!-- ======== SESSION II ======== -->
 <!-- COVER -->
-<section class="slide"><div class="inner">
+<section class="slide cover session-two" data-chapter="Session II · Your job"><div class="inner">
   <div class="kicker">Ferrovial · Austin · 18 November 2026</div>
   <div class="gigante">Leading in the Age of<br><strong>Digital Disruption</strong></div>
   <div class="sub">Session II · 11:30 – 13:30</div>
@@ -361,7 +362,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="sub">And one thing you will not like.</div>
 </div></section>
 
-<section class="slide negro"><div class="inner">
+<section class="slide negro impact"><div class="inner">
   <div class="kicker" style="text-align:center">One more trip in time</div>
   <div class="gigante">It is November 2029.<br><strong>Describe your Monday.</strong></div>
   <div class="sub" style="text-align:center">Sixty seconds. Write it down. You will need it later.</div>
@@ -373,18 +374,18 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="statement">You have just been awarded a client's largest contract in years.<br>The capital is there. The contract is there.<br><strong>The qualified people are not.</strong></div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence"><div class="inner">
   <div class="kicker">This is not a Ferrovial problem</div>
   <div class="clips stack">
-    <div class="clip r1 step"><img src="img/clip-fortune-walmart.png" alt=""><div class="src">Fortune · September 2025</div></div>
-    <div class="clip r2 step"><img src="img/clip-cdive-bechtel.png" alt=""><div class="src">Construction Dive · February 2026</div></div>
-    <div class="clip r3 step"><img src="img/clip-fortune-900.png" alt=""><div class="src">Fortune · September 2025</div></div>
+    <div class="clip r1 step"><img src="img/clip-fortune-walmart.png" alt="News clipping: fortune walmart" decoding="sync"><div class="src">Fortune · September 2025</div></div>
+    <div class="clip r2 step"><img src="img/clip-cdive-bechtel.png" alt="News clipping: cdive bechtel" decoding="sync"><div class="src">Construction Dive · February 2026</div></div>
+    <div class="clip r3 step"><img src="img/clip-fortune-900.png" alt="News clipping: fortune 900" decoding="sync"><div class="src">Fortune · September 2025</div></div>
   </div>
 </div></section>
 
 
 <!-- 2 THREE IDEAS -->
-<section class="slide"><div class="inner">
+<section class="slide" data-chapter="Three ideas"><div class="inner">
   <div class="kicker">Three ideas</div>
   <div class="num">01</div>
   <div class="gigante">The constraint <strong>has moved.</strong></div>
@@ -398,12 +399,12 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="sub">What the models can do today is years ahead of what your area uses.<br><strong>That gap is yours. Nobody closes it for you.</strong></div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence single"><div class="inner">
   <div class="kicker">Three ideas</div>
   <div class="num">03</div>
   <div class="gigante">Intelligence tends to <strong>zero cost.</strong></div>
   <div class="clips">
-    <div class="clip r2 big step"><img src="img/clip-cnbc-huang.png" alt=""><div class="src">CNBC · March 2026</div></div>
+    <div class="clip r2 big step"><img src="img/clip-cnbc-huang.png" alt="News clipping: cnbc huang" decoding="sync"><div class="src">CNBC · March 2026</div></div>
   </div>
 </div></section>
 
@@ -413,53 +414,53 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </div></section>
 
 <!-- 3 WHAT OTHER BOARDS ARE ARGUING ABOUT -->
-<section class="slide"><div class="inner">
+<section class="slide chapter" data-mark="05" data-chapter="Five boardroom patterns"><div class="inner">
   <div class="kicker">Outside view</div>
   <div class="gigante">What other boards are <strong>arguing about.</strong></div>
   <div class="sub">Five patterns. None of them is unique to you.</div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence"><div class="inner">
   <div class="num">PATTERN 1 · THE PROTOTYPE TRAP</div>
   <div class="statement">The demo takes a week.<br>Production takes a year.<br><strong>Your boss saw the demo.</strong></div>
   <div class="clips">
-    <div class="clip r1 step"><img src="img/clip-fortune-mit95.png" alt=""><div class="src">Fortune · August 2025</div></div>
-    <div class="clip r2 step"><img src="img/clip-fortune-leadershipgap.png" alt=""><div class="src">Fortune · October 2025</div></div>
+    <div class="clip r1 step"><img src="img/clip-fortune-mit95.png" alt="News clipping: fortune mit95" decoding="sync"><div class="src">Fortune · August 2025</div></div>
+    <div class="clip r2 step"><img src="img/clip-fortune-leadershipgap.png" alt="News clipping: fortune leadershipgap" decoding="sync"><div class="src">Fortune · October 2025</div></div>
   </div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence"><div class="inner">
   <div class="num">PATTERN 2 · THE BROKEN LADDER</div>
   <div class="statement">Junior hiring falls. Senior hiring does not.<br><strong>Who learns the trade in 2031?</strong></div>
   <div class="clips">
-    <div class="clip r2 step"><img src="img/clip-forbes-entrylevel.png" alt=""><div class="src">Forbes · May 2026 · Harvard study</div></div>
-    <div class="clip r1 step"><img src="img/clip-fortune-genz.png" alt=""><div class="src">Fortune · April 2026</div></div>
+    <div class="clip r2 step"><img src="img/clip-forbes-entrylevel.png" alt="News clipping: forbes entrylevel" decoding="sync"><div class="src">Forbes · May 2026 · Harvard study</div></div>
+    <div class="clip r1 step"><img src="img/clip-fortune-genz.png" alt="News clipping: fortune genz" decoding="sync"><div class="src">Fortune · April 2026</div></div>
   </div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence"><div class="inner">
   <div class="num">PATTERN 3 · FLAT FEE TO METERED</div>
   <div class="statement">Your tool of this afternoon<br>is the one in these headlines.</div>
   <div class="clips">
-    <div class="clip r1 step"><img src="img/clip-fortune-cowork.png" alt=""><div class="src">Fortune · March 2026</div></div>
-    <div class="clip r2 step"><img src="img/clip-fortune-superapp.png" alt=""><div class="src">Fortune · September 2026</div></div>
+    <div class="clip r1 step"><img src="img/clip-fortune-cowork.png" alt="News clipping: fortune cowork" decoding="sync"><div class="src">Fortune · March 2026</div></div>
+    <div class="clip r2 step"><img src="img/clip-fortune-superapp.png" alt="News clipping: fortune superapp" decoding="sync"><div class="src">Fortune · September 2026</div></div>
   </div>
   <div class="redflag step">Only 11% of companies can predict their spend on agents. This is not a cost question. It is a tension to navigate.</div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence"><div class="inner">
   <div class="num">PATTERN 4 · YOUR SUPPLIER GOT THERE FIRST</div>
   <div class="statement">A steel fabricator with two estimators went from four bids a week to six.<br><strong>Your subcontractor already bids faster than you evaluate.</strong></div>
   <div class="clips">
-    <div class="clip r2 big step"><img src="img/clip-forbes-bids.png" alt=""><div class="src">Forbes · June 2026</div></div>
+    <div class="clip r2 big step"><img src="img/clip-forbes-bids.png" alt="News clipping: forbes bids" decoding="sync"><div class="src">Forbes · June 2026</div></div>
   </div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps evidence single"><div class="inner">
   <div class="num">PATTERN 5 · WHAT DATA IS ACTUALLY YOURS</div>
   <div class="statement">27% of the sector uses AI. 52% still works on paper.<br><strong>The sector is late. That is the good news.</strong></div>
   <div class="clips">
-    <div class="clip r1 big step"><img src="img/clip-asce-aec.png" alt=""><div class="src">ASCE · December 2025 · Bluebeam survey</div></div>
+    <div class="clip r1 big step"><img src="img/clip-asce-aec.png" alt="News clipping: asce aec" decoding="sync"><div class="src">ASCE · December 2025 · Bluebeam survey</div></div>
   </div>
 </div></section>
 
@@ -474,12 +475,12 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </div></section>
 
 <!-- 4 SEVEN SHIFTS -->
-<section class="slide"><div class="inner">
+<section class="slide chapter" data-mark="07" data-chapter="Seven shifts"><div class="inner">
   <div class="kicker">Seven shifts</div>
   <div class="gigante">Seven shifts<br>in <strong>your job.</strong></div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide shift"><div class="inner">
   <div class="num">SHIFT 1</div>
   <div class="fromto">From <b>analysis</b><span class="arrow">→</span>to <b>decision</b></div>
   <div class="statement">Analysis just got cheap.<br><strong>The bottleneck is now you.</strong></div>
@@ -491,49 +492,49 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="quote">&ldquo;Your job has fundamentally changed. It is no longer to write code, and LLMs are not here to help you write better code faster. <strong>Your job is to help the LLM write better code faster.</strong>&rdquo;<span class="who">Bart Butler, CTO of Proton &middot; internal memo, as reported by 404 Media</span></div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps shift evidence"><div class="inner">
   <div class="num">SHIFT 2</div>
   <div class="fromto">From <b>managing people</b><span class="arrow">→</span>to <b>managing people plus agents</b></div>
   <div class="statement">One person, one team.<br><strong>Delegating to something you do not control step by step.</strong></div>
   <div class="clips">
-    <div class="clip r1 step"><img src="img/clip-vozpopuli-repsol.png" alt=""><div class="src">Vozpópuli · October 2025 · 50 people supervising teams of agents</div></div>
+    <div class="clip r1 step"><img src="img/clip-vozpopuli-repsol.png" alt="News clipping: vozpopuli repsol" decoding="sync"><div class="src">Vozpópuli · October 2025 · 50 people supervising teams of agents</div></div>
   </div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps shift evidence single"><div class="inner">
   <div class="num">SHIFT 3</div>
   <div class="fromto">From <b>reporting</b><span class="arrow">→</span>to <b>sensing</b></div>
   <div class="statement">The report writes itself.<br><strong>Your value is the question, not the document.</strong></div>
   <div class="clips">
-    <div class="clip r2 big step"><img src="img/clip-fortune-goldman.png" alt=""><div class="src">Fortune · May 2026</div></div>
+    <div class="clip r2 big step"><img src="img/clip-fortune-goldman.png" alt="News clipping: fortune goldman" decoding="sync"><div class="src">Fortune · May 2026</div></div>
   </div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide shift"><div class="inner">
   <div class="num">SHIFT 4</div>
   <div class="fromto">From <b>expert</b><span class="arrow">→</span>to <b>orchestrator</b></div>
   <div class="statement">Individual expertise was the asset.<br><strong>Collective intelligence is the asset now, and it is no longer only human.</strong></div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide shift"><div class="inner">
   <div class="num">SHIFT 5</div>
   <div class="fromto">From <b>headcount</b><span class="arrow">→</span>to <b>capacity</b></div>
   <div class="statement">Your plan is no longer people.<br><strong>It is people times tools.</strong><br>A token budget is a line in your P&amp;L.</div>
   <div class="sub">Yesterday you did financial acumen. This is the new line.</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide shift"><div class="inner">
   <div class="num">SHIFT 6</div>
   <div class="fromto">From <b>project</b><span class="arrow">→</span>to <b>process</b></div>
   <div class="statement">The strategic programmes are defined. They are top-down.<br><strong>Your territory is the processes you own.</strong><br>Nobody will map them for you.</div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps shift evidence"><div class="inner">
   <div class="num">SHIFT 7</div>
   <div class="fromto">From <b>certainty</b><span class="arrow">→</span>to <b>tempo</b></div>
   <div class="statement">Strategy beyond one quarter is a guess.<br><strong>The skill is judgement and cadence.</strong></div>
   <div class="clips">
-    <div class="clip r1 step"><img src="img/clip-caixabank-google.png" alt=""><div class="src">CaixaBank · October 2026 · a seven-year platform bet, with no certainty</div></div>
+    <div class="clip r1 step"><img src="img/clip-caixabank-google.png" alt="News clipping: caixabank google" decoding="sync"><div class="src">CaixaBank · October 2026 · a seven-year platform bet, with no certainty</div></div>
   </div>
 </div></section>
 
@@ -551,59 +552,59 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </div></section>
 
 <!-- 5 THE QUIET RISK -->
-<section class="slide"><div class="inner">
+<section class="slide warning"><div class="inner">
   <div class="kicker" style="color:var(--coral)">The thing you will not like</div>
   <div class="statement">The manager who hands AI to the team and never touches it <strong>becomes the bottleneck.</strong><br>Your people will move faster than your approvals.<br><em>Then they will route around you.</em></div>
   <div class="sub">You were asked to be pioneers. A pioneer who does not touch the tool is a sponsor. <strong>Sponsors get routed around first.</strong></div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps warning evidence single"><div class="inner">
   <div class="kicker" style="color:var(--coral)">The thing you will not like</div>
   <div class="statement">In six months your team will know whether you use it.<br><strong>They already suspect.</strong></div>
   <div class="clips">
-    <div class="clip r2 big step"><img src="img/clip-cnbc-accenture.png" alt=""><div class="src">CNBC · February 2026</div></div>
+    <div class="clip r2 big step"><img src="img/clip-cnbc-accenture.png" alt="News clipping: cnbc accenture" decoding="sync"><div class="src">CNBC · February 2026</div></div>
   </div>
 </div></section>
 
 <!-- 6 FIVE QUESTIONS -->
-<section class="slide"><div class="inner">
+<section class="slide chapter" data-mark="05" data-chapter="Five questions"><div class="inner">
   <div class="kicker">Five questions</div>
   <div class="gigante">Five questions.<br><strong>No answers.</strong></div>
   <div class="sub">The quality of a company is measured by the questions it asks itself. So is the quality of a leader.</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide question" data-mark="01"><div class="inner">
   <div class="num">QUESTION 1</div>
   <div class="statement">Which decision did you delay last month, waiting for data you could have had <strong>in an hour</strong>?</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide question" data-mark="02"><div class="inner">
   <div class="num">QUESTION 2</div>
   <div class="statement">What does your best engineer do today that a machine already does?<br><strong>And how does the next one learn the trade?</strong></div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide question" data-mark="03"><div class="inner">
   <div class="num">QUESTION 3</div>
   <div class="statement">If you had to deliver your largest contract with <strong>two thirds of the team</strong>, which process would you automate first?</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide question" data-mark="04"><div class="inner">
   <div class="num">QUESTION 4</div>
   <div class="statement">What is the first thing you would <strong>stop approving</strong>?</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide question" data-mark="05"><div class="inner">
   <div class="num">QUESTION 5</div>
   <div class="statement">Who on your team is further ahead than you?<br><strong>When did you last ask them to show you?</strong></div>
 </div></section>
 
-<section class="slide negro"><div class="inner">
+<section class="slide negro impact"><div class="inner">
   <div class="kicker" style="text-align:center">The final question</div>
   <div class="statement" style="text-align:center">What part of your job will be agentic,<br>what part will not,<br><strong>and which part do you choose to keep?</strong></div>
 </div></section>
 
 <!-- 7 THREE PROVOCATIONS -->
-<section class="slide steps"><div class="inner">
+<section class="slide steps" data-chapter="Three provocations"><div class="inner">
   <div class="kicker">Three provocations</div>
   <ul class="lista">
     <li class="step"><span class="n">01</span>Publish your area's process map before year end. Name three to automate.</li>
@@ -614,7 +615,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </div></section>
 
 <!-- 8 REFLECTION -->
-<section class="slide"><div class="inner">
+<section class="slide" data-chapter="Reflection"><div class="inner">
   <div class="kicker">Ten minutes · the page where you wrote your Monday</div>
   <ul class="lista">
     <li><span class="n">STOP</span>One thing I stop doing.</li>
@@ -625,13 +626,13 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </div></section>
 
 <!-- 9 GODS OF SAND -->
-<section class="slide foto"><img src="img/sand.png" alt=""></section>
-<section class="slide foto"><img src="img/silicon.png" alt=""></section>
-<section class="slide foto"><img src="img/transistor.png" alt=""></section>
-<section class="slide foto"><img src="img/kilby.png" alt=""></section>
-<section class="slide foto"><img src="img/gpu.png" alt=""></section>
+<section class="slide foto" data-chapter="Gods of sand" data-title="Sand"><img src="img/sand.png" alt="Sand grains in warm light" decoding="sync"></section>
+<section class="slide foto" data-title="Silicon"><img src="img/silicon.png" alt="Crystalline silicon" decoding="sync"></section>
+<section class="slide foto" data-title="The transistor"><img src="img/transistor.png" alt="A transistor" decoding="sync"></section>
+<section class="slide foto" data-title="An early integrated circuit"><img src="img/kilby.png" alt="An early integrated circuit" decoding="sync"></section>
+<section class="slide foto" data-title="The GPU"><img src="img/gpu.png" alt="Close-up of a graphics processor" decoding="sync"></section>
 
-<section class="slide"><div class="inner">
+<section class="slide" data-chapter="Five take-aways"><div class="inner">
   <div class="kicker">Five take-aways</div>
   <ul class="lista compact">
     <li><span class="n">01</span>The constraint moved to people. AI scales without hiring.</li>
@@ -653,46 +654,6 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <script src="three.min.js"></script>
 <script src="viaje.js"></script>
-<script>
-(function () {
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  let i = 0;
-  let viaje = null;
-  function ir(n) {
-    if (viaje && slides[i].classList.contains('viaje')) viaje.leave();
-    i = Math.max(0, Math.min(slides.length - 1, n));
-    slides.forEach((s, k) => s.classList.toggle('on', k === i));
-    if (slides[i].classList.contains('viaje') && window.initViaje && window.THREE) {
-      if (!viaje) viaje = window.initViaje(slides[i]);
-      viaje.enter();
-    }
-    document.getElementById('barra').style.width = ((i + 1) / slides.length * 100) + '%';
-    document.getElementById('pag').textContent = (i + 1) + ' / ' + slides.length;
-    location.hash = i + 1;
-  }
-  function pasos(dir) {
-    const s = slides[i];
-    if (!s.classList.contains('steps')) return false;
-    const st = Array.from(s.querySelectorAll('.step'));
-    if (dir > 0) { const next = st.find(p => !p.classList.contains('on')); if (next) { next.classList.add('on'); return true; } }
-    else { const prev = st.slice().reverse().find(p => p.classList.contains('on')); if (prev) { prev.classList.remove('on'); return true; } }
-    return false;
-  }
-  function enViaje(dir) { return viaje && slides[i].classList.contains('viaje') && viaje.handle(dir); }
-  function adelante() { if (enViaje(1)) return; if (!pasos(1)) ir(i + 1); }
-  function atras() { if (enViaje(-1)) return; if (!pasos(-1)) ir(i - 1); }
-  document.addEventListener('keydown', e => {
-    if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); adelante(); }
-    if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); atras(); }
-    if (e.key === 'Home') ir(0);
-    if (e.key === 'End') ir(slides.length - 1);
-    if (e.key === 'f') document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
-  });
-  document.addEventListener('click', e => { if (e.clientX < window.innerWidth * 0.2) atras(); else adelante(); });
-  function desdeHash() { const h = parseInt(location.hash.slice(1), 10); ir(isNaN(h) ? 0 : h - 1); }
-  window.addEventListener('hashchange', () => { const h = parseInt(location.hash.slice(1), 10); if (!isNaN(h) && h - 1 !== i) ir(h - 1); });
-  desdeHash();
-})();
-</script>
+<script src="stage.js"></script>
 </body>
 </html>
