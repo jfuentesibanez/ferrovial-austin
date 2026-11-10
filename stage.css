@@ -31,10 +31,10 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 .cover .sub { border-top:1px solid rgba(255,255,255,.3); padding-top:2.2vh; margin-top:5vh; width:fit-content; min-width:300px; color:#e4e5e6; }
 .cover.session-two::before { background-image:linear-gradient(90deg,rgba(16,12,8,.97),rgba(16,12,8,.77) 48%,rgba(16,12,8,.18)),url('img/sand.png'); }
 
-/* Original partner artwork, displayed below native resolution for crisp lettering. */
-.cover-partners { position:absolute; right:8vw; bottom:9vh; z-index:3; display:flex; align-items:center; gap:26px; padding:13px 20px; background:#fff; border-radius:2px; box-shadow:0 8px 32px #0003; }
+/* Transparent partner lockup for the photographic session covers. */
+.cover-partners { position:absolute; right:8vw; bottom:9vh; z-index:3; display:flex; align-items:center; gap:26px; padding:13px 0; background:transparent; }
 .partner-logo { position:relative; display:block; overflow:hidden; flex:none; height:64px; }
-.partner-logo img { position:absolute; max-width:none; width:685px; height:auto; top:-28px; }
+.partner-logo img { position:absolute; max-width:none; width:685px; height:auto; top:-88px; }
 .partner-logo.headspring { width:188px; }
 .partner-logo.headspring img { left:-20px; }
 .partner-logo.university { width:171px; }
