@@ -6,12 +6,12 @@
 <title>Three ideas · Seven shifts · Five questions · Ferrovial</title>
 <style>
 :root {
-  --fondo: #0d0d10; --fondo-2: #16161b; --papel: #f8f8f6; --papel-suave: #b9b9b4;
-  --linea: #2a2a32; --acento: #5b8cff; --acento-suave: #1b2440;
-  --coral: #ff6a4d; --verde: #4fd18c; --ambar: #ffc857;
-  --serif: Charter, Georgia, 'Times New Roman', serif;
-  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --mono: 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  --fondo: #111111; --fondo-2: #1c1c1c; --papel: #ffffff; --papel-suave: #acadaf;
+  --linea: #333333; --acento: #ffc700; --acento-suave: #3a2f00;
+  --coral: #ff6a4d; --verde: #4fd18c; --ambar: #ffc700;
+  --serif: 'Ferrovial New', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --sans: 'Ferrovial New', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono: 'Ferrovial New', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; }
@@ -22,10 +22,10 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 .inner { max-width: 1120px; width: 100%; }
 
 .kicker { font-family: var(--mono); font-size: clamp(12px, 1.1vw, 14px); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); margin-bottom: 3vh; font-weight: 700; }
-.gigante { font-size: clamp(42px, 7.5vw, 104px); line-height: 1.04; letter-spacing: -.02em; }
-.statement { font-size: clamp(26px, 3.7vw, 50px); line-height: 1.26; letter-spacing: -.012em; }
+.gigante { font-size: clamp(42px, 7.5vw, 104px); line-height: 1.06; letter-spacing: -.02em; font-weight: 600; }
+.statement { font-size: clamp(26px, 3.7vw, 50px); line-height: 1.26; letter-spacing: -.012em; font-weight: 500; }
 .statement em, .gigante em { font-style: italic; }
-.statement strong, .gigante strong { color: var(--acento); font-weight: 400; }
+.statement strong, .gigante strong { color: var(--acento); font-weight: inherit; }
 .hl { color: var(--acento); }
 .sub { font-family: var(--sans); font-size: clamp(15px, 1.7vw, 19px); color: var(--papel-suave); margin-top: 4vh; line-height: 1.55; }
 .sub strong { color: var(--papel); font-weight: 600; }
@@ -83,7 +83,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 .vj-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .vj-hud { position: absolute; top: 6vh; left: 50%; transform: translateX(-50%); text-align: center; z-index: 3; pointer-events: none; transition: opacity .5s ease; }
 .viaje.zoomed .vj-hud, .viaje.zoomed .vj-minimap { opacity: 0; }
-.vj-year { font-family: var(--serif); font-size: clamp(3.2rem, 7.5vw, 6.5rem); color: var(--papel); letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; transition: filter .3s ease; }
+.vj-year { font-weight: 600; font-family: var(--serif); font-size: clamp(3.2rem, 7.5vw, 6.5rem); color: var(--papel); letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; transition: filter .3s ease; }
 .vj-year.traveling { filter: blur(1.5px); }
 .vj-year.pop { animation: vjPop .45s cubic-bezier(.2,1.6,.4,1); }
 @keyframes vjPop { 0% { transform: scale(.96); } 100% { transform: scale(1); } }
@@ -95,7 +95,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 .vj-lbl { position: absolute; top: 40px; transform: translateX(-50%); font: 500 11px var(--mono); letter-spacing: .08em; color: #8a8a93; white-space: nowrap; opacity: 0; transition: opacity .8s ease; }
 .vj-tick.visited, .vj-lbl.visited { opacity: 1; }
 .vj-lbl.current { color: var(--papel); font-weight: 700; }
-.vj-cursor { position: absolute; top: 25px; width: 14px; height: 14px; border-radius: 50%; background: var(--acento); transform: translate(-50%, -50%); box-shadow: 0 0 0 5px rgba(91,140,255,.18), 0 0 18px rgba(91,140,255,.6); }
+.vj-cursor { position: absolute; top: 25px; width: 14px; height: 14px; border-radius: 50%; background: var(--acento); transform: translate(-50%, -50%); box-shadow: 0 0 0 5px rgba(255,199,0,.18), 0 0 18px rgba(255,199,0,.6); }
 .vj-flash { position: absolute; inset: 0; z-index: 4; pointer-events: none; background: #fff; opacity: 0; }
 .vj-flash.active { animation: vjFlash .35s ease-out; }
 @keyframes vjFlash { 0% { opacity: .45; } 100% { opacity: 0; } }
@@ -107,24 +107,17 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 </head>
 <body>
 
-<!-- TIME MACHINE (opening) -->
-<section class="slide viaje">
-  <canvas class="vj-canvas"></canvas>
-  <div class="vj-hud"><div class="vj-year">2026</div><div class="vj-underline"></div></div>
-  <div class="vj-minimap"><div class="vj-track"></div><div class="vj-cursor"></div></div>
-  <div class="vj-flash"></div>
-</section>
-
-<section class="slide negro"><div class="inner">
-  <div class="kicker" style="text-align:center">One more stop</div>
-  <div class="gigante">It is November 2029.<br><strong>Describe your Monday.</strong></div>
-  <div class="sub" style="text-align:center">Sixty seconds. Write it down. You will need it later.</div>
-</div></section>
-
+<!-- OPEN -->
 <section class="slide"><div class="inner">
   <div class="kicker">Leading in the Age of Digital Disruption · II</div>
   <div class="gigante">Three ideas.<br>Seven shifts.<br>Five questions.</div>
   <div class="sub">And one thing you will not like.</div>
+</div></section>
+
+<section class="slide negro"><div class="inner">
+  <div class="kicker" style="text-align:center">One more trip in time</div>
+  <div class="gigante">It is November 2029.<br><strong>Describe your Monday.</strong></div>
+  <div class="sub" style="text-align:center">Sixty seconds. Write it down. You will need it later.</div>
 </div></section>
 
 <!-- 1 WHERE ARE THE PEOPLE -->

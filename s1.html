@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ninety days · Four demos · Three layers · Ferrovial</title>
+<style>
+:root {
+  --fondo: #111111; --fondo-2: #1c1c1c; --papel: #ffffff; --papel-suave: #acadaf;
+  --linea: #333333; --acento: #ffc700; --acento-suave: #3a2f00;
+  --coral: #ff6a4d; --verde: #4fd18c; --ambar: #ffc700;
+  --serif: 'Ferrovial New', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --sans: 'Ferrovial New', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono: 'Ferrovial New', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+body { font-family: var(--serif); background: var(--fondo); color: var(--papel); overflow: hidden; cursor: pointer; user-select: none; }
+.slide { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 6vh 7vw; }
+.slide.on { display: flex; animation: entra .35s ease; }
+@keyframes entra { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.inner { max-width: 1120px; width: 100%; }
+
+.kicker { font-family: var(--mono); font-size: clamp(12px, 1.1vw, 14px); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); margin-bottom: 3vh; font-weight: 700; }
+.gigante { font-size: clamp(42px, 7.5vw, 104px); line-height: 1.06; letter-spacing: -.02em; font-weight: 600; }
+.statement { font-size: clamp(26px, 3.7vw, 50px); line-height: 1.26; letter-spacing: -.012em; font-weight: 500; }
+.statement em, .gigante em { font-style: italic; }
+.statement strong, .gigante strong { color: var(--acento); font-weight: inherit; }
+.hl { color: var(--acento); }
+.sub { font-family: var(--sans); font-size: clamp(15px, 1.7vw, 19px); color: var(--papel-suave); margin-top: 4vh; line-height: 1.55; }
+.sub strong { color: var(--papel); font-weight: 600; }
+.redflag { font-family: var(--sans); font-size: clamp(15px, 1.7vw, 19px); color: var(--coral); margin-top: 3.5vh; line-height: 1.5; }
+.num { font-family: var(--mono); color: var(--acento); font-size: clamp(14px, 1.3vw, 17px); letter-spacing: .1em; margin-bottom: 2vh; }
+.fromto { font-family: var(--sans); font-size: clamp(16px, 1.8vw, 21px); color: var(--papel-suave); margin-bottom: 2.5vh; }
+.fromto b { color: var(--papel); font-weight: 600; }
+.fromto .arrow { color: var(--acento); margin: 0 .4em; }
+
+.lista { list-style: none; margin-top: 2vh; }
+.lista li { font-size: clamp(20px, 2.6vw, 34px); line-height: 1.3; padding: 1.6vh 0; border-top: 1px solid var(--linea); display: grid; grid-template-columns: 3.2em 1fr; gap: 1em; align-items: baseline; }
+.lista li:last-child { border-bottom: 1px solid var(--linea); }
+.lista .n { font-family: var(--mono); color: var(--acento); font-size: .6em; letter-spacing: .1em; }
+.lista.compact li { font-size: clamp(17px, 2.1vw, 27px); padding: 1.2vh 0; }
+.lista li.muted { color: var(--papel-suave); }
+.lista li.hot { color: var(--coral); }
+
+.step { opacity: 0; transform: translateY(14px); transition: opacity .35s ease, transform .35s ease; }
+.step.on { opacity: 1; transform: none; }
+
+/* Newspaper clippings */
+.clips { position: relative; display: flex; flex-wrap: wrap; gap: 3vh 2vw; justify-content: center; align-items: center; margin-top: 3vh; }
+.clip { background: #fff; padding: 8px 8px 10px; box-shadow: 4px 6px 0 rgba(0,0,0,.35); max-width: min(44vw, 540px); opacity: 0; transition: opacity .35s ease, transform .35s ease-out; }
+.clip img { display: block; width: 100%; height: auto; }
+.clip .src { font-family: var(--mono); font-size: 11px; color: #555; margin-top: 6px; letter-spacing: .08em; text-transform: uppercase; }
+.clip.r1 { transform: rotate(-4deg) translateY(20px); } .clip.r1.on { transform: rotate(-2deg); }
+.clip.r2 { transform: rotate(3deg) translateY(20px); }  .clip.r2.on { transform: rotate(1.5deg); }
+.clip.r3 { transform: rotate(-5deg) translateY(20px); } .clip.r3.on { transform: rotate(-2.5deg); }
+.clip.on { opacity: 1; }
+.clip.big { max-width: min(72vw, 1000px); }
+.clips.stack { display: block; position: relative; height: 60vh; }
+.clips.stack .clip { position: absolute; max-width: min(50vw, 640px); }
+.clips.stack .clip:nth-child(1) { left: 0; top: 0; }
+.clips.stack .clip:nth-child(2) { right: 0; top: 15vh; }
+.clips.stack .clip:nth-child(3) { left: 10%; top: 30vh; }
+.clips.stack .clip.on { z-index: 2; }
+.clips.stack .clip.on ~ .clip.on { z-index: 3; }
+.clips.stack .clip.on ~ .clip.on ~ .clip.on { z-index: 4; }
+
+/* Full-bleed images */
+.slide.foto { padding: 0; background: #000; }
+.slide.foto img { width: 100%; height: 100%; object-fit: cover; }
+.slide.foto .cap { position: absolute; left: 7vw; bottom: 8vh; font-family: var(--mono); font-size: clamp(13px, 1.3vw, 17px); letter-spacing: .14em; text-transform: uppercase; color: var(--papel); text-shadow: 0 2px 10px rgba(0,0,0,.8); }
+.slide.negro { background: #000; }
+.slide.negro .gigante { text-align: center; }
+
+.quote { font-size: clamp(22px, 3vw, 40px); line-height: 1.3; font-style: italic; }
+.quote .who { display: block; font-style: normal; font-family: var(--sans); font-size: .5em; color: var(--papel-suave); margin-top: 2.5vh; }
+
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; align-items: center; }
+.pick { font-family: var(--sans); font-size: clamp(18px, 2.2vw, 28px); color: var(--ambar); line-height: 1.35; }
+
+/* Time machine */
+.slide.viaje { padding: 0; }
+.vj-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.vj-hud { position: absolute; top: 6vh; left: 50%; transform: translateX(-50%); text-align: center; z-index: 3; pointer-events: none; transition: opacity .5s ease; }
+.viaje.zoomed .vj-hud, .viaje.zoomed .vj-minimap { opacity: 0; }
+.vj-year { font-weight: 600; font-family: var(--serif); font-size: clamp(3.2rem, 7.5vw, 6.5rem); color: var(--papel); letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; transition: filter .3s ease; }
+.vj-year.traveling { filter: blur(1.5px); }
+.vj-year.pop { animation: vjPop .45s cubic-bezier(.2,1.6,.4,1); }
+@keyframes vjPop { 0% { transform: scale(.96); } 100% { transform: scale(1); } }
+.vj-underline { width: 120px; height: 3px; border-radius: 2px; background: var(--acento); margin: 14px auto 0; transition: width .5s ease; }
+.vj-hud.traveling .vj-underline { width: 320px; }
+.vj-minimap { position: absolute; bottom: 9vh; left: 50%; transform: translateX(-50%); width: min(70vw, 980px); height: 60px; z-index: 3; pointer-events: none; transition: opacity .5s ease; }
+.vj-track { position: absolute; top: 24px; left: 0; width: 100%; height: 2px; background: rgba(248,248,246,.18); }
+.vj-tick { position: absolute; top: 17px; width: 2px; height: 16px; background: rgba(248,248,246,.4); transform: translateX(-50%); opacity: 0; transition: opacity .8s ease; }
+.vj-lbl { position: absolute; top: 40px; transform: translateX(-50%); font: 500 11px var(--mono); letter-spacing: .08em; color: #8a8a93; white-space: nowrap; opacity: 0; transition: opacity .8s ease; }
+.vj-tick.visited, .vj-lbl.visited { opacity: 1; }
+.vj-lbl.current { color: var(--papel); font-weight: 700; }
+.vj-cursor { position: absolute; top: 25px; width: 14px; height: 14px; border-radius: 50%; background: var(--acento); transform: translate(-50%, -50%); box-shadow: 0 0 0 5px rgba(255,199,0,.18), 0 0 18px rgba(255,199,0,.6); }
+.vj-flash { position: absolute; inset: 0; z-index: 4; pointer-events: none; background: #fff; opacity: 0; }
+.vj-flash.active { animation: vjFlash .35s ease-out; }
+@keyframes vjFlash { 0% { opacity: .45; } 100% { opacity: 0; } }
+
+.lista .ans { font-family: var(--mono); font-size: .62em; letter-spacing: .1em; color: var(--ambar); white-space: nowrap; }
+.lista.vote li { grid-template-columns: 1fr auto; }
+.src-line { font-family: var(--mono); font-size: clamp(11px, 1vw, 13px); letter-spacing: .08em; text-transform: uppercase; color: var(--papel-suave); opacity: .75; margin-top: 3vh; }
+.capas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2vw; margin-top: 3vh; }
+.capa { border-top: 2px solid var(--acento); padding-top: 2vh; }
+.capa h3 { font-weight: 400; font-size: clamp(20px, 2.3vw, 30px); line-height: 1.15; margin-bottom: 1.5vh; }
+.capa p { font-family: var(--sans); font-size: clamp(14px, 1.45vw, 18px); line-height: 1.5; color: var(--papel-suave); }
+.capa p strong { color: var(--papel); font-weight: 600; }
+@media (max-width: 820px) { .capas { grid-template-columns: 1fr; } }
+
+.slide.foto.contain img { object-fit: contain; }
+.slide.foto.claro { background: #f7f7f5; }
+.slide.foto .caps { position: absolute; left: 7vw; bottom: 7vh; display: flex; flex-direction: column; gap: 1.2vh; }
+.slide.foto .caps .cap { position: static; background: rgba(17,17,17,.85); padding: .6em .9em; text-shadow: none; }
+
+#barra { position: fixed; left: 0; bottom: 0; height: 3px; background: var(--acento); width: 0; transition: width .3s ease; z-index: 9; }
+#pag { position: fixed; right: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .7; z-index: 9; }
+.pie { position: fixed; left: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .5; z-index: 9; }
+</style>
+</head>
+<body>
+
+<!-- TIME MACHINE (opening) -->
+<section class="slide viaje">
+  <canvas class="vj-canvas"></canvas>
+  <div class="vj-hud"><div class="vj-year">2026</div><div class="vj-underline"></div></div>
+  <div class="vj-minimap"><div class="vj-track"></div><div class="vj-cursor"></div></div>
+  <div class="vj-flash"></div>
+</section>
+
+<section class="slide negro"><div class="inner">
+  <div class="statement" style="text-align:center">Every jump is shorter than the one before.<br><strong>The next one fits inside your career.</strong></div>
+</div></section>
+
+<!-- OPEN -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Leading in the Age of Digital Disruption · I</div>
+  <div class="gigante">Ninety days.<br>Four demos.<br>Three layers.</div>
+  <div class="sub">No theory. No AI literacy. You have done that.</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">By 11:00</div>
+  <div class="statement">You will know <strong>what changed</strong> since you last looked,<br><strong>what the machines can and cannot do</strong> today,<br>and <strong>when to use which</strong>.</div>
+</div></section>
+
+<!-- NINETY DAYS -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Part one</div>
+  <div class="gigante">Ninety <strong>days.</strong></div>
+  <div class="sub">What happened since the summer.</div>
+</div></section>
+
+<section class="slide foto contain steps">
+  <img src="img/perelman.png" alt="">
+  <div class="caps">
+    <div class="cap">Who is this man?</div>
+    <div class="cap step">Grigori Perelman. In 2003 he solved a problem that had been open for a century.</div>
+    <div class="cap step">He was offered one million dollars. He said no.</div>
+  </div>
+</section>
+
+<section class="slide foto contain claro"><img src="img/millennium.png" alt=""></section>
+
+<section class="slide negro"><div class="inner">
+  <div class="statement" style="text-align:center">For twenty-six years, the score stayed at<br><strong>one out of seven.</strong></div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="kicker">5 September 2026</div>
+  <div class="statement">An AI system produced a proof for a <strong>second one</strong>.<br>10,000 agents. 88 hours.</div>
+  <div class="clips">
+    <div class="clip r1 big step"><img src="img/clip-quartz-navier.png" alt=""><div class="src">Quartz · September 2026</div></div>
+  </div>
+</div></section>
+
+<section class="slide foto contain claro"><img src="img/millennium-progress.png" alt=""></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">Read the small print</div>
+  <ul class="lista compact">
+    <li><span class="n">WHAT</span>Navier-Stokes: the equations of fluids. The proof shows a breakdown, with an external force.</li>
+    <li><span class="n">CHECK</span>A second model spent 17 hours verifying it line by line. No human has yet confirmed it independently.</li>
+    <li><span class="n">PRIZE</span>The Clay Institute still lists the problem as open. Its review will be "deliberately unhurried".</li>
+    <li><span class="n">CREDIT</span>The techniques came from two mathematicians in Madrid. A dispute over credit started within days.</li>
+  </ul>
+  <div class="sub">The machine did the work in under four days. <strong>Trust and credit are still on human time.</strong></div>
+</div></section>
+
+<section class="slide foto contain claro"><img src="img/horizon.png" alt=""></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="kicker">Meanwhile, in the same ninety days</div>
+  <ul class="lista compact">
+    <li class="step"><span class="n">SEP</span>Anthropic, OpenAI, Google and xAI each ship a new frontier model. Within four weeks.</li>
+    <li class="step"><span class="n">OCT</span>Google, Meta, Mistral and three Chinese labs answer. Several with open weights.</li>
+    <li class="step"><span class="n">NOW</span>Every one of them is sold on the same promise: it works alone, for longer.</li>
+  </ul>
+  <div class="clips">
+    <div class="clip r2 step"><img src="img/clip-cnbc-argon.png" alt=""><div class="src">CNBC · October 2026</div></div>
+  </div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="kicker">And it left the screen</div>
+  <div class="statement">Autonomous excavators are doing <strong>paid work</strong> on live jobsites.<br>Their maker raised $600 million in October.</div>
+  <div class="clips">
+    <div class="clip r1 step"><img src="img/clip-cdive-bedrock.png" alt=""><div class="src">Construction Dive · August 2026</div></div>
+    <div class="clip r2 step"><img src="img/clip-cdive-icon.png" alt=""><div class="src">Construction Dive · October 2026 · headquartered in Austin</div></div>
+  </div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="statement">Waves now arrive faster than organisations absorb them.<br><strong>You do not catch a wave by finishing the course on the previous one.</strong></div>
+  <div class="sub">For a leader, continuous learning is not a course. It is a habit: <strong>one hour a week with the tool in your own hands.</strong></div>
+</div></section>
+
+<!-- FOUR DEMOS -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Part two</div>
+  <div class="gigante">Four <strong>demos.</strong></div>
+  <div class="sub">Tools you do not have yet. Each one starts from a leader's task, not from a feature.</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">DEMO 4 · AGENT · WE START IT NOW</div>
+  <div class="statement">One spreadsheet. One paragraph of instructions.<br><strong>It will work alone while we do the other three.</strong></div>
+  <div class="sub">We come back to it in twenty-five minutes.</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">DEMO 1 · VOICE</div>
+  <div class="statement">Rehearse the hardest conversation of your week.<br><strong>In two languages. Before you have it.</strong></div>
+  <div class="sub">Watch for: interruptions, tone, and the switch between English and Spanish mid-sentence.</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">DEMO 2 · SYNTHETIC VIDEO</div>
+  <div class="statement">One safety briefing. Recorded once.<br><strong>Delivered by you, in five languages.</strong></div>
+  <div class="sub">Watch for: what is real on this screen.</div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="kicker" style="color:var(--coral)">The same technology, pointed at you</div>
+  <div class="statement">An engineering firm lost <strong>$25 million</strong> in one video call.<br>Every face on the call was synthetic.</div>
+  <div class="clips">
+    <div class="clip r1 big step"><img src="img/clip-fortune-arup.png" alt=""><div class="src">Fortune · May 2024</div></div>
+  </div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">DEMO 3 · REASONING</div>
+  <div class="statement">A 300-page contract. Twenty minutes before the meeting.<br><strong>Do not ask for a summary. Ask it to argue against you.</strong></div>
+  <div class="sub">Watch for: a co-thinker, not an intern.</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">DEMO 4 · AGENT · WE COLLECT IT</div>
+  <div class="statement">Nobody has touched it since we started.<br><strong>A working tool, built from a spreadsheet, while we talked.</strong></div>
+  <div class="sub">Watch for: what it decided on its own. And what it got wrong.</div>
+</div></section>
+
+<!-- WHAT IT CANNOT DO -->
+<section class="slide"><div class="inner">
+  <div class="kicker" style="color:var(--coral)">Part two and a half</div>
+  <div class="gigante">Brilliant and unreliable.<br><strong>In the same minute.</strong></div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">In your own trade</div>
+  <div class="statement">Frontier models were given raw construction drawings and asked for a takeoff.<br>Scores: <strong>2% to 34%</strong>.</div>
+  <div class="src-line">Construction's Last Exam · Togal.AI · October 2026 · 33 tasks, no specialist tools</div>
+  <div class="sub">The same models that pass the bar exam. <strong>Capability is jagged, and you cannot see the edge from outside.</strong></div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="statement">A 237-page report for a government. Invented citations. A partial refund.<br><strong>The model did not sign the report. The firm did.</strong></div>
+  <div class="clips">
+    <div class="clip r2 big step"><img src="img/clip-fortune-deloitte.png" alt=""><div class="src">Fortune · October 2025</div></div>
+  </div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="statement">Eighty-eight hours to produce the proof.<br>Seventeen more for a machine to check it.<br><strong>Months for humans to believe it.</strong><br><em>Autonomy is not the same as trust.</em></div>
+</div></section>
+
+<!-- THREE LAYERS -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Part three</div>
+  <div class="gigante">Three <strong>layers.</strong></div>
+  <div class="sub">The most expensive mistake of the year is using the wrong one.</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">Three layers</div>
+  <div class="capas">
+    <div class="capa"><h3>1. Automation</h3><p>Rules. No intelligence.<br><strong>Cheap, exact, auditable.</strong><br>The same input always gives the same output.</p></div>
+    <div class="capa"><h3>2. Automation with AI</h3><p>The same fixed flow, with intelligence at the steps that <strong>read, classify or draft.</strong><br>You still decide the path.</p></div>
+    <div class="capa"><h3>3. Agents</h3><p>Intelligence decides the <strong>next step.</strong><br>Powerful, metered, and never twice the same.</p></div>
+  </div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">The rule</div>
+  <div class="statement">If there is a deterministic way to do it, do it that way.<br><strong>Use an agent only where judgement is needed at every step.</strong></div>
+  <div class="sub">Forcing generative AI into a process a rule could run makes it slower, dearer and less reliable. <strong>Not everything is an agent.</strong></div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="kicker">Hands up: layer 1, 2 or 3?</div>
+  <ul class="lista compact vote">
+    <li class="step"><span>Matching invoices against purchase orders</span><span class="ans step">LAYER 1</span></li>
+    <li class="step"><span>Finding the risk clauses in a 400-page contract</span><span class="ans step">LAYER 2</span></li>
+    <li class="step"><span>Reconciling toll transactions</span><span class="ans step">LAYER 1</span></li>
+    <li class="step"><span>Answering supplier questions about payment status</span><span class="ans step">LAYER 2</span></li>
+    <li class="step"><span>Your weekly report to your boss</span><span class="ans step">LAYER 2</span></li>
+    <li class="step"><span>A bid: from tender documents to first draft</span><span class="ans step">LAYER 3 · WITH HUMAN GATES</span></li>
+  </ul>
+  <div class="sub">Disagree with one? Good. <strong>That argument is the skill.</strong></div>
+</div></section>
+
+<!-- WHAT YOU KEEP -->
+<section class="slide"><div class="inner">
+  <div class="kicker">What a leader keeps</div>
+  <ul class="lista compact">
+    <li><span class="n">ASK</span>The question. The machine answers what you ask, with the bias of its data and of your wording.</li>
+    <li><span class="n">DATA</span>The data. What leaves the building is your decision, not the tool's.</li>
+    <li><span class="n">CHECK</span>The check. Verify in proportion to what is at stake.</li>
+    <li><span class="n">SIGN</span>The signature. Accountability does not transfer to a model.</li>
+  </ul>
+</div></section>
+
+<!-- BRIDGE -->
+<section class="slide negro"><div class="inner">
+  <div class="statement" style="text-align:center">That was the technology.<br><strong>After coffee, we talk about you.</strong></div>
+  <div class="sub" style="text-align:center">11:30. Bring something to write with.</div>
+</div></section>
+
+<div id="barra"></div>
+<div id="pag"></div>
+<div class="pie">Ferrovial · Austin · 18 November 2026</div>
+
+<script src="three.min.js"></script>
+<script src="viaje.js"></script>
+<script>
+(function () {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let i = 0;
+  let viaje = null;
+  function ir(n) {
+    if (viaje && slides[i].classList.contains('viaje')) viaje.leave();
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('on', k === i));
+    if (slides[i].classList.contains('viaje') && window.initViaje && window.THREE) {
+      if (!viaje) viaje = window.initViaje(slides[i]);
+      viaje.enter();
+    }
+    document.getElementById('barra').style.width = ((i + 1) / slides.length * 100) + '%';
+    document.getElementById('pag').textContent = (i + 1) + ' / ' + slides.length;
+    location.hash = i + 1;
+  }
+  function pasos(dir) {
+    const s = slides[i];
+    if (!s.classList.contains('steps')) return false;
+    const st = Array.from(s.querySelectorAll('.step'));
+    if (dir > 0) { const next = st.find(p => !p.classList.contains('on')); if (next) { next.classList.add('on'); return true; } }
+    else { const prev = st.slice().reverse().find(p => p.classList.contains('on')); if (prev) { prev.classList.remove('on'); return true; } }
+    return false;
+  }
+  function enViaje(dir) { return viaje && slides[i].classList.contains('viaje') && viaje.handle(dir); }
+  function adelante() { if (enViaje(1)) return; if (!pasos(1)) ir(i + 1); }
+  function atras() { if (enViaje(-1)) return; if (!pasos(-1)) ir(i - 1); }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); adelante(); }
+    if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); atras(); }
+    if (e.key === 'Home') ir(0);
+    if (e.key === 'End') ir(slides.length - 1);
+    if (e.key === 'f') document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+  });
+  document.addEventListener('click', e => { if (e.clientX < window.innerWidth * 0.2) atras(); else adelante(); });
+  function desdeHash() { const h = parseInt(location.hash.slice(1), 10); ir(isNaN(h) ? 0 : h - 1); }
+  window.addEventListener('hashchange', () => { const h = parseInt(location.hash.slice(1), 10); if (!isNaN(h) && h - 1 !== i) ir(h - 1); });
+  desdeHash();
+})();
+</script>
+</body>
+</html>

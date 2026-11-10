@@ -7,7 +7,7 @@ window.VIAJE_PHOTOS = {
   future: 'img/viaje-future.jpg'
 };
 window.initViaje = function (slideEl) {
-  const COL = { bg: 0x0d0d10, acento: 0x5b8cff, papel: 0xf8f8f6, gris: 0x6f6f78 };
+  const COL = { bg: 0x111111, acento: 0xffc700, papel: 0xf8f8f6, gris: 0x6f6f78 };
   const PHOTOS = window.VIAJE_PHOTOS;
 
   const ERAS = [
@@ -72,7 +72,7 @@ window.initViaje = function (slideEl) {
   function shadowTexture() {
     const c = document.createElement('canvas'); c.width = 256; c.height = 256; const ctx = c.getContext('2d');
     const g = ctx.createRadialGradient(128,128,10,128,128,120);
-    g.addColorStop(0, 'rgba(91,140,255,0.35)'); g.addColorStop(1, 'rgba(91,140,255,0)');
+    g.addColorStop(0, 'rgba(255,199,0,0.35)'); g.addColorStop(1, 'rgba(255,199,0,0)');
     ctx.fillStyle = g; ctx.fillRect(0,0,256,256); return new THREE.CanvasTexture(c);
   }
   const shTex = shadowTexture();
@@ -85,10 +85,10 @@ window.initViaje = function (slideEl) {
     clock.add(new THREE.Mesh(new THREE.CircleGeometry(1.06, 48), new THREE.MeshBasicMaterial({ color: 0xffffff })));
     const rim = new THREE.Mesh(new THREE.RingGeometry(1.06, 1.25, 48), new THREE.MeshBasicMaterial({ color: COL.acento, side: THREE.DoubleSide })); rim.position.z = 0.01; clock.add(rim);
     for (let i = 0; i < 12; i++) { const major = i % 3 === 0;
-      const tkm = new THREE.Mesh(new THREE.PlaneGeometry(major ? 0.08 : 0.04, major ? 0.24 : 0.14), new THREE.MeshBasicMaterial({ color: 0x0d0d10 }));
+      const tkm = new THREE.Mesh(new THREE.PlaneGeometry(major ? 0.08 : 0.04, major ? 0.24 : 0.14), new THREE.MeshBasicMaterial({ color: 0x111111 }));
       const a = (i / 12) * Math.PI * 2, r = 0.88; tkm.position.set(Math.sin(a) * r, Math.cos(a) * r, 0.02); tkm.rotation.z = -a; clock.add(tkm); }
-    const minuteHand = new THREE.Group(); const mh = new THREE.Mesh(new THREE.PlaneGeometry(0.07, 0.84), new THREE.MeshBasicMaterial({ color: 0x0d0d10 })); mh.position.y = 0.39; minuteHand.add(mh); minuteHand.position.z = 0.03; minuteHand.rotation.z = Math.random() * Math.PI * 2; clock.add(minuteHand);
-    const hourHand = new THREE.Group(); const hh = new THREE.Mesh(new THREE.PlaneGeometry(0.09, 0.56), new THREE.MeshBasicMaterial({ color: 0x0d0d10 })); hh.position.y = 0.25; hourHand.add(hh); hourHand.position.z = 0.04; hourHand.rotation.z = Math.random() * Math.PI * 2; clock.add(hourHand);
+    const minuteHand = new THREE.Group(); const mh = new THREE.Mesh(new THREE.PlaneGeometry(0.07, 0.84), new THREE.MeshBasicMaterial({ color: 0x111111 })); mh.position.y = 0.39; minuteHand.add(mh); minuteHand.position.z = 0.03; minuteHand.rotation.z = Math.random() * Math.PI * 2; clock.add(minuteHand);
+    const hourHand = new THREE.Group(); const hh = new THREE.Mesh(new THREE.PlaneGeometry(0.09, 0.56), new THREE.MeshBasicMaterial({ color: 0x111111 })); hh.position.y = 0.25; hourHand.add(hh); hourHand.position.z = 0.04; hourHand.rotation.z = Math.random() * Math.PI * 2; clock.add(hourHand);
     const pin = new THREE.Mesh(new THREE.CircleGeometry(0.08, 20), new THREE.MeshBasicMaterial({ color: COL.acento })); pin.position.z = 0.05; clock.add(pin);
     group.add(clock); markers.push({ minute: minuteHand, hour: hourHand });
 
