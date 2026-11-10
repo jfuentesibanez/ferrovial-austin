@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three ideas · Seven shifts · Five questions · Ferrovial</title>
+<style>
+:root {
+  --fondo: #0d0d10; --fondo-2: #16161b; --papel: #f8f8f6; --papel-suave: #b9b9b4;
+  --linea: #2a2a32; --acento: #5b8cff; --acento-suave: #1b2440;
+  --coral: #ff6a4d; --verde: #4fd18c; --ambar: #ffc857;
+  --serif: Charter, Georgia, 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --mono: 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+body { font-family: var(--serif); background: var(--fondo); color: var(--papel); overflow: hidden; cursor: pointer; user-select: none; }
+.slide { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 6vh 7vw; }
+.slide.on { display: flex; animation: entra .35s ease; }
+@keyframes entra { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.inner { max-width: 1120px; width: 100%; }
+
+.kicker { font-family: var(--mono); font-size: clamp(12px, 1.1vw, 14px); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); margin-bottom: 3vh; font-weight: 700; }
+.gigante { font-size: clamp(42px, 7.5vw, 104px); line-height: 1.04; letter-spacing: -.02em; }
+.statement { font-size: clamp(26px, 3.7vw, 50px); line-height: 1.26; letter-spacing: -.012em; }
+.statement em, .gigante em { font-style: italic; }
+.statement strong, .gigante strong { color: var(--acento); font-weight: 400; }
+.hl { color: var(--acento); }
+.sub { font-family: var(--sans); font-size: clamp(15px, 1.7vw, 19px); color: var(--papel-suave); margin-top: 4vh; line-height: 1.55; }
+.sub strong { color: var(--papel); font-weight: 600; }
+.redflag { font-family: var(--sans); font-size: clamp(15px, 1.7vw, 19px); color: var(--coral); margin-top: 3.5vh; line-height: 1.5; }
+.num { font-family: var(--mono); color: var(--acento); font-size: clamp(14px, 1.3vw, 17px); letter-spacing: .1em; margin-bottom: 2vh; }
+.fromto { font-family: var(--sans); font-size: clamp(16px, 1.8vw, 21px); color: var(--papel-suave); margin-bottom: 2.5vh; }
+.fromto b { color: var(--papel); font-weight: 600; }
+.fromto .arrow { color: var(--acento); margin: 0 .4em; }
+
+.lista { list-style: none; margin-top: 2vh; }
+.lista li { font-size: clamp(20px, 2.6vw, 34px); line-height: 1.3; padding: 1.6vh 0; border-top: 1px solid var(--linea); display: grid; grid-template-columns: 3.2em 1fr; gap: 1em; align-items: baseline; }
+.lista li:last-child { border-bottom: 1px solid var(--linea); }
+.lista .n { font-family: var(--mono); color: var(--acento); font-size: .6em; letter-spacing: .1em; }
+.lista.compact li { font-size: clamp(17px, 2.1vw, 27px); padding: 1.2vh 0; }
+.lista li.muted { color: var(--papel-suave); }
+.lista li.hot { color: var(--coral); }
+
+.step { opacity: 0; transform: translateY(14px); transition: opacity .35s ease, transform .35s ease; }
+.step.on { opacity: 1; transform: none; }
+
+/* Newspaper clippings */
+.clips { position: relative; display: flex; flex-wrap: wrap; gap: 3vh 2vw; justify-content: center; align-items: center; margin-top: 3vh; }
+.clip { background: #fff; padding: 8px 8px 10px; box-shadow: 4px 6px 0 rgba(0,0,0,.35); max-width: min(44vw, 540px); opacity: 0; transition: opacity .35s ease, transform .35s ease-out; }
+.clip img { display: block; width: 100%; height: auto; }
+.clip .src { font-family: var(--mono); font-size: 11px; color: #555; margin-top: 6px; letter-spacing: .08em; text-transform: uppercase; }
+.clip.r1 { transform: rotate(-4deg) translateY(20px); } .clip.r1.on { transform: rotate(-2deg); }
+.clip.r2 { transform: rotate(3deg) translateY(20px); }  .clip.r2.on { transform: rotate(1.5deg); }
+.clip.r3 { transform: rotate(-5deg) translateY(20px); } .clip.r3.on { transform: rotate(-2.5deg); }
+.clip.on { opacity: 1; }
+.clip.big { max-width: min(72vw, 1000px); }
+.clips.stack { display: block; position: relative; height: 60vh; }
+.clips.stack .clip { position: absolute; max-width: min(50vw, 640px); }
+.clips.stack .clip:nth-child(1) { left: 0; top: 0; }
+.clips.stack .clip:nth-child(2) { right: 0; top: 15vh; }
+.clips.stack .clip:nth-child(3) { left: 10%; top: 30vh; }
+.clips.stack .clip.on { z-index: 2; }
+.clips.stack .clip.on ~ .clip.on { z-index: 3; }
+.clips.stack .clip.on ~ .clip.on ~ .clip.on { z-index: 4; }
+
+/* Full-bleed images */
+.slide.foto { padding: 0; background: #000; }
+.slide.foto img { width: 100%; height: 100%; object-fit: cover; }
+.slide.foto .cap { position: absolute; left: 7vw; bottom: 8vh; font-family: var(--mono); font-size: clamp(13px, 1.3vw, 17px); letter-spacing: .14em; text-transform: uppercase; color: var(--papel); text-shadow: 0 2px 10px rgba(0,0,0,.8); }
+.slide.negro { background: #000; }
+.slide.negro .gigante { text-align: center; }
+
+.quote { font-size: clamp(22px, 3vw, 40px); line-height: 1.3; font-style: italic; }
+.quote .who { display: block; font-style: normal; font-family: var(--sans); font-size: .5em; color: var(--papel-suave); margin-top: 2.5vh; }
+
+.dos { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; align-items: center; }
+.pick { font-family: var(--sans); font-size: clamp(18px, 2.2vw, 28px); color: var(--ambar); line-height: 1.35; }
+
+/* Time machine */
+.slide.viaje { padding: 0; }
+.vj-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.vj-hud { position: absolute; top: 6vh; left: 50%; transform: translateX(-50%); text-align: center; z-index: 3; pointer-events: none; transition: opacity .5s ease; }
+.viaje.zoomed .vj-hud, .viaje.zoomed .vj-minimap { opacity: 0; }
+.vj-year { font-family: var(--serif); font-size: clamp(3.2rem, 7.5vw, 6.5rem); color: var(--papel); letter-spacing: -.02em; font-variant-numeric: tabular-nums; line-height: 1; transition: filter .3s ease; }
+.vj-year.traveling { filter: blur(1.5px); }
+.vj-year.pop { animation: vjPop .45s cubic-bezier(.2,1.6,.4,1); }
+@keyframes vjPop { 0% { transform: scale(.96); } 100% { transform: scale(1); } }
+.vj-underline { width: 120px; height: 3px; border-radius: 2px; background: var(--acento); margin: 14px auto 0; transition: width .5s ease; }
+.vj-hud.traveling .vj-underline { width: 320px; }
+.vj-minimap { position: absolute; bottom: 9vh; left: 50%; transform: translateX(-50%); width: min(70vw, 980px); height: 60px; z-index: 3; pointer-events: none; transition: opacity .5s ease; }
+.vj-track { position: absolute; top: 24px; left: 0; width: 100%; height: 2px; background: rgba(248,248,246,.18); }
+.vj-tick { position: absolute; top: 17px; width: 2px; height: 16px; background: rgba(248,248,246,.4); transform: translateX(-50%); opacity: 0; transition: opacity .8s ease; }
+.vj-lbl { position: absolute; top: 40px; transform: translateX(-50%); font: 500 11px var(--mono); letter-spacing: .08em; color: #8a8a93; white-space: nowrap; opacity: 0; transition: opacity .8s ease; }
+.vj-tick.visited, .vj-lbl.visited { opacity: 1; }
+.vj-lbl.current { color: var(--papel); font-weight: 700; }
+.vj-cursor { position: absolute; top: 25px; width: 14px; height: 14px; border-radius: 50%; background: var(--acento); transform: translate(-50%, -50%); box-shadow: 0 0 0 5px rgba(91,140,255,.18), 0 0 18px rgba(91,140,255,.6); }
+.vj-flash { position: absolute; inset: 0; z-index: 4; pointer-events: none; background: #fff; opacity: 0; }
+.vj-flash.active { animation: vjFlash .35s ease-out; }
+@keyframes vjFlash { 0% { opacity: .45; } 100% { opacity: 0; } }
+
+#barra { position: fixed; left: 0; bottom: 0; height: 3px; background: var(--acento); width: 0; transition: width .3s ease; z-index: 9; }
+#pag { position: fixed; right: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .7; z-index: 9; }
+.pie { position: fixed; left: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .5; z-index: 9; }
+</style>
+</head>
+<body>
+
+<!-- 0 COLD OPEN -->
+<section class="slide foto"><img src="img/sand.png" alt=""><div class="cap">What is this?</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">Hold that thought</div>
+  <div class="gigante">We come back to it at <strong>13:25</strong>.</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">Leading in the Age of Digital Disruption · II</div>
+  <div class="gigante">Three ideas.<br>Seven shifts.<br>Five questions.</div>
+  <div class="sub">And one thing you will not like.</div>
+</div></section>
+
+<!-- TIME MACHINE -->
+<section class="slide"><div class="inner">
+  <div class="kicker">A trip in time</div>
+  <div class="statement">You are standing <strong>on the curve</strong>.<br>Before we talk about your job, let us check where on it.</div>
+</div></section>
+
+<section class="slide viaje">
+  <canvas class="vj-canvas"></canvas>
+  <div class="vj-hud"><div class="vj-year">2026</div><div class="vj-underline"></div></div>
+  <div class="vj-minimap"><div class="vj-track"></div><div class="vj-cursor"></div></div>
+  <div class="vj-flash"></div>
+</section>
+
+<section class="slide negro"><div class="inner">
+  <div class="kicker" style="text-align:center">One more stop</div>
+  <div class="gigante">It is November 2029.<br><strong>Describe your Monday.</strong></div>
+  <div class="sub" style="text-align:center">Sixty seconds. Write it down. You will need it later.</div>
+</div></section>
+
+<!-- 1 WHERE ARE THE PEOPLE -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Where are the people?</div>
+  <div class="statement">You have just been awarded a client's largest contract in years.<br>The capital is there. The contract is there.<br><strong>The people are not.</strong></div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="kicker">This is not a Ferrovial problem</div>
+  <div class="clips stack">
+    <div class="clip r1 step"><img src="img/clip-fortune-walmart.png" alt=""><div class="src">Fortune · September 2025</div></div>
+    <div class="clip r2 step"><img src="img/clip-cdive-bechtel.png" alt=""><div class="src">Construction Dive · February 2026</div></div>
+    <div class="clip r3 step"><img src="img/clip-fortune-900.png" alt=""><div class="src">Fortune · September 2025</div></div>
+  </div>
+</div></section>
+
+
+<!-- 2 THREE IDEAS -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Three ideas</div>
+  <div class="num">01</div>
+  <div class="gigante">The constraint <strong>has moved.</strong></div>
+  <div class="sub">Not capital. Not technology. Qualified people.<br><strong>AI is the only lever that scales without hiring.</strong></div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">Three ideas</div>
+  <div class="num">02</div>
+  <div class="gigante">Capability runs <strong>ahead</strong> of deployment.</div>
+  <div class="sub">What the models can do today is years ahead of what your area uses.<br><strong>That gap is yours. Nobody closes it for you.</strong></div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="kicker">Three ideas</div>
+  <div class="num">03</div>
+  <div class="gigante">Intelligence tends to <strong>zero cost.</strong></div>
+  <div class="clips">
+    <div class="clip r2 big step"><img src="img/clip-cnbc-huang.png" alt=""><div class="src">CNBC · March 2026</div></div>
+  </div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">Three ideas · 03</div>
+  <div class="statement">What stays scarce: <strong>judgement, accountability, trust.</strong><br>Your job is migrating there,<br><em>whether you move or not.</em></div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">One distinction</div>
+  <div class="statement">AI for savings is <strong>defence</strong>.<br>AI in the core of what you deliver is <strong>attack</strong>.<br><em>Which one is your area playing?</em></div>
+  <div class="sub">This stopped being a productivity conversation a while ago. <strong>It is a competitiveness conversation.</strong></div>
+</div></section>
+
+<!-- 3 WHAT OTHER BOARDS ARE ARGUING ABOUT -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Outside view</div>
+  <div class="gigante">What other boards are <strong>arguing about.</strong></div>
+  <div class="sub">Five patterns. None of them is unique to you.</div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="num">PATTERN 1 · THE PROTOTYPE TRAP</div>
+  <div class="statement">The demo takes a week.<br>Production takes a year.<br><strong>Your boss saw the demo.</strong></div>
+  <div class="clips">
+    <div class="clip r1 step"><img src="img/clip-fortune-mit95.png" alt=""><div class="src">Fortune · August 2025</div></div>
+    <div class="clip r2 step"><img src="img/clip-fortune-leadershipgap.png" alt=""><div class="src">Fortune · October 2025</div></div>
+  </div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="num">PATTERN 2 · THE BROKEN LADDER</div>
+  <div class="statement">Junior hiring falls. Senior hiring does not.<br><strong>Who learns the trade in 2031?</strong></div>
+  <div class="clips">
+    <div class="clip r2 step"><img src="img/clip-forbes-entrylevel.png" alt=""><div class="src">Forbes · May 2026 · Harvard study</div></div>
+    <div class="clip r1 step"><img src="img/clip-fortune-genz.png" alt=""><div class="src">Fortune · April 2026</div></div>
+  </div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="num">PATTERN 3 · FLAT FEE TO METERED</div>
+  <div class="statement">Your tool of this afternoon<br>is the one in these headlines.</div>
+  <div class="clips">
+    <div class="clip r1 step"><img src="img/clip-fortune-cowork.png" alt=""><div class="src">Fortune · March 2026</div></div>
+    <div class="clip r2 step"><img src="img/clip-fortune-superapp.png" alt=""><div class="src">Fortune · September 2026</div></div>
+  </div>
+  <div class="redflag step">Only 11% of companies can predict their spend on agents. This is not a cost question. It is a tension to navigate.</div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="num">PATTERN 4 · YOUR SUPPLIER GOT THERE FIRST</div>
+  <div class="statement">A steel fabricator with two estimators went from four bids a week to six.<br><strong>Your subcontractor already bids faster than you evaluate.</strong></div>
+  <div class="clips">
+    <div class="clip r2 big step"><img src="img/clip-forbes-bids.png" alt=""><div class="src">Forbes · June 2026</div></div>
+  </div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="num">PATTERN 5 · WHAT DATA IS ACTUALLY YOURS</div>
+  <div class="statement">27% of the sector uses AI. 52% still works on paper.<br><strong>The sector is late. That is the good news.</strong></div>
+  <div class="clips">
+    <div class="clip r1 big step"><img src="img/clip-asce-aec.png" alt=""><div class="src">ASCE · December 2025 · Bluebeam survey</div></div>
+  </div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="statement">These are the fights at board level.<br>None of them is your fight.<br><strong>Yours is smaller and harder: it is your job.</strong></div>
+</div></section>
+
+<!-- 4 SEVEN SHIFTS -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Seven shifts</div>
+  <div class="gigante">Seven shifts<br>in <strong>your job.</strong></div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">SHIFT 1</div>
+  <div class="fromto">From <b>analysis</b><span class="arrow">→</span>to <b>decision</b></div>
+  <div class="statement">Analysis just got cheap.<br><strong>The bottleneck is now you.</strong></div>
+  <div class="sub">What did you wait for last month?</div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="num">SHIFT 2</div>
+  <div class="fromto">From <b>managing people</b><span class="arrow">→</span>to <b>managing people plus agents</b></div>
+  <div class="statement">One person, one team.<br><strong>Delegating to something you do not control step by step.</strong></div>
+  <div class="clips">
+    <div class="clip r1 step"><img src="img/clip-vozpopuli-repsol.png" alt=""><div class="src">Vozpópuli · October 2025 · 50 people supervising teams of agents</div></div>
+  </div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="num">SHIFT 3</div>
+  <div class="fromto">From <b>reporting</b><span class="arrow">→</span>to <b>sensing</b></div>
+  <div class="statement">The report writes itself.<br><strong>Your value is the question, not the document.</strong></div>
+  <div class="clips">
+    <div class="clip r2 big step"><img src="img/clip-fortune-goldman.png" alt=""><div class="src">Fortune · May 2026</div></div>
+  </div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">SHIFT 4</div>
+  <div class="fromto">From <b>expert</b><span class="arrow">→</span>to <b>orchestrator</b></div>
+  <div class="statement">Individual expertise was the asset.<br><strong>Collective intelligence is the asset now, and it is no longer only human.</strong></div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">SHIFT 5</div>
+  <div class="fromto">From <b>headcount</b><span class="arrow">→</span>to <b>capacity</b></div>
+  <div class="statement">Your plan is no longer people.<br><strong>It is people times tools.</strong><br>A token budget is a line in your P&amp;L.</div>
+  <div class="sub">Yesterday you did financial acumen. This is the new line.</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">SHIFT 6</div>
+  <div class="fromto">From <b>project</b><span class="arrow">→</span>to <b>process</b></div>
+  <div class="statement">The strategic programmes are defined. They are top-down.<br><strong>Your territory is the processes you own.</strong><br>Nobody will map them for you.</div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="num">SHIFT 7</div>
+  <div class="fromto">From <b>certainty</b><span class="arrow">→</span>to <b>tempo</b></div>
+  <div class="statement">Strategy beyond one quarter is a guess.<br><strong>The skill is judgement and cadence.</strong></div>
+  <div class="clips">
+    <div class="clip r1 step"><img src="img/clip-caixabank-google.png" alt=""><div class="src">CaixaBank · October 2026 · a seven-year platform bet, with no certainty</div></div>
+  </div>
+</div></section>
+
+<section class="slide"><div class="inner dos">
+  <ul class="lista compact">
+    <li><span class="n">01</span>Analysis → decision</li>
+    <li><span class="n">02</span>People → people plus agents</li>
+    <li><span class="n">03</span>Reporting → sensing</li>
+    <li><span class="n">04</span>Expert → orchestrator</li>
+    <li><span class="n">05</span>Headcount → capacity</li>
+    <li><span class="n">06</span>Project → process</li>
+    <li><span class="n">07</span>Certainty → tempo</li>
+  </ul>
+  <div class="pick">Pick the one you are worst at.<br>Mark it. You will need it at 13:12.</div>
+</div></section>
+
+<!-- 5 THE QUIET RISK -->
+<section class="slide"><div class="inner">
+  <div class="kicker" style="color:var(--coral)">The thing you will not like</div>
+  <div class="statement">The manager who hands AI to the team and never touches it <strong>becomes the bottleneck.</strong><br>Your people will move faster than your approvals.<br><em>Then they will route around you.</em></div>
+  <div class="sub">You were asked to be pioneers. A pioneer who does not touch the tool is a sponsor. <strong>Sponsors get routed around first.</strong></div>
+</div></section>
+
+<section class="slide steps"><div class="inner">
+  <div class="kicker" style="color:var(--coral)">The thing you will not like</div>
+  <div class="statement">In six months your team will know whether you use it.<br><strong>They already suspect.</strong></div>
+  <div class="clips">
+    <div class="clip r2 big step"><img src="img/clip-cnbc-accenture.png" alt=""><div class="src">CNBC · February 2026</div></div>
+  </div>
+</div></section>
+
+<!-- 6 FIVE QUESTIONS -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Five questions</div>
+  <div class="gigante">Five questions.<br><strong>No answers.</strong></div>
+  <div class="sub">The quality of a company is measured by the questions it asks itself. So is the quality of a leader.</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">QUESTION 1</div>
+  <div class="statement">Which decision did you delay last month, waiting for data you could have had <strong>in an hour</strong>?</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">QUESTION 2</div>
+  <div class="statement">What does your best engineer do today that a machine already does?<br><strong>And how does the next one learn the trade?</strong></div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">QUESTION 3</div>
+  <div class="statement">If you had to deliver your largest contract with <strong>two thirds of the team</strong>, which process would you automate first?</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">QUESTION 4</div>
+  <div class="statement">What is the first thing you would <strong>stop approving</strong>?</div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="num">QUESTION 5</div>
+  <div class="statement">Who on your team is further ahead than you?<br><strong>When did you last ask them to show you?</strong></div>
+</div></section>
+
+<section class="slide negro"><div class="inner">
+  <div class="kicker" style="text-align:center">The final question</div>
+  <div class="statement" style="text-align:center">What part of your job will be agentic,<br>what part will not,<br><strong>and which part do you choose to keep?</strong></div>
+</div></section>
+
+<!-- 7 THREE PROVOCATIONS -->
+<section class="slide steps"><div class="inner">
+  <div class="kicker">Three provocations</div>
+  <ul class="lista">
+    <li class="step"><span class="n">01</span>Publish your area's process map before year end. Name three to automate.</li>
+    <li class="step"><span class="n">02</span>Give every direct report a token budget. Ask what they built, not how many hours they worked.</li>
+    <li class="step"><span class="n">03</span>Stop requesting any report you could generate yourself.</li>
+    <li class="step muted"><span class="n">04</span>There is a fourth one. Not today.</li>
+  </ul>
+</div></section>
+
+<!-- 8 REFLECTION -->
+<section class="slide"><div class="inner">
+  <div class="kicker">Ten minutes · the page where you wrote your Monday</div>
+  <ul class="lista">
+    <li><span class="n">STOP</span>One thing I stop doing.</li>
+    <li><span class="n">START</span>One process in my area I start automating. Name it.</li>
+    <li><span class="n">ASK</span>One question I take to my boss.</li>
+  </ul>
+  <div class="sub">Four minutes alone. Five minutes in pairs: read yours to the other person. Business unit or support function, the exercise is the same.<br><strong>You will use this page twice more today: at 16:30 and at 18:00.</strong></div>
+</div></section>
+
+<!-- 9 GODS OF SAND -->
+<section class="slide foto"><img src="img/sand.png" alt=""><div class="cap">Second most abundant element in the Earth's crust, after oxygen</div></section>
+<section class="slide foto"><img src="img/silicon.png" alt=""><div class="cap">Silicon</div></section>
+<section class="slide foto"><img src="img/transistor.png" alt=""><div class="cap">Transistor</div></section>
+<section class="slide foto"><img src="img/kilby.png" alt=""><div class="cap">Integrated circuit · 1958</div></section>
+<section class="slide foto"><img src="img/gpu.png" alt=""><div class="cap">Intelligence</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="statement">You have spent your careers turning sand into roads, bridges and airports.<br>The same element, purified, is now turning into intelligence.<br><strong>Both are infrastructure.</strong></div>
+</div></section>
+
+<section class="slide negro"><div class="inner">
+  <div class="gigante"><strong>Gods of sand.</strong></div>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">Five take-aways</div>
+  <ul class="lista compact">
+    <li><span class="n">01</span>The constraint moved to people. AI scales without hiring.</li>
+    <li><span class="n">02</span>What stays scarce is judgement, accountability and trust. Your job migrates there.</li>
+    <li><span class="n">03</span>Your territory is the processes you own. Nobody maps them for you.</li>
+    <li><span class="n">04</span>The manager who does not touch the tool becomes the bottleneck.</li>
+    <li><span class="n">05</span>Decide which part of your job you keep. Before someone decides for you.</li>
+  </ul>
+</div></section>
+
+<section class="slide"><div class="inner">
+  <div class="kicker">Tomorrow at 9:30</div>
+  <div class="statement">Mark will ask you to drive change.<br><strong>You now know which change.</strong></div>
+  <div class="sub"><strong>Javier Fuentes</strong> · The Independent Sentinel · theindependentsentinel.substack.com</div>
+</div></section>
+
+<div id="barra"></div>
+<div id="pag"></div>
+<div class="pie">Ferrovial · Austin · 18 November 2026</div>
+
+<script src="three.min.js"></script>
+<script src="viaje.js"></script>
+<script>
+(function () {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let i = 0;
+  let viaje = null;
+  function ir(n) {
+    if (viaje && slides[i].classList.contains('viaje')) viaje.leave();
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('on', k === i));
+    if (slides[i].classList.contains('viaje') && window.initViaje && window.THREE) {
+      if (!viaje) viaje = window.initViaje(slides[i]);
+      viaje.enter();
+    }
+    document.getElementById('barra').style.width = ((i + 1) / slides.length * 100) + '%';
+    document.getElementById('pag').textContent = (i + 1) + ' / ' + slides.length;
+    location.hash = i + 1;
+  }
+  function pasos(dir) {
+    const s = slides[i];
+    if (!s.classList.contains('steps')) return false;
+    const st = Array.from(s.querySelectorAll('.step'));
+    if (dir > 0) { const next = st.find(p => !p.classList.contains('on')); if (next) { next.classList.add('on'); return true; } }
+    else { const prev = st.slice().reverse().find(p => p.classList.contains('on')); if (prev) { prev.classList.remove('on'); return true; } }
+    return false;
+  }
+  function enViaje(dir) { return viaje && slides[i].classList.contains('viaje') && viaje.handle(dir); }
+  function adelante() { if (enViaje(1)) return; if (!pasos(1)) ir(i + 1); }
+  function atras() { if (enViaje(-1)) return; if (!pasos(-1)) ir(i - 1); }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); adelante(); }
+    if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); atras(); }
+    if (e.key === 'Home') ir(0);
+    if (e.key === 'End') ir(slides.length - 1);
+    if (e.key === 'f') document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+  });
+  document.addEventListener('click', e => { if (e.clientX < window.innerWidth * 0.2) atras(); else adelante(); });
+  function desdeHash() { const h = parseInt(location.hash.slice(1), 10); ir(isNaN(h) ? 0 : h - 1); }
+  window.addEventListener('hashchange', () => { const h = parseInt(location.hash.slice(1), 10); if (!isNaN(h) && h - 1 !== i) ir(h - 1); });
+  desdeHash();
+})();
+</script>
+</body>
+</html>
