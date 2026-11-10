@@ -13,6 +13,31 @@
   const status = document.createElement('div');
   status.className = 'deck-status'; status.setAttribute('aria-live', 'polite'); status.setAttribute('aria-atomic', 'true');
   document.body.append(status);
+  // A film owns clicks and Space while it is active. Navigation always pauses it.
+  const films = [...document.querySelectorAll('.film')];
+  async function toggleFilm(slide) {
+    const video = slide.querySelector('video');
+    if (!video.paused) { video.pause(); return; }
+    if (video.ended) video.currentTime = 0;
+    try { await video.play(); }
+    catch { slide.querySelector('.film-error').hidden = false; }
+  }
+  films.forEach(slide => {
+    const video = slide.querySelector('video');
+    const play = slide.querySelector('.film-play');
+    play.addEventListener('click', () => toggleFilm(slide));
+    video.addEventListener('play', () => {
+      if (!slide.classList.contains('on')) { video.pause(); return; }
+      slide.classList.add('has-started'); slide.classList.remove('is-ended');
+      slide.querySelector('.film-error').hidden = true;
+      // Return keyboard control to the deck after the large play button disappears.
+      if (document.activeElement === play) play.blur();
+    });
+    video.addEventListener('ended', () => {
+      slide.classList.add('is-ended'); play.innerHTML = '<span aria-hidden="true">▶</span> Replay video <span class="film-duration">2:14</span>';
+    });
+    video.addEventListener('error', () => { slide.querySelector('.film-error').hidden = false; });
+  });
   const blackout = document.createElement('div');
   blackout.className = 'blackout'; blackout.setAttribute('aria-hidden', 'true'); document.body.append(blackout);
 
@@ -89,6 +114,7 @@
   function go(n, updateHash = true) {
     n = Math.max(0, Math.min(slides.length - 1, Math.floor(n)));
     if (!Number.isFinite(n) || n === index) return;
+    slides[index]?.querySelectorAll('video').forEach(video => video.pause());
     if (viaje && slides[index] === travelSlide) viaje.leave();
     index = n;
     slides.forEach((s, k) => {
@@ -96,6 +122,7 @@
     });
     const s = slides[index];
     document.body.classList.toggle('light-slide', s.matches('.chapter,.question,.claro'));
+    document.body.classList.toggle('video-slide', s.classList.contains('film'));
     if (s === travelSlide) enterTravel();
     document.getElementById('barra').style.width = `${(index + 1) / slides.length * 100}%`;
     document.getElementById('pag').textContent = `${String(index + 1).padStart(2, '0')} / ${slides.length}`;
@@ -132,7 +159,7 @@
       else if (root.requestFullscreen) await root.requestFullscreen();
     } catch { status.textContent = 'Use your browser full-screen command.'; }
   }
-  function openDialog(el) { el.showModal(); }
+  function openDialog(el) { slides[index]?.querySelectorAll('video').forEach(video => video.pause()); el.showModal(); }
   nav.addEventListener('click', event => {
     const action = event.target.closest('button')?.dataset.action;
     if (action === 'prev') advance(-1);
@@ -150,6 +177,10 @@
       if (['b', 'B', '.', 'Escape'].includes(event.key)) document.body.classList.remove('is-blackout');
       return;
     }
+    if (['b', 'B', '.'].includes(event.key)) slides[index]?.querySelectorAll('video').forEach(video => video.pause());
+    // Let the native video controls handle their own seeking and Space key.
+    if (event.target.closest('video') && !['PageDown', 'PageUp', 'Home', 'End', 'g', 'G', 'b', 'B', '.'].includes(event.key)) return;
+    if (event.key === ' ' && slides[index].classList.contains('film')) { event.preventDefault(); toggleFilm(slides[index]); return; }
     if (['ArrowRight', ' ', 'PageDown', 'Enter'].includes(event.key)) { event.preventDefault(); advance(1); }
     else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(event.key)) { event.preventDefault(); advance(-1); }
     else if (event.key === 'Home') { event.preventDefault(); go(0); }
@@ -161,7 +192,7 @@
     else if (event.key === '?') openDialog(help);
   });
   document.addEventListener('click', event => {
-    if (event.target.closest('button,a,input,dialog,nav') || chapters.open || help.open) return;
+    if (event.target.closest('button,a,input,dialog,nav,video') || chapters.open || help.open) return;
     if (document.body.classList.contains('is-blackout')) { document.body.classList.remove('is-blackout'); return; }
     advance(event.clientX < innerWidth * .2 ? -1 : 1);
   });
@@ -174,6 +205,7 @@
   }
   window.addEventListener('hashchange', fromHash);
   document.addEventListener('visibilitychange', () => {
+    if (document.hidden) slides[index]?.querySelectorAll('video').forEach(video => video.pause());
     if (slides[index] !== travelSlide || !viaje) return;
     if (document.hidden) viaje.leave(); else if (!motionOff) viaje.enter();
   });

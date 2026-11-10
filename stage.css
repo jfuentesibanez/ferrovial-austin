@@ -31,6 +31,21 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 .cover .sub { border-top:1px solid rgba(255,255,255,.3); padding-top:2.2vh; margin-top:5vh; width:fit-content; min-width:300px; color:#e4e5e6; }
 .cover.session-two::before { background-image:linear-gradient(90deg,rgba(16,12,8,.97),rgba(16,12,8,.77) 48%,rgba(16,12,8,.18)),url('img/sand.png'); }
 
+/* Original partner artwork, displayed below native resolution for crisp lettering. */
+.cover-partners { position:absolute; right:8vw; bottom:9vh; z-index:3; display:flex; align-items:center; gap:26px; padding:13px 20px; background:#fff; border-radius:2px; box-shadow:0 8px 32px #0003; }
+.partner-logo { position:relative; display:block; overflow:hidden; flex:none; height:64px; }
+.partner-logo img { position:absolute; max-width:none; width:685px; height:auto; top:-28px; }
+.partner-logo.headspring { width:188px; }
+.partner-logo.headspring img { left:-20px; }
+.partner-logo.university { width:171px; }
+.partner-logo.university img { left:-495px; }
+@media (max-width:820px) {
+  .cover-partners { transform:scale(.72); transform-origin:bottom right; right:8vw; bottom:9vh; }
+}
+@media (max-height:540px) and (min-width:821px) {
+  .cover-partners { transform:scale(.65); transform-origin:bottom right; bottom:8vh; }
+}
+
 /* Chapter beats are deliberately bright and spare. */
 .chapter { background:var(--acento); color:#111315; }
 .chapter .kicker,.chapter strong,.chapter .num { color:#111315; }
@@ -116,6 +131,25 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 .slide.foto .caps { max-width:84vw; gap:1vh; }
 .slide.foto .caps .cap { font-size:clamp(14px,1.2vw,19px); letter-spacing:.07em; background:#111e; border-left:2px solid var(--acento); }
 .slide.foto.claro { background:#f7f7f5; }
+
+/* Manual film interlude. Preserve the complete frame and native controls. */
+.slide.film { padding:0; background:#050606; }
+.film video { width:100%; height:100%; object-fit:contain; }
+.film-intro { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:8vw; background:linear-gradient(90deg,#050606f5,#050606b8 60%,#05060666); pointer-events:none; }
+.film-intro h1 { font-size:clamp(42px,6.3vw,104px); line-height:1.03; letter-spacing:-.05em; font-weight:600; margin-bottom:5vh; }
+.film-intro strong { color:var(--acento); font-weight:inherit; }
+.film-play { pointer-events:auto; display:flex; align-items:center; gap:1em; border:1px solid var(--acento); background:var(--acento); color:#111; padding:18px 24px; font:600 clamp(17px,1.6vw,24px) var(--sans); cursor:pointer; }
+.film-play:focus-visible { outline:3px solid white; outline-offset:5px; }
+.film-duration { font-size:.7em; font-weight:400; padding-left:1em; border-left:1px solid #1115; }
+.film-intro p { color:#bcc0c3; font-size:14px; margin-top:20px; }
+.film.has-started:not(.is-ended) .film-intro { display:none; }
+.film-source { position:absolute; top:3vh; right:3vw; color:#e4e4e4; background:#0009; padding:8px 12px; font-size:11px; text-decoration:none; z-index:3; }
+.film-source:hover,.film-source:focus-visible { color:var(--acento); }
+.film-error { position:absolute; left:8vw; right:8vw; bottom:15vh; padding:18px; color:white; background:#311c16; z-index:4; font-size:17px; }
+.film-error a { color:#ffc700; }
+body.video-slide .pie,body.video-slide #pag { display:none; }
+body.video-slide .deck-controls { bottom:9vh; }
+@media (max-width:820px) { .film-intro p { font-size:12px; } .film-source { font-size:10px; } }
 
 /* Presenter chrome: quiet on the projector, available by mouse or keyboard. */
 #barra { height:3px; transition:width .65s var(--ease); }
