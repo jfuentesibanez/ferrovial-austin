@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Process sheet · Ferrovial</title>
+<style>
+:root { --amarillo: #ffc700; --negro: #111; --gris: #6b6b6b; --linea: #bdbdbd; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Ferrovial New', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: var(--negro); background: #ececec; font-size: 10.5pt; line-height: 1.3; }
+.page { width: 210mm; min-height: 297mm; margin: 12px auto; background: #fff; padding: 12mm 13mm; box-shadow: 0 2px 12px rgba(0,0,0,.18); }
+.bar { width: 100%; height: 6px; background: var(--amarillo); margin-bottom: 5mm; }
+.kicker { font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--gris); }
+h1 { font-size: 21pt; line-height: 1.1; letter-spacing: -.01em; margin: 1.5mm 0 1mm; }
+.lead { color: var(--gris); font-size: 10pt; margin-bottom: 4mm; }
+.who { display: grid; grid-template-columns: 2fr 2fr 1fr; gap: 4mm; margin-bottom: 4mm; }
+.f { border-bottom: 1px solid var(--negro); min-height: 8.5mm; }
+.f label, .box label { display: block; font-size: 7.5pt; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--gris); }
+h2 { font-size: 10.5pt; margin: 4.5mm 0 1.8mm; padding-left: 2.5mm; border-left: 4px solid var(--amarillo); }
+h2 span { color: var(--gris); font-weight: 400; font-size: 9pt; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.box { border: 1px solid var(--linea); border-radius: 1.5mm; padding: 1.5mm 2.5mm; min-height: 19mm; }
+.box.tall { min-height: 30mm; }
+.box.xl { min-height: 46mm; }
+table { width: 100%; border-collapse: collapse; }
+th { font-size: 7.5pt; letter-spacing: .08em; text-transform: uppercase; text-align: left; color: var(--gris); padding: 1mm 1.5mm; border-bottom: 1.5px solid var(--negro); }
+td { border-bottom: 1px solid var(--linea); height: 9.2mm; padding: 0 1.5mm; }
+td.n { width: 7mm; font-weight: 700; color: var(--gris); }
+td.yn { width: 20mm; text-align: center; color: var(--gris); font-size: 9pt; }
+td.t { width: 22mm; }
+.layers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.layer { border: 1px solid var(--linea); border-radius: 1.5mm; padding: 2mm 2.5mm; display: grid; grid-template-columns: 5mm 1fr; gap: 2mm; align-items: start; }
+.layer i { width: 4.5mm; height: 4.5mm; border: 1.5px solid var(--negro); display: block; margin-top: .5mm; }
+.layer b { display: block; font-size: 10pt; }
+.layer small { color: var(--gris); font-size: 8.5pt; line-height: 1.25; display: block; }
+.foot { margin-top: 5mm; font-size: 8.5pt; color: var(--gris); display: flex; justify-content: space-between; gap: 6mm; border-top: 1px solid var(--linea); padding-top: 2mm; }
+.print { position: fixed; right: 16px; top: 16px; background: var(--negro); color: #fff; border: 0; border-radius: 6px; padding: 10px 16px; font: 600 14px/1 inherit; font-family: inherit; cursor: pointer; }
+.print:hover { background: #333; }
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  .print { display: none; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<button class="print" onclick="window.print()">Print / Save as PDF</button>
+
+<div class="page">
+  <div class="bar"></div>
+  <div class="kicker">Leading in the Age of Digital Disruption · Homework</div>
+  <h1>Process sheet: which one do you automate first?</h1>
+  <div class="lead">One sheet per process. Fill it in by hand, alone or with your team. Be concrete: a real process you own, not a topic.</div>
+
+  <div class="who">
+    <div class="f"><label>Name / team</label></div>
+    <div class="f"><label>Area / business unit</label></div>
+    <div class="f"><label>Date</label></div>
+  </div>
+
+  <h2>1 · The process</h2>
+  <div class="grid2">
+    <div class="box"><label>Name of the process</label></div>
+    <div class="box"><label>Who owns it</label></div>
+    <div class="box"><label>What starts it (trigger)</label></div>
+    <div class="box"><label>What it delivers, and to whom</label></div>
+    <div class="box"><label>How often · how many per week</label></div>
+    <div class="box"><label>Hours per run · people involved</label></div>
+  </div>
+
+  <h2>2 · The steps <span>as they really happen today, not as the procedure says</span></h2>
+  <table>
+    <tr><th></th><th>What happens</th><th>Who / which tool</th><th style="text-align:center">Judgement?</th><th>Time</th></tr>
+    <tr><td class="n">1</td><td></td><td></td><td class="yn">yes / no</td><td class="t"></td></tr>
+    <tr><td class="n">2</td><td></td><td></td><td class="yn">yes / no</td><td class="t"></td></tr>
+    <tr><td class="n">3</td><td></td><td></td><td class="yn">yes / no</td><td class="t"></td></tr>
+    <tr><td class="n">4</td><td></td><td></td><td class="yn">yes / no</td><td class="t"></td></tr>
+    <tr><td class="n">5</td><td></td><td></td><td class="yn">yes / no</td><td class="t"></td></tr>
+    <tr><td class="n">6</td><td></td><td></td><td class="yn">yes / no</td><td class="t"></td></tr>
+    <tr><td class="n">7</td><td></td><td></td><td class="yn">yes / no</td><td class="t"></td></tr>
+    <tr><td class="n">8</td><td></td><td></td><td class="yn">yes / no</td><td class="t"></td></tr>
+  </table>
+
+  <h2>3 · Where it hurts</h2>
+  <div class="grid2">
+    <div class="box xl"><label>Where it waits (people, approvals, data)</label></div>
+    <div class="box xl"><label>Where it gets redone or goes wrong</label></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="bar"></div>
+  <div class="kicker">Process sheet · page 2</div>
+  <h1>What would you automate, and how?</h1>
+  <div class="lead">Use the three layers from this morning. Rule of thumb: if a rule can run it, use a rule.</div>
+
+  <h2>4 · Which layer? <span>tick one per step cluster, or one overall</span></h2>
+  <div class="layers">
+    <div class="layer"><i></i><div><b>1 · Automation</b><small>Rules. Same input, same output. Cheap, exact, auditable.</small></div></div>
+    <div class="layer"><i></i><div><b>2 · Automation with AI</b><small>Fixed flow, AI at the steps that read, classify or draft.</small></div></div>
+    <div class="layer"><i></i><div><b>3 · Agent</b><small>AI decides the next step. Powerful, metered, never twice the same.</small></div></div>
+  </div>
+  <div class="box" style="margin-top:3mm"><label>Why this layer and not the one below it</label></div>
+
+  <h2>5 · What stays human</h2>
+  <div class="grid2">
+    <div class="box tall"><label>Where a person must check or sign (human gates)</label></div>
+    <div class="box tall"><label>Data that must not leave the building</label></div>
+  </div>
+
+  <h2>6 · The first 30 days</h2>
+  <div class="grid2">
+    <div class="box tall"><label>The smallest piece I would try first</label></div>
+    <div class="box tall"><label>How we will know it worked (one number)</label></div>
+    <div class="box tall"><label>Who on my team is ahead of me and can help</label></div>
+    <div class="box tall"><label>What I stop doing or stop approving to make room</label></div>
+  </div>
+
+  <h2>7 · Individually, then as a team</h2>
+  <div class="grid2">
+    <div class="box tall"><label>Alone: my top three processes to automate, in order</label></div>
+    <div class="box tall"><label>With my team: the one we choose, and why</label></div>
+  </div>
+
+  <div class="foot">
+    <span>Name three processes. Publish your area's process map before year end.</span>
+    <span>Ferrovial · Austin · 18 November 2026</span>
+  </div>
+</div>
+</body>
+</html>
