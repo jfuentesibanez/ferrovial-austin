@@ -3,7 +3,7 @@ window.VIAJE_PHOTOS = {
   fire: 'img/viaje-fire.jpg',
   wheat: 'img/viaje-wheat.jpg',
   ship: 'img/viaje-ship.jpg',
-  city: 'img/viaje-city.jpg',
+  city: 'img/viaje-austin.jpg',
   future: 'img/viaje-future.jpg'
 };
 window.initViaje = function (slideEl) {

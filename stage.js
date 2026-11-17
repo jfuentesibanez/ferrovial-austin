@@ -34,7 +34,7 @@
       if (document.activeElement === play) play.blur();
     });
     video.addEventListener('ended', () => {
-      slide.classList.add('is-ended'); play.innerHTML = '<span aria-hidden="true">▶</span> Replay video <span class="film-duration">2:14</span>';
+      slide.classList.add('is-ended'); play.innerHTML = '<span aria-hidden="true">▶</span> Replay video <span class="film-duration">' + (slide.dataset.duration || '') + '</span>';
     });
     video.addEventListener('error', () => { slide.querySelector('.film-error').hidden = false; });
   });
@@ -82,8 +82,8 @@
   const fallback = document.createElement('div'); fallback.className = 'travel-fallback';
   fallback.textContent = '2026'; travelSlide.append(fallback);
   const eras = [
-    ['2026', 'city'], ['1750', 'ship'], ['12,000 BC', 'wheat'],
-    ['100,000 BC', 'fire'], ['2026', 'city'], ['2045', 'future']
+    ['2026', 'austin'], ['1750', 'ship'], ['12,000 BC', 'wheat'],
+    ['100,000 BC', 'fire'], ['2026', 'austin'], ['2045', 'future']
   ];
   let eraIndex = 0, webglFailed = false;
   function paintEra() {
