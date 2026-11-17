@@ -31,6 +31,17 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 .cover .sub { border-top:1px solid rgba(255,255,255,.3); padding-top:2.2vh; margin-top:5vh; width:fit-content; min-width:300px; color:#e4e5e6; }
 .cover.session-two::before { background-image:linear-gradient(90deg,rgba(16,12,8,.97),rgba(16,12,8,.77) 48%,rgba(16,12,8,.18)),url('img/sand.png'); }
 
+/* Independent, brief letter flickers on the two session titles. */
+.disruption-word { display:inline-block; white-space:nowrap; }
+.cover.on .disruption-letter {
+  animation:disruption-flicker var(--flicker-cycle) steps(1,end) var(--flicker-delay) infinite;
+}
+@keyframes disruption-flicker {
+  0%, 1.1%, 2.8%, 4.1%, 100% { opacity:1; text-shadow:none; }
+  .5%, 2.1% { opacity:.48; text-shadow:1px 0 rgba(255,245,185,.5); }
+  3.4% { opacity:.76; text-shadow:-1px 0 rgba(255,199,0,.4); }
+}
+
 /* Transparent partner lockup for the photographic session covers. */
 .cover-partners { position:absolute; right:8vw; bottom:9vh; z-index:3; display:flex; align-items:center; gap:26px; padding:13px 0; background:transparent; }
 .partner-logo { position:relative; display:block; overflow:hidden; flex:none; height:64px; }
