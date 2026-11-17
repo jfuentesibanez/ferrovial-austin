@@ -121,6 +121,10 @@
       s.classList.toggle('on', k === index); s.setAttribute('aria-hidden', String(k !== index)); s.inert = k !== index;
     });
     const s = slides[index];
+    // Each discussion starts with the question, including when revisiting it.
+    if (s.classList.contains('shift-practice')) s.querySelectorAll('.step').forEach(answer => {
+      answer.classList.remove('on'); answer.setAttribute('aria-hidden', 'true');
+    });
     document.body.classList.toggle('light-slide', s.matches('.chapter,.question,.claro'));
     document.body.classList.toggle('video-slide', s.classList.contains('film'));
     if (s === travelSlide) enterTravel();

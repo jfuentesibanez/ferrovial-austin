@@ -14,4 +14,6 @@ Presentation design and controls are in `stage.css` and `stage.js`. All visuals 
 - `?`: keyboard shortcuts. Move the pointer or use Tab to reveal the controls.
 - `Home` / `End`: first / last slide. `F` toggles full screen.
 
-Reveals remain manual and retain their state when revisiting a slide. On a narrow screen, long slides scroll vertically. For a local rehearsal including the 3D journey, serve this folder with `python3 -m http.server 8765` and open `http://localhost:8765/`.
+Reveals remain manual. The seven shift discussions reset their answers when revisited so the audience can debate first; one click or forward arrow reveals the suggested answer. Other slides retain their reveal state. On a narrow screen, long slides scroll vertically. For a local rehearsal including the 3D journey, serve this folder with `python3 -m http.server 8765` and open `http://localhost:8765/`.
+
+After Homework, `sheet-tour.js` guides the presenter through the seven worksheet sections using local high-resolution captures and manual camera moves. The 2027 executive portrait precedes Gods of Sand, which closes the deck.

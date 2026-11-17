@@ -33,9 +33,10 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 
 /* CRT interference: phosphor scanlines, RGB separation and irregular signal tears. */
 .crt-accent {
+  --crt-color:#ffc700; --crt-stripe:#bc9100;
   position:relative; display:inline-block; white-space:nowrap;
-  color:var(--acento); -webkit-text-fill-color:transparent;
-  background:repeating-linear-gradient(0deg,#ffc700 0px,#ffc700 2px,#bc9100 2px,#bc9100 3px);
+  color:var(--crt-color); -webkit-text-fill-color:transparent;
+  background:repeating-linear-gradient(0deg,var(--crt-color) 0px,var(--crt-color) 2px,var(--crt-stripe) 2px,var(--crt-stripe) 3px);
   -webkit-background-clip:text; background-clip:text;
   filter:drop-shadow(0 0 5px #ffc70025);
 }
@@ -45,6 +46,7 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 }
 .crt-accent::before { color:#32f9f1; text-shadow:2px 0 #32f9f180; }
 .crt-accent::after { color:#ff3b9d; text-shadow:-2px 0 #ff3b9d80; }
+.crt-accent.crt-coral { --crt-color:#ff876b; --crt-stripe:#bd5946; }
 .slide.on .crt-accent {
   animation:crt-signal 8.6s steps(1,end) .8s infinite,crt-scan 6.7s linear infinite;
 }
@@ -113,6 +115,9 @@ html.motion-off .crt-accent { background:none; -webkit-text-fill-color:currentCo
 .question { background:#ecebe5; color:#17191b; }
 .question .inner { padding-left:26%; }
 .question::before { content:attr(data-mark); position:absolute; left:7.5vw; top:50%; transform:translateY(-50%); font-size:clamp(140px,20vw,340px); line-height:1; font-weight:500; letter-spacing:-.09em; color:#c9c7bc; }
+.question:has(.question-number)::before { content:none; }
+.question-number { position:absolute; left:7.5vw; top:50%; transform:translateY(-50%); font-size:clamp(140px,20vw,340px); line-height:1; font-weight:500; letter-spacing:-.09em; }
+.question-number .crt-accent { --crt-color:#9d9b91; --crt-stripe:#b7b5aa; }
 .question .num { color:#585a55; }
 .question .statement { font-size:clamp(30px,4vw,67px); }
 .question .statement strong { color:#17191b; text-decoration:underline; text-decoration-color:#d8a600; text-decoration-thickness:.055em; text-underline-offset:.13em; }
@@ -424,3 +429,98 @@ html.motion-off *,html.motion-off *::before,html.motion-off *::after { animation
 .frontier-beat.frontier-active { visibility:visible!important; opacity:1!important; transform:none; }
 .frontier-note { position:absolute; left:6vw; right:6vw; bottom:5vh; text-align:center; color:#92979d; font-size:clamp(8px,.7vw,11px); }
 @media(max-width:820px) { .frontier-head { flex-direction:column; align-items:flex-start; } .frontier-caption h2 { font-size:30px; } .frontier-caption p { font-size:16px; } }
+
+/* Four responsibilities stay equally visible. */
+.nondelegable .statement { font-size:clamp(34px,4.1vw,66px); line-height:1.1; }
+.nondelegable-grid { display:grid; grid-template-columns:1fr 1fr; gap:5vh 5vw; margin-top:5vh; }
+.nondelegable-grid > div { border-top:2px solid var(--acento); padding-top:2.5vh; }
+.nondelegable-grid h2 { color:var(--acento); font-size:clamp(28px,4vw,64px); font-weight:600; letter-spacing:-.04em; line-height:1.12; }
+.nondelegable-grid p { color:var(--papel-suave); font-size:clamp(17px,1.8vw,28px); line-height:1.35; margin-top:1.2vh; }
+.attack-beat .kicker { margin-bottom:4vh; }
+.attack-line { font-size:clamp(38px,4.5vw,76px); letter-spacing:-.045em; line-height:1.12; }
+.attack-line + .attack-line { margin-top:3vh; }
+.attack-line strong { color:var(--acento); font-weight:600; }
+.attack-question { font-size:clamp(28px,3.25vw,52px); line-height:1.15; margin-top:4vh; font-style:italic; }
+.attack-beat .sub { margin-top:4vh; font-size:clamp(17px,1.6vw,26px); }
+@media(max-width:820px) {
+ .nondelegable-grid { gap:4vh 4vw; }
+ .nondelegable-grid h2 { font-size:clamp(23px,4vw,34px); }
+ .attack-line { font-size:clamp(29px,4.5vw,45px); }
+}
+
+/* The deeper first shift: produce, inspect, then enable. */
+.role-evolution { display:grid; grid-template-columns:repeat(3,1fr); gap:3vw; margin:3vh 0 5vh; }
+.role-evolution > div { position:relative; border-top:2px solid #555b60; padding-top:2vh; }
+.role-evolution > div + div::before { content:'→'; position:absolute; left:-2.6vw; top:2.2vh; color:var(--acento); font-size:2vw; }
+.role-evolution b { display:block; font-size:clamp(30px,3.6vw,58px); letter-spacing:-.04em; font-weight:550; }
+.role-evolution span { display:block; color:var(--papel-suave); font-size:clamp(16px,1.45vw,23px); margin-top:1vh; }
+.role-evolution > div:last-child { border-color:var(--acento); }
+.role-evolution > div:last-child b { color:var(--acento); }
+.enabling-shift .statement { font-size:clamp(30px,3.7vw,60px); }
+
+/* One presenter click reveals the reasoning and highlights the suggested choice. */
+.shift-practice .practice-top { margin-bottom:2.5vh; }
+.shift-practice .statement { font-size:clamp(30px,3.65vw,59px); }
+.shift-practice .practice-scenario { margin:2.5vh 0 2vh; max-width:none; }
+.shift-practice .practice-flow { margin:2vh 0; }
+.practice-flow > span { transition:color .45s ease,border-color .45s ease,background .45s ease,transform .45s ease; }
+.shift-practice:has(.practice-reveal.on) .practice-flow [data-answer] { color:var(--acento); border-color:var(--acento); background:linear-gradient(180deg,#ffc70012,transparent); transform:translateY(-3px); }
+.practice-reveal { margin-top:2.5vh; padding:1.3vh 1.5vw; }
+.practice-reveal > b { display:block; font-size:.64em; text-transform:uppercase; letter-spacing:.12em; margin-bottom:.6vh; }
+.practice-reveal p { margin:0; }
+.practice-reveal .practice-debate { color:var(--papel); margin-top:1vh; }
+.practice-reveal.on { animation:answer-in .65s var(--ease) both; }
+@keyframes answer-in { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+
+/* Keep the large warning legible before its supporting clipping appears. */
+.suspect-beat.evidence.single .inner { grid-template-columns:1.35fr 1fr; }
+.suspect-beat.evidence.single .statement { font-size:clamp(37px,4.25vw,70px); line-height:1.12; }
+.fourth-provocation .gigante { font-size:clamp(46px,6.5vw,108px); text-align:left; }
+.fourth-provocation .sub { font-size:clamp(24px,2.5vw,40px); color:var(--papel); }
+
+/* A camera tour over the actual worksheet, with live captions beside each focus. */
+.slide.sheet-tour { padding:0; background:#0c1014; }
+.sheet-heading { position:absolute; top:7vh; left:5vw; right:5vw; display:flex; align-items:center; justify-content:space-between; gap:2vw; }
+.sheet-heading .kicker { margin:0; }
+.sheet-heading a { color:var(--papel-suave); font-size:clamp(11px,1vw,16px); text-decoration:none; }
+.sheet-window { position:absolute; left:4vw; right:35vw; top:17vh; bottom:14vh; overflow:hidden; border:1px solid #ffffff18; border-radius:5px; background:#1a2026; }
+.sheet-world { position:absolute; width:1624px; height:1123px; transform-origin:0 0; transition:transform 1.25s cubic-bezier(.22,.8,.24,1); will-change:transform; }
+.sheet-page { position:absolute; top:0; width:794px; height:1123px; display:block; }
+.sheet-page-one { left:0; }
+.sheet-page-two { left:830px; }
+.sheet-focus { position:absolute; border:3px solid #ffc700; box-shadow:0 0 0 1500px #0c10143d; border-radius:4px; transition:all 1.25s cubic-bezier(.22,.8,.24,1); pointer-events:none; }
+.sheet-copy { position:absolute; left:69vw; right:4vw; top:20vh; bottom:20vh; }
+.sheet-intro,.sheet-beat { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; }
+.sheet-copy .kicker { font-size:clamp(10px,.85vw,14px); margin-bottom:3vh; }
+.sheet-copy h2 { font-size:clamp(30px,3vw,50px); line-height:1.08; font-weight:550; letter-spacing:-.04em; }
+.sheet-copy h2 strong { color:var(--acento); font-weight:inherit; }
+.sheet-copy p { color:var(--papel-suave); font-size:clamp(17px,1.6vw,26px); line-height:1.4; margin-top:3vh; }
+.sheet-tour.has-focus .sheet-intro { opacity:0; visibility:hidden; }
+.sheet-beat { visibility:hidden!important; opacity:0!important; transition:opacity .5s ease .3s,transform .5s ease .3s; }
+.sheet-beat.sheet-active { visibility:visible!important; opacity:1!important; transform:none; }
+.sheet-progress { position:absolute; left:69vw; right:4vw; bottom:15vh; display:flex; gap:6px; }
+.sheet-progress span { flex:1; height:3px; background:#ffffff35; transition:background .4s; }
+.sheet-progress .passed { background:var(--acento); }
+.sheet-progress .current { box-shadow:0 0 10px #ffc70080; }
+@media(max-width:820px) {
+ .question-number { top:7vh; transform:none; font-size:110px; opacity:.6; }
+ .role-evolution { gap:5vw; }
+ .role-evolution b { font-size:clamp(23px,4.5vw,36px); }
+ .role-evolution span { font-size:14px; }
+ .shift-practice .statement { font-size:clamp(27px,5vw,41px); }
+ .suspect-beat.evidence.single .statement { font-size:clamp(32px,5.2vw,45px); }
+ .sheet-heading { align-items:flex-start; flex-direction:column; }
+ .sheet-window { right:4vw; top:18vh; bottom:35vh; }
+ .sheet-copy { left:7vw; right:7vw; top:68vh; bottom:9vh; }
+ .sheet-copy h2 { font-size:clamp(25px,4vw,35px); }
+ .sheet-copy .kicker { margin-bottom:1vh; }
+ .sheet-copy p { font-size:16px; margin-top:1vh; }
+ .sheet-copy br { display:none; }
+ .sheet-progress { left:7vw; right:7vw; bottom:7vh; }
+}
+@media(max-height:650px) and (min-width:821px) {
+ .shift-practice .statement { font-size:clamp(28px,5.8vh,42px); }
+ .shift-practice .practice-flow > span { font-size:20px; }
+ .shift-practice .practice-prompt { font-size:23px; }
+ .shift-practice .practice-reveal { font-size:17px; }
+}
