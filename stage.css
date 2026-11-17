@@ -31,16 +31,48 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 .cover .sub { border-top:1px solid rgba(255,255,255,.3); padding-top:2.2vh; margin-top:5vh; width:fit-content; min-width:300px; color:#e4e5e6; }
 .cover.session-two::before { background-image:linear-gradient(90deg,rgba(16,12,8,.97),rgba(16,12,8,.77) 48%,rgba(16,12,8,.18)),url('img/sand.png'); }
 
-/* Independent, visible letter interference with long quiet intervals. */
-.disruption-word { display:inline-block; white-space:nowrap; }
-.disruption-letter { display:inline-block; }
-.cover.on .disruption-letter {
-  animation:disruption-flicker var(--flicker-cycle) steps(1,end) var(--flicker-delay) infinite;
+/* CRT interference: phosphor scanlines, RGB separation and irregular signal tears. */
+.disruption-word {
+  position:relative; display:inline-block; white-space:nowrap;
+  color:var(--acento); -webkit-text-fill-color:transparent;
+  background:repeating-linear-gradient(0deg,#ffc700 0px,#ffc700 2px,#bc9100 2px,#bc9100 3px);
+  -webkit-background-clip:text; background-clip:text;
+  filter:drop-shadow(0 0 5px #ffc70025);
 }
-@keyframes disruption-flicker {
-  0%, 3%, 8%, 100% { opacity:1; transform:none; text-shadow:none; }
-  1% { opacity:.14; transform:translateY(-.018em); text-shadow:2px 0 rgba(255,245,185,.7); }
-  5% { opacity:.48; transform:translateX(.018em); text-shadow:-2px 0 rgba(255,199,0,.65); }
+.disruption-word::before,.disruption-word::after {
+  content:attr(data-text); position:absolute; inset:0;
+  pointer-events:none; opacity:0; background:none; -webkit-text-fill-color:currentColor;
+}
+.disruption-word::before { color:#32f9f1; text-shadow:2px 0 #32f9f180; }
+.disruption-word::after { color:#ff3b9d; text-shadow:-2px 0 #ff3b9d80; }
+.cover.on .disruption-word {
+  animation:crt-signal 8.6s steps(1,end) .8s infinite,crt-scan 6.7s linear infinite;
+}
+.cover.on .disruption-word::before { animation:crt-tear-cyan 5.9s steps(1,end) .9s infinite; }
+.cover.on .disruption-word::after { animation:crt-tear-magenta 7.7s steps(1,end) 1.05s infinite; }
+@keyframes crt-scan { to { background-position:0 12px; } }
+@keyframes crt-signal {
+  0%, 5.5%, 19%, 100% { transform:none; filter:drop-shadow(0 0 5px #ffc70025); }
+  1% { transform:translateX(.012em) skewX(-2deg); filter:brightness(1.25) drop-shadow(0 0 7px #ffc70055); }
+  2.4% { transform:translateX(-.01em) skewX(1deg); filter:brightness(.8); }
+  3.5% { transform:none; filter:brightness(1.15); }
+  17.5% { transform:skewX(-1deg); filter:brightness(1.2); }
+}
+@keyframes crt-tear-cyan {
+  0%, 7%, 100% { opacity:0; transform:none; clip-path:inset(0); }
+  1% { opacity:.85; transform:translateX(-.045em); clip-path:inset(15% 0 62% 0); }
+  3% { opacity:.7; transform:translateX(.035em); clip-path:inset(63% 0 17% 0); }
+  5% { opacity:.5; transform:translateX(-.02em); clip-path:inset(38% 0 49% 0); }
+}
+@keyframes crt-tear-magenta {
+  0%, 6%, 100% { opacity:0; transform:none; clip-path:inset(0); }
+  1% { opacity:.8; transform:translateX(.045em); clip-path:inset(58% 0 18% 0); }
+  2.8% { opacity:.65; transform:translateX(-.03em); clip-path:inset(23% 0 62% 0); }
+  4.5% { opacity:.4; transform:translateX(.02em); clip-path:inset(76% 0 10% 0); }
+}
+html.motion-off .disruption-word { background:none; -webkit-text-fill-color:currentColor; filter:none; }
+@media (prefers-reduced-motion:reduce) {
+  .disruption-word { background:none; -webkit-text-fill-color:currentColor; filter:none; }
 }
 
 /* Transparent partner lockup for the photographic session covers. */
