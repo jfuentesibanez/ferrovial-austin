@@ -32,24 +32,24 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 .cover.session-two::before { background-image:linear-gradient(90deg,rgba(16,12,8,.97),rgba(16,12,8,.77) 48%,rgba(16,12,8,.18)),url('img/sand.png'); }
 
 /* CRT interference: phosphor scanlines, RGB separation and irregular signal tears. */
-.disruption-word {
+.crt-accent {
   position:relative; display:inline-block; white-space:nowrap;
   color:var(--acento); -webkit-text-fill-color:transparent;
   background:repeating-linear-gradient(0deg,#ffc700 0px,#ffc700 2px,#bc9100 2px,#bc9100 3px);
   -webkit-background-clip:text; background-clip:text;
   filter:drop-shadow(0 0 5px #ffc70025);
 }
-.disruption-word::before,.disruption-word::after {
+.crt-accent::before,.crt-accent::after {
   content:attr(data-text); position:absolute; inset:0;
   pointer-events:none; opacity:0; background:none; -webkit-text-fill-color:currentColor;
 }
-.disruption-word::before { color:#32f9f1; text-shadow:2px 0 #32f9f180; }
-.disruption-word::after { color:#ff3b9d; text-shadow:-2px 0 #ff3b9d80; }
-.cover.on .disruption-word {
+.crt-accent::before { color:#32f9f1; text-shadow:2px 0 #32f9f180; }
+.crt-accent::after { color:#ff3b9d; text-shadow:-2px 0 #ff3b9d80; }
+.slide.on .crt-accent {
   animation:crt-signal 8.6s steps(1,end) .8s infinite,crt-scan 6.7s linear infinite;
 }
-.cover.on .disruption-word::before { animation:crt-tear-cyan 5.9s steps(1,end) .9s infinite; }
-.cover.on .disruption-word::after { animation:crt-tear-magenta 7.7s steps(1,end) 1.05s infinite; }
+.slide.on .crt-accent::before { animation:crt-tear-cyan 5.9s steps(1,end) .9s infinite; }
+.slide.on .crt-accent::after { animation:crt-tear-magenta 7.7s steps(1,end) 1.05s infinite; }
 @keyframes crt-scan { to { background-position:0 12px; } }
 @keyframes crt-signal {
   0%, 5.5%, 19%, 100% { transform:none; filter:drop-shadow(0 0 5px #ffc70025); }
@@ -70,10 +70,12 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
   2.8% { opacity:.65; transform:translateX(-.03em); clip-path:inset(23% 0 62% 0); }
   4.5% { opacity:.4; transform:translateX(.02em); clip-path:inset(76% 0 10% 0); }
 }
-html.motion-off .disruption-word { background:none; -webkit-text-fill-color:currentColor; filter:none; }
+html.motion-off .crt-accent { background:none; -webkit-text-fill-color:currentColor; filter:none; }
 @media (prefers-reduced-motion:reduce) {
-  .disruption-word { background:none; -webkit-text-fill-color:currentColor; filter:none; }
+  .crt-accent { background:none; -webkit-text-fill-color:currentColor; filter:none; }
 }
+
+.slide.weird-beat .gigante { font-size:clamp(36px,5.4vw,92px); line-height:1.28; text-align:center; }
 
 /* Transparent partner lockup for the photographic session covers. */
 .cover-partners { position:absolute; right:8vw; bottom:9vh; z-index:3; display:flex; align-items:center; gap:26px; padding:13px 0; background:transparent; }

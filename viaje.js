@@ -92,7 +92,6 @@ window.initViaje = function (slideEl) {
     const pin = new THREE.Mesh(new THREE.CircleGeometry(0.08, 20), new THREE.MeshBasicMaterial({ color: COL.acento })); pin.position.z = 0.05; clock.add(pin);
     group.add(clock); markers.push({ minute: minuteHand, hour: hourHand });
 
-    const frame = new THREE.Mesh(new THREE.PlaneGeometry(34.4, 20.4), new THREE.MeshBasicMaterial({ color: COL.papel })); frame.position.set(0, 13.5, -0.05); group.add(frame);
     const tex = loader.load(PHOTOS[era.photo]); tex.anisotropy = 8;
     const panel = new THREE.Mesh(new THREE.PlaneGeometry(32, 18), new THREE.MeshBasicMaterial({ map: tex })); panel.position.set(0, 13.5, 0); group.add(panel);
     const sh = new THREE.Mesh(new THREE.PlaneGeometry(40, 14), new THREE.MeshBasicMaterial({ map: shTex, transparent: true, depthWrite: false })); sh.rotation.x = -Math.PI / 2; sh.position.set(0, 0.02, 1.5); group.add(sh);
