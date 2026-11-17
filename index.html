@@ -120,7 +120,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 #pag { position: fixed; right: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .7; z-index: 9; }
 .pie { position: fixed; left: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .5; z-index: 9; }
 </style>
-<link rel="stylesheet" href="stage.css?v=crt-accents-4">
+<link rel="stylesheet" href="stage.css?v=shifts-6">
 </head>
 <body>
 
@@ -198,6 +198,32 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <section class="slide foto contain claro" data-title="The AI capability horizon"><img src="img/horizon-nov-2026.jpg" alt="Duration of coding and ML research tasks AI models can complete with 80% success. Circles show METR measurements; diamonds show estimates derived from Anthropic internal scores; dashed lines are extrapolations." decoding="sync"></section>
 
+<!-- THE CURVE -->
+<section class="slide steps evidence single" data-chapter="The accelerating frontier"><div class="inner">
+  <div class="kicker">The pace is accelerating</div>
+  <div class="statement">The curve is steepening.<br><strong>Progress now runs about twice as fast.</strong></div>
+  <div class="clips">
+    <div class="clip r1 big step"><img src="img/clip-metr-aeci.png" alt="Chart: METR estimate of the acceleration of Anthropic model capability" decoding="sync"><div class="src">METR · November 2026 · acceleration 1.9× · 95% CI 1.5×–2.8×</div></div>
+  </div>
+</div></section>
+
+<section class="slide steps evidence single"><div class="inner">
+  <div class="kicker">Recursive self-improvement?</div>
+  <div class="statement">AI now leads a quarter of the work of building AI.<br><strong>None of it is fully automated.</strong></div>
+  <div class="clips">
+    <div class="clip r1 big step"><img src="img/clip-anthropic-rd.png" alt="Chart: share of Anthropic model R&amp;D tasks led by AI" decoding="sync"><div class="src">Anthropic · R&amp;D Automation Index · August 2026</div></div>
+  </div>
+</div></section>
+
+<section class="slide steps evidence single"><div class="inner">
+  <div class="kicker">The 2027 intelligence explosion</div>
+  <div class="statement">AI that matches the best human AI researchers:<br><strong>likely in 2027.</strong></div>
+  <div class="clips">
+    <div class="clip r1 big step"><img src="img/clip-aifutures-al5.png" alt="Chart: logistic extrapolation of automation of Anthropic model R&amp;D" decoding="sync"><div class="src">AI Futures Project · November 2026 · an extrapolation: no task is rated fully automated today</div></div>
+  </div>
+  <div class="redflag step" style="color:var(--papel-suave)">A forecast, not a fact. It assumes no major slowdown, and much of the evidence is not public.</div>
+</div></section>
+
 <section class="slide steps evidence"><div class="inner">
   <div class="kicker">Meanwhile, in the same ninety days</div>
   <ul class="lista compact">
@@ -218,6 +244,21 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
     <div class="clip r2 step"><img src="img/clip-cdive-icon.png" alt="News clipping: cdive icon" decoding="sync"><div class="src">Construction Dive · October 2026</div></div>
   </div>
 </div></section>
+
+<!-- A two-minute pause: official Figure demonstration, played manually. -->
+<section class="slide film" data-title="Figure · Intelligence in the physical world">
+  <video controls playsinline preload="metadata" aria-label="Figure: Helix 02 Bedroom Tidy, 2 minutes 14 seconds" src="https://videos.ctfassets.net/qx5k8y1u9drj/6ejXSHWNFd9qTBVxopCWF8/398d4ebfdde91a77a3c6cf41754fd82d/Tidy_Bedroom_MP4_Longer_Ending__1_.mp4">
+    <a href="https://www.figure.ai/news/helix-02-bedroom-tidy" target="_blank" rel="noopener noreferrer">Watch the video on Figure's website</a>
+  </video>
+  <div class="film-intro">
+    <div class="kicker">Figure · Helix 02 · May 2026</div>
+    <h1>Intelligence in the<br><strong>physical world.</strong></h1>
+    <button type="button" class="film-play"><span aria-hidden="true">▶</span> Play video <span class="film-duration">2:14</span></button>
+    <p>Space to play or pause · → to continue</p>
+  </div>
+  <a class="film-source" href="https://www.figure.ai/news/helix-02-bedroom-tidy" target="_blank" rel="noopener noreferrer">Figure · Helix 02 Bedroom Tidy ↗</a>
+  <p class="film-error" role="alert" hidden>The video could not load. Check your connection or <a href="https://www.figure.ai/news/helix-02-bedroom-tidy" target="_blank" rel="noopener noreferrer">watch it on Figure's website</a>.</p>
+</section>
 
 <section class="slide"><div class="inner">
   <div class="statement">Waves now arrive faster than organisations absorb them.<br><strong>You do not catch a wave by finishing the course on the previous one.</strong></div>
@@ -303,9 +344,9 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 <section class="slide"><div class="inner">
   <div class="kicker">Three layers</div>
   <div class="capas">
-    <div class="capa"><h3>1. Automation</h3><p>Rules. No intelligence.<br><strong>Cheap, exact, auditable.</strong><br>The same input always gives the same output.</p></div>
-    <div class="capa"><h3>2. Automation with AI</h3><p>The same fixed flow, with intelligence at the steps that <strong>read, classify or draft.</strong><br>You still decide the path.</p></div>
-    <div class="capa"><h3>3. Agents</h3><p>Intelligence decides the <strong>next step.</strong><br>Powerful, metered, and never twice the same.</p></div>
+    <div class="capa layer-1"><h3>1. Automation</h3><p>Rules. No intelligence.<br><strong>Cheap, exact, auditable.</strong><br>The same input always gives the same output.</p></div>
+    <div class="capa layer-2"><h3>2. Automation with AI</h3><p>The same fixed flow, with intelligence at the steps that <strong>read, classify or draft.</strong><br>You still decide the path.</p></div>
+    <div class="capa layer-3"><h3>3. Agents</h3><p>Intelligence decides the <strong>next step.</strong><br>Powerful, metered, and never twice the same.</p></div>
   </div>
 </div></section>
 
@@ -315,33 +356,39 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="sub">Forcing generative AI into a process a rule could run makes it slower, dearer and less reliable. <strong>Not everything is an agent.</strong></div>
 </div></section>
 
-<section class="slide steps"><div class="inner">
+<section class="slide steps layer-quiz"><div class="inner">
   <div class="kicker">Hands up: layer 1, 2 or 3?</div>
+  <div class="layer-legend" aria-label="Layer key">
+    <span class="layer-1"><b>1</b> Automation <small>Fixed rules</small></span>
+    <span class="layer-2"><b>2</b> Automation with AI <small>Fixed flow, intelligent steps</small></span>
+    <span class="layer-3"><b>3</b> Agents <small>AI chooses the next step</small></span>
+  </div>
   <ul class="lista compact vote">
-    <li class="step"><span>Matching invoices against purchase orders</span><span class="ans step">LAYER 1</span></li>
-    <li class="step"><span>Finding the risk clauses in a 400-page contract</span><span class="ans step">LAYER 2</span></li>
-    <li class="step"><span>Reconciling toll transactions</span><span class="ans step">LAYER 1</span></li>
-    <li class="step"><span>Answering supplier questions about payment status</span><span class="ans step">LAYER 2</span></li>
-    <li class="step"><span>Your weekly report to your boss</span><span class="ans step">LAYER 2</span></li>
-    <li class="step"><span>A bid: from tender documents to first draft</span><span class="ans step">LAYER 3 · WITH HUMAN GATES</span></li>
+    <li class="step"><span>Matching invoices against purchase orders</span><span class="ans step layer-1">LAYER 1</span></li>
+    <li class="step"><span>Finding the risk clauses in a 400-page contract</span><span class="ans step layer-2">LAYER 2</span></li>
+    <li class="step"><span>Reconciling toll transactions</span><span class="ans step layer-1">LAYER 1</span></li>
+    <li class="step"><span>Answering supplier questions about payment status</span><span class="ans step layer-2">LAYER 2</span></li>
+    <li class="step"><span>Your weekly report to your boss</span><span class="ans step layer-2">LAYER 2</span></li>
+    <li class="step"><span>A bid: from tender documents to first draft</span><span class="ans step layer-3">LAYER 3 · WITH HUMAN GATES</span></li>
   </ul>
   <div class="sub">Disagree with one? Good. <strong>That argument is the skill.</strong></div>
 </div></section>
 
 <!-- WHAT YOU KEEP -->
-<section class="slide"><div class="inner">
+<section class="slide leader-keeps" data-title="Delegate the work. Own the outcome."><div class="inner">
   <div class="kicker">What a leader keeps</div>
-  <ul class="lista compact">
-    <li><span class="n">ASK</span>The question. The machine answers what you ask, with the bias of its data and of your wording.</li>
-    <li><span class="n">DATA</span>The data. What leaves the building is your decision, not the tool's.</li>
-    <li><span class="n">CHECK</span>The check. Verify in proportion to what is at stake.</li>
-    <li><span class="n">SIGN</span>The signature. Accountability does not transfer to a model.</li>
-  </ul>
+  <div class="gigante">Delegate the work.<br><strong>Own the outcome.</strong></div>
+  <div class="leader-duties">
+    <div><span class="duty-number">01 / ASK</span><h3>The question.</h3><p>Frame it. Challenge its assumptions.</p></div>
+    <div><span class="duty-number">02 / DATA</span><h3>The boundaries.</h3><p>You decide what data leaves the building.</p></div>
+    <div><span class="duty-number">03 / CHECK</span><h3>The judgement.</h3><p>Verify in proportion to what is at stake.</p></div>
+    <div><span class="duty-number">04 / SIGN</span><h3>Your name.</h3><p>Accountability stays with you.</p></div>
+  </div>
 </div></section>
 
 <!-- BRIDGE -->
 <section class="slide negro impact"><div class="inner">
-  <div class="statement" style="text-align:center">That was the technology.<br><strong>After coffee, we talk about you.</strong></div>
+  <div class="statement" style="text-align:center" aria-label="That was the technology. After coffee, we talk about you.">That was the technology.<br><strong>After coffee, we talk about <span class="crt-accent" data-text="you" aria-hidden="true">you</span>.</strong></div>
   <div class="sub" style="text-align:center">11:30. Bring something to write with.</div>
 </div></section>
 
@@ -357,10 +404,10 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <span class="partner-logo university"><img src="img/partners-transparent.png" alt="University by ferrovial" width="2170" height="725"></span>
 </div></section>
 
-<!-- OPEN -->
-<section class="slide"><div class="inner">
-  <div class="gigante">Three ideas.<br>Seven shifts.<br>Five questions.</div>
-  <div class="sub">And one thing you will not like.</div>
+<!-- THE HUMAN QUESTION -->
+<section class="slide negro impact human-question" data-title="What will we do when machines are smarter than us?"><div class="inner">
+  <div class="kicker">Our place in what comes next</div>
+  <div class="gigante"><strong>What will we do</strong><br>when machines are<br>smarter than us?</div>
 </div></section>
 
 <section class="slide negro impact"><div class="inner">
@@ -369,19 +416,10 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="sub" style="text-align:center">Sixty seconds. Write it down. You will need it later.</div>
 </div></section>
 
-<!-- 1 WHERE ARE THE PEOPLE -->
+<!-- OPEN -->
 <section class="slide"><div class="inner">
-  <div class="kicker">Where are the people?</div>
-  <div class="statement">You have just been awarded a client's largest contract in years.<br>The capital is there. The contract is there.<br><strong>The qualified people are not.</strong></div>
-</div></section>
-
-<section class="slide steps evidence"><div class="inner">
-  <div class="kicker">This is not a Ferrovial problem</div>
-  <div class="clips stack">
-    <div class="clip r1 step"><img src="img/clip-fortune-walmart.png" alt="News clipping: fortune walmart" decoding="sync"><div class="src">Fortune · September 2025</div></div>
-    <div class="clip r2 step"><img src="img/clip-cdive-bechtel.png" alt="News clipping: cdive bechtel" decoding="sync"><div class="src">Construction Dive · February 2026</div></div>
-    <div class="clip r3 step"><img src="img/clip-fortune-900.png" alt="News clipping: fortune 900" decoding="sync"><div class="src">Fortune · September 2025</div></div>
-  </div>
+  <div class="gigante">Three ideas.<br>Seven shifts.<br>Five questions.</div>
+  <div class="sub">And one thing you will not like.</div>
 </div></section>
 
 
@@ -390,7 +428,16 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="kicker">Three ideas</div>
   <div class="num">01</div>
   <div class="gigante">The constraint <strong>has moved.</strong></div>
-  <div class="sub">Not capital. Not technology. Qualified people.<br><strong>AI is the only lever that scales without hiring.</strong></div>
+  <div class="sub">Qualified people are scarce. Machine capability keeps growing.<br><strong>The opportunity: multiply what your people can do.</strong></div>
+</div></section>
+
+<section class="slide steps evidence"><div class="inner">
+  <div class="kicker">The constraint today: qualified people</div>
+  <div class="clips stack">
+    <div class="clip r1 step"><img src="img/clip-fortune-walmart.png" alt="News clipping: fortune walmart" decoding="sync"><div class="src">Fortune · September 2025</div></div>
+    <div class="clip r2 step"><img src="img/clip-cdive-bechtel.png" alt="News clipping: cdive bechtel" decoding="sync"><div class="src">Construction Dive · February 2026</div></div>
+    <div class="clip r3 step"><img src="img/clip-fortune-900.png" alt="News clipping: fortune 900" decoding="sync"><div class="src">Fortune · September 2025</div></div>
+  </div>
 </div></section>
 
 <section class="slide"><div class="inner">
@@ -399,21 +446,6 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="gigante">Capability runs <strong>ahead</strong> of deployment.</div>
   <div class="sub">What the models can do today is years ahead of what your area uses.<br><strong>That gap is yours. Nobody closes it for you.</strong></div>
 </div></section>
-
-<!-- A two-minute pause: official Figure demonstration, played manually. -->
-<section class="slide film" data-title="Figure · Two robots, one shared task" data-chapter="Video · Figure robots collaborating">
-  <video controls playsinline preload="metadata" aria-label="Figure: Helix 02 Bedroom Tidy, 2 minutes 14 seconds" src="https://videos.ctfassets.net/qx5k8y1u9drj/6ejXSHWNFd9qTBVxopCWF8/398d4ebfdde91a77a3c6cf41754fd82d/Tidy_Bedroom_MP4_Longer_Ending__1_.mp4">
-    <a href="https://www.figure.ai/news/helix-02-bedroom-tidy" target="_blank" rel="noopener noreferrer">Watch the video on Figure's website</a>
-  </video>
-  <div class="film-intro">
-    <div class="kicker">Figure · Helix 02 · May 2026</div>
-    <h1>Watch how they<br><strong>coordinate.</strong></h1>
-    <button type="button" class="film-play"><span aria-hidden="true">▶</span> Play video <span class="film-duration">2:14</span></button>
-    <p>Space to play or pause · → to continue</p>
-  </div>
-  <a class="film-source" href="https://www.figure.ai/news/helix-02-bedroom-tidy" target="_blank" rel="noopener noreferrer">Figure · Helix 02 Bedroom Tidy ↗</a>
-  <p class="film-error" role="alert" hidden>The video could not load. Check your connection or <a href="https://www.figure.ai/news/helix-02-bedroom-tidy" target="_blank" rel="noopener noreferrer">watch it on Figure's website</a>.</p>
-</section>
 
 <section class="slide steps"><div class="inner">
   <div class="kicker">Three ideas</div>
@@ -503,9 +535,24 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="sub">What did you wait for last month?</div>
 </div></section>
 
-<section class="slide"><div class="inner">
+<section class="slide butler-quote" data-title="Bart Butler · Your job has fundamentally changed"><div class="inner">
   <div class="kicker">Shift 1 · In practice</div>
-  <div class="quote">&ldquo;Your job has fundamentally changed. It is no longer to write code, and LLMs are not here to help you write better code faster. <strong>Your job is to help the LLM write better code faster.</strong>&rdquo;<span class="who">Bart Butler, CTO of Proton &middot; internal memo, as reported by 404 Media</span></div>
+  <div class="butler-layout">
+    <figure class="butler-portrait">
+      <img src="img/bart-butler.jpg" alt="Bart Butler, CTO of Proton" decoding="sync" width="400" height="384">
+      <figcaption><strong>Bart Butler</strong><span>CTO · Proton</span><a href="https://proton.me/about/team" target="_blank" rel="noopener noreferrer">Photo: Proton ↗</a></figcaption>
+    </figure>
+    <div class="quote">&ldquo;Your job has fundamentally changed. It is no longer to write code, and LLMs are not here to help you write better code faster. <strong>Your job is to help the LLM write better code faster.</strong>&rdquo;<span class="who">Internal memo, as reported by 404 Media</span></div>
+  </div>
+</div></section>
+
+<!-- SHIFT 1: PARTICIPATION -->
+<section class="slide steps shift-practice" data-title="Shift 1 · Decision threshold"><div class="inner">
+  <div class="practice-top"><div class="kicker">Shift 1 · Your turn</div><span class="practice-time">90 seconds · One voice from the room</span></div>
+  <div class="statement">What would let you<br><strong>decide today?</strong></div>
+  <p class="practice-scenario"><b>Scenario</b> A project is slipping. You have two recovery plans and one untested assumption.</p>
+  <p class="practice-prompt">Name the fact that could change your decision.<br>Who gets it, and by when?</p>
+  <div class="practice-reveal step">Separate a missing fact from a decision nobody wants to own.</div>
 </div></section>
 
 <section class="slide steps shift evidence"><div class="inner">
@@ -517,6 +564,15 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   </div>
 </div></section>
 
+<!-- SHIFT 2: PARTICIPATION -->
+<section class="slide steps shift-practice" data-title="Shift 2 · Delegation"><div class="inner">
+  <div class="practice-top"><div class="kicker">Shift 2 · Your turn</div><span class="practice-time">60 seconds · Call it out</span></div>
+  <div class="statement">What must the agent<br><strong>never do alone?</strong></div>
+  <p class="practice-scenario"><b>Scenario</b> An agent handles supplier queries about payment status.</p>
+  <div class="practice-flow"><span>Check payment status</span><span>Draft a reply</span><span>Change payment details</span></div><p class="practice-prompt">Place one human approval gate. Name one reason to escalate.</p>
+  <div class="practice-reveal step">Example: it checks status and drafts replies. Changes to payment details require independent verification and human approval.</div>
+</div></section>
+
 <section class="slide steps shift evidence single"><div class="inner">
   <div class="num">SHIFT 3</div>
   <div class="fromto">From <b>reporting</b><span class="arrow">→</span>to <b>sensing</b></div>
@@ -526,10 +582,28 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   </div>
 </div></section>
 
+<!-- SHIFT 3: PARTICIPATION -->
+<section class="slide steps shift-practice" data-title="Shift 3 · Early warning"><div class="inner">
+  <div class="practice-top"><div class="kicker">Shift 3 · Your turn</div><span class="practice-time">60 seconds · Choose a signal</span></div>
+  <div class="statement">The report says “on track.”<br><strong>What are you watching?</strong></div>
+  <p class="practice-scenario"><b>Scenario</b> Imagine a project that looks healthy in the weekly report.</p>
+  <div class="practice-flow"><span>Permit delays</span><span>Supplier response times</span><span>Unresolved design changes</span></div><p class="practice-prompt">Choose one early signal. What threshold would trigger a call?</p>
+  <div class="practice-reveal step">A useful signal has a threshold, an owner and an action—not just a place in a dashboard.</div>
+</div></section>
+
 <section class="slide shift"><div class="inner">
   <div class="num">SHIFT 4</div>
   <div class="fromto">From <b>expert</b><span class="arrow">→</span>to <b>orchestrator</b></div>
   <div class="statement">Individual expertise was the asset.<br><strong>Collective intelligence is the asset now, and it is no longer only human.</strong></div>
+</div></section>
+
+<!-- SHIFT 4: PARTICIPATION -->
+<section class="slide steps shift-practice" data-title="Shift 4 · Orchestration"><div class="inner">
+  <div class="practice-top"><div class="kicker">Shift 4 · Your turn</div><span class="practice-time">90 seconds · Discuss with your neighbour</span></div>
+  <div class="statement">The client changes the scope.<br><strong>Who gets the first task?</strong></div>
+  <p class="practice-scenario"><b>Scenario</b> It is Thursday. The revised price is due Friday.</p>
+  <p class="practice-prompt">Give AI one task. Give a specialist one task.<br>Which trade-off stays with you?</p>
+  <div class="practice-reveal step">Example: AI compares the documents. Specialists test cost, legal and delivery impacts. You resolve the trade-offs.</div>
 </div></section>
 
 <section class="slide shift"><div class="inner">
@@ -539,10 +613,28 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="sub">Yesterday you did financial acumen. This is the new line.</div>
 </div></section>
 
+<!-- SHIFT 5: PARTICIPATION -->
+<section class="slide steps shift-practice" data-title="Shift 5 · Capacity"><div class="inner">
+  <div class="practice-top"><div class="kicker">Shift 5 · Your turn</div><span class="practice-time">60 seconds · Hands up</span></div>
+  <div class="statement">More bids. Same team.<br><strong>Where is the bottleneck?</strong></div>
+  <p class="practice-scenario"><b>Scenario</b> Demand rises. Before you ask for another hire, locate the constraint.</p>
+  <div class="practice-flow"><span>1 / Drafting</span><span>2 / Expert review</span><span>3 / Decisions</span></div><p class="practice-prompt">Vote for your area. How would you measure real added capacity?</p>
+  <div class="practice-reveal step">Count accepted output, cycle time and rework. Faster drafts add little capacity if review is already the bottleneck.</div>
+</div></section>
+
 <section class="slide shift"><div class="inner">
   <div class="num">SHIFT 6</div>
   <div class="fromto">From <b>project</b><span class="arrow">→</span>to <b>process</b></div>
   <div class="statement">The strategic programmes are defined. They are top-down.<br><strong>Your territory is the processes you own.</strong><br>Nobody will map them for you.</div>
+</div></section>
+
+<!-- SHIFT 6: PARTICIPATION -->
+<section class="slide steps shift-practice" data-title="Shift 6 · Process ownership"><div class="inner">
+  <div class="practice-top"><div class="kicker">Shift 6 · Your turn</div><span class="practice-time">90 seconds · Sketch it in pairs</span></div>
+  <div class="statement">Pick one process.<br><strong>One you actually own.</strong></div>
+  <p class="practice-scenario"><b>Scenario</b> For example: supplier onboarding, an invoice query or a weekly forecast.</p>
+  <div class="practice-flow process-flow"><span>Trigger</span><span>Inputs</span><span>Steps</span><span>Exceptions</span><span>Owner</span></div><p class="practice-prompt">Mark one step for rules, one for AI and one human checkpoint.</p>
+  <div class="practice-reveal step">Keep this sketch. It is the starting point for your process sheet.</div>
 </div></section>
 
 <section class="slide steps shift evidence"><div class="inner">
@@ -552,6 +644,15 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="clips">
     <div class="clip r1 step"><img src="img/clip-caixabank-google.png" alt="News clipping: caixabank google" decoding="sync"><div class="src">CaixaBank · October 2026 · a seven-year platform bet, with no certainty</div></div>
   </div>
+</div></section>
+
+<!-- SHIFT 7: PARTICIPATION -->
+<section class="slide steps shift-practice" data-title="Shift 7 · Learning cadence"><div class="inner">
+  <div class="practice-top"><div class="kicker">Shift 7 · Your turn</div><span class="practice-time">90 seconds · Design a small experiment</span></div>
+  <div class="statement">You cannot know the winner.<br><strong>What can you test now?</strong></div>
+  <p class="practice-scenario"><b>Scenario</b> A new tool promises to halve bid-preparation time. You have not tested it.</p>
+  <div class="practice-flow"><span>One process<br><small>What will you test?</small></span><span>One measure<br><small>What counts as better?</small></span><span>One stop rule<br><small>When do you pull back?</small></span></div><p class="practice-prompt">Design a reversible 30-day pilot. Review the evidence each week.</p>
+  <div class="practice-reveal step">Commit to the next learning cycle. Scale only when the evidence supports it.</div>
 </div></section>
 
 <section class="slide"><div class="inner dos">
@@ -564,7 +665,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
     <li><span class="n">06</span>Project → process</li>
     <li><span class="n">07</span>Certainty → tempo</li>
   </ul>
-  <div class="pick">Pick the one you are worst at.<br>Mark it. You will need it at 13:12.</div>
+  <div class="pick">Pick the one you are worst at.<br>Mark it. Bring it to the final reflection.</div>
 </div></section>
 
 <!-- 5 THE QUIET RISK -->
@@ -675,38 +776,12 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 <section class="slide" data-chapter="Five take-aways"><div class="inner">
   <div class="kicker">Five take-aways</div>
   <ul class="lista compact">
-    <li><span class="n">01</span>The constraint moved to people. AI scales without hiring.</li>
+    <li><span class="n">01</span>Qualified people are scarce. Use AI to multiply their capacity.</li>
     <li><span class="n">02</span>What stays scarce is judgement, accountability and trust. Your job migrates there.</li>
     <li><span class="n">03</span>Your territory is the processes you own. Nobody maps them for you.</li>
     <li><span class="n">04</span>The manager who does not touch the tool becomes the bottleneck.</li>
     <li><span class="n">05</span>Decide which part of your job you keep. Before someone decides for you.</li>
   </ul>
-</div></section>
-
-<!-- THE CURVE -->
-<section class="slide steps evidence single" data-chapter="Before we close"><div class="inner">
-  <div class="kicker">Before we close</div>
-  <div class="statement">The curve is steepening.<br><strong>Progress now runs about twice as fast.</strong></div>
-  <div class="clips">
-    <div class="clip r1 big step"><img src="img/clip-metr-aeci.png" alt="Chart: METR estimate of the acceleration of Anthropic model capability" decoding="sync"><div class="src">METR · November 2026 · acceleration 1.9× · 95% CI 1.5×–2.8×</div></div>
-  </div>
-</div></section>
-
-<section class="slide steps evidence single"><div class="inner">
-  <div class="kicker">Recursive self-improvement?</div>
-  <div class="statement">AI now leads a quarter of the work of building AI.<br><strong>None of it is fully automated.</strong></div>
-  <div class="clips">
-    <div class="clip r1 big step"><img src="img/clip-anthropic-rd.png" alt="Chart: share of Anthropic model R&amp;D tasks led by AI" decoding="sync"><div class="src">Anthropic · R&amp;D Automation Index · August 2026</div></div>
-  </div>
-</div></section>
-
-<section class="slide steps evidence single"><div class="inner">
-  <div class="kicker">The 2027 intelligence explosion</div>
-  <div class="statement">AI that matches the best human AI researchers:<br><strong>likely in 2027.</strong></div>
-  <div class="clips">
-    <div class="clip r1 big step"><img src="img/clip-aifutures-al5.png" alt="Chart: logistic extrapolation of automation of Anthropic model R&amp;D" decoding="sync"><div class="src">AI Futures Project · November 2026 · an extrapolation: no task is rated fully automated today</div></div>
-  </div>
-  <div class="redflag step" style="color:var(--papel-suave)">A forecast, not a fact. It assumes no major slowdown, and much of the evidence is not public.</div>
 </div></section>
 
 <!-- 9 GODS OF SAND -->
