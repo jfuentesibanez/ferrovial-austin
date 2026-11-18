@@ -117,7 +117,7 @@ html.motion-off .crt-accent { background:none; -webkit-text-fill-color:currentCo
 .question::before { content:attr(data-mark); position:absolute; left:7.5vw; top:50%; transform:translateY(-50%); font-size:clamp(140px,20vw,340px); line-height:1; font-weight:500; letter-spacing:-.09em; color:#c9c7bc; }
 .question:has(.question-number)::before { content:none; }
 .question-number { position:absolute; left:7.5vw; top:50%; transform:translateY(-50%); font-size:clamp(140px,20vw,340px); line-height:1; font-weight:500; letter-spacing:-.09em; }
-.question-number .crt-accent { --crt-color:#9d9b91; --crt-stripe:#b7b5aa; }
+.question-number .crt-accent { --crt-color:#9d9b91; --crt-stripe:#b7b5aa; padding-right:.12em; margin-right:-.12em; }
 .question .num { color:#585a55; }
 .question .statement { font-size:clamp(30px,4vw,67px); }
 .question .statement strong { color:#17191b; text-decoration:underline; text-decoration-color:#d8a600; text-decoration-thickness:.055em; text-underline-offset:.13em; }
