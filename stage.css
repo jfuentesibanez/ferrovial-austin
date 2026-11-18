@@ -1,7 +1,10 @@
 /* Ferrovial keynote: type, image and pace. No remote dependencies. */
 :root { --fondo:#101214; --papel:#f7f6f2; --papel-suave:#b7babd; --linea:#3a3c3d; --ease:cubic-bezier(.22,1,.36,1); }
 body { cursor:default; -webkit-font-smoothing:antialiased; }
-.slide { padding:8vh 8vw 10vh; overflow:hidden; background:var(--fondo); isolation:isolate; }
+:root {
+  --stage-background:radial-gradient(ellipse 100% 125% at 100% 0%, #1c2834, #151d25 35%, var(--fondo) 75%);
+}
+.slide { padding:8vh 8vw 10vh; overflow:hidden; background:var(--stage-background); isolation:isolate; }
 .slide.on { animation:stage-in .65s var(--ease) both; }
 .inner { max-width:1280px; position:relative; z-index:2; }
 .gigante { font-size:clamp(42px,6.8vw,112px); font-weight:600; line-height:1.02; letter-spacing:-.055em; text-wrap:balance; }
@@ -127,7 +130,6 @@ html.motion-off .crt-accent { background:none; -webkit-text-fill-color:currentCo
 .shift .num { font-size:clamp(14px,1.2vw,19px); }
 .shift .fromto .arrow { display:inline-block; margin:0 1em; }
 .shift.on .fromto .arrow { animation:arrow-in .9s var(--ease) both; }
-.impact { background:#050606; }
 .impact .inner { max-width:1190px; }
 .impact .statement { font-size:clamp(30px,4.2vw,68px); line-height:1.17; }
 .impact .gigante { font-size:clamp(48px,7.8vw,128px); }
@@ -334,7 +336,6 @@ html.motion-off *,html.motion-off *::before,html.motion-off *::after { animation
 .butler-quote .quote { border-left:0; padding-left:0; font-size:clamp(26px,2.65vw,43px); line-height:1.24; }
 .butler-quote .who { font-size:clamp(12px,1vw,16px); margin-top:3vh; }
 /* Participation beats: prompt first; facilitator's example appears on advance. */
-.shift-practice { background:radial-gradient(ellipse at 100% 0%,#23303980,transparent 65%),var(--fondo); }
 .practice-top { display:flex; align-items:baseline; justify-content:space-between; gap:2vw; margin-bottom:3vh; }
 .practice-top .kicker { margin:0; }
 .practice-time { color:var(--papel-suave); font-size:clamp(11px,1vw,16px); }
@@ -414,7 +415,7 @@ html.motion-off *,html.motion-off *::before,html.motion-off *::after { animation
 }
 
 /* Vector tour: zoom the viewBox so geometry and labels remain sharp. */
-.slide.frontier-tour { padding:0; background:#101214; }
+.slide.frontier-tour { padding:0; }
 .frontier-head { position:absolute; top:7vh; left:6vw; right:6vw; display:flex; justify-content:space-between; align-items:center; gap:2vw; }
 .frontier-head .kicker { margin:0; }
 .frontier-legend { display:flex; gap:2vw; font-size:clamp(11px,1.2vw,18px); }
@@ -546,7 +547,7 @@ html.motion-off *,html.motion-off *::before,html.motion-off *::after { animation
 }
 
 /* A camera tour over the actual worksheet, with live captions beside each focus. */
-.slide.sheet-tour { padding:0; background:#0c1014; }
+.slide.sheet-tour { padding:0; }
 .sheet-heading { position:absolute; top:7vh; left:5vw; right:5vw; display:flex; align-items:center; justify-content:space-between; gap:2vw; }
 .sheet-heading .kicker { margin:0; }
 .sheet-heading a { color:var(--papel-suave); font-size:clamp(11px,1vw,16px); text-decoration:none; }
