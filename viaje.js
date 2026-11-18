@@ -7,7 +7,7 @@ window.VIAJE_PHOTOS = {
   future: 'img/viaje-future.jpg'
 };
 window.initViaje = function (slideEl) {
-  const COL = { bg: 0x111111, acento: 0xffc700, papel: 0xf8f8f6, gris: 0x6f6f78 };
+  const COL = { bg: 0x0b0e12, acento: 0xffc700, papel: 0xf8f8f6, gris: 0x687587 };
   const PHOTOS = window.VIAJE_PHOTOS;
 
   const ERAS = [
@@ -51,46 +51,150 @@ window.initViaje = function (slideEl) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(COL.bg);
+  // A quiet atmospheric backdrop; the stars themselves remain in world space.
+  const sky = document.createElement('canvas'); sky.width = 1024; sky.height = 1024;
+  const skyCtx = sky.getContext('2d');
+  skyCtx.fillStyle = '#0b0e12'; skyCtx.fillRect(0, 0, 1024, 1024);
+  const haze = skyCtx.createRadialGradient(700, 260, 0, 700, 260, 720);
+  haze.addColorStop(0, 'rgba(42,61,82,.20)'); haze.addColorStop(1, 'rgba(42,61,82,0)');
+  skyCtx.fillStyle = haze; skyCtx.fillRect(0, 0, 1024, 1024);
+  scene.background = new THREE.CanvasTexture(sky);
   scene.fog = new THREE.Fog(COL.bg, 70, 430);
   const BASE_FOV = 56;
   const camera = new THREE.PerspectiveCamera(BASE_FOV, window.innerWidth / window.innerHeight, 0.1, 2000);
 
   { const grid = new THREE.GridHelper(2400, 220, COL.acento, COL.gris);
-    grid.material.transparent = true; grid.material.opacity = 0.10; scene.add(grid); }
-  { const g = new THREE.BufferGeometry(); const n = 500, pos = new Float32Array(n * 3);
-    for (let i = 0; i < n; i++) { pos[i*3] = -900 + Math.random() * 1100; pos[i*3+1] = 2 + Math.random() * 70; pos[i*3+2] = -120 + Math.random() * 200; }
+    grid.material.transparent = true; grid.material.opacity = 0.055; scene.add(grid); }
+
+  // Round, feathered stars with restrained scintillation and natural parallax.
+  // Seeded positions keep the composition stable every time the slide opens.
+  let seed = 20261118;
+  function random() { seed = (1664525 * seed + 1013904223) >>> 0; return seed / 4294967296; }
+  const starUniforms = { time: { value: 0 }, pixelRatio: { value: renderer.getPixelRatio() } };
+  {
+    const n = 1650, pos = new Float32Array(n * 3), colors = new Float32Array(n * 3);
+    const sizes = new Float32Array(n), phases = new Float32Array(n), brightness = new Float32Array(n);
+    const palette = [new THREE.Color(0xc0d1e3), new THREE.Color(0xf4f1e8), new THREE.Color(0xd6bc7e)];
+    for (let i = 0; i < n; i++) {
+      pos[i*3] = -1130 + random() * 1500;
+      pos[i*3+1] = 7 + random() * 170;
+      pos[i*3+2] = -260 + random() * 310;
+      const c = palette[random() < .10 ? 2 : (random() < .55 ? 0 : 1)];
+      colors.set([c.r, c.g, c.b], i * 3);
+      sizes[i] = .9 + Math.pow(random(), 3) * 3.2;
+      phases[i] = random() * Math.PI * 2;
+      brightness[i] = .32 + random() * .55;
+    }
+    const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    scene.add(new THREE.Points(g, new THREE.PointsMaterial({ color: COL.acento, size: 0.7, transparent: true, opacity: 0.45 }))); }
+    g.setAttribute('starColor', new THREE.BufferAttribute(colors, 3));
+    g.setAttribute('starSize', new THREE.BufferAttribute(sizes, 1));
+    g.setAttribute('phase', new THREE.BufferAttribute(phases, 1));
+    g.setAttribute('brightness', new THREE.BufferAttribute(brightness, 1));
+    const material = new THREE.ShaderMaterial({
+      uniforms: starUniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      vertexShader: `
+        uniform float time; uniform float pixelRatio;
+        attribute vec3 starColor; attribute float starSize; attribute float phase; attribute float brightness;
+        varying vec3 tint; varying float alpha;
+        void main() {
+          vec4 p = modelViewMatrix * vec4(position, 1.0);
+          gl_Position = projectionMatrix * p;
+          gl_PointSize = clamp(starSize * pixelRatio * 140.0 / max(18.0, -p.z), 1.8 * pixelRatio, 6.0 * pixelRatio);
+          tint = starColor;
+          alpha = brightness * (.88 + .12 * sin(time * .65 + phase));
+        }`,
+      fragmentShader: `
+        varying vec3 tint; varying float alpha;
+        void main() {
+          float r = length(gl_PointCoord - vec2(.5)) * 2.0;
+          if (r > 1.0) discard;
+          float light = exp(-5.0 * r * r) + .16 * exp(-2.0 * r * r);
+          gl_FragColor = vec4(tint, alpha * light * (1.0 - smoothstep(.65, 1.0, r)));
+        }`
+    });
+    scene.add(new THREE.Points(g, material));
+  }
   { const len = ERAS[ERAS.length-1].x - ERAS[0].x + 70; const cx = (ERAS[0].x + ERAS[ERAS.length-1].x) / 2;
-    const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, len, 8), new THREE.MeshBasicMaterial({ color: COL.acento, transparent: true, opacity: 0.9 }));
+    const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, len, 12), new THREE.MeshBasicMaterial({ color: 0xd4b86f, transparent: true, opacity: 0.75 }));
     beam.rotation.z = Math.PI / 2; beam.position.set(cx, 0.5, 0); scene.add(beam);
     for (let x = ERAS[0].x; x <= ERAS[ERAS.length-1].x; x += 25) {
-      const tk = new THREE.Mesh(new THREE.BoxGeometry(0.18, 1.1, 0.18), new THREE.MeshBasicMaterial({ color: COL.papel, transparent: true, opacity: 0.25 }));
+      const tk = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.55, 0.045), new THREE.MeshBasicMaterial({ color: COL.papel, transparent: true, opacity: 0.22 }));
       tk.position.set(x, 0.6, 0); scene.add(tk); } }
 
   function shadowTexture() {
     const c = document.createElement('canvas'); c.width = 256; c.height = 256; const ctx = c.getContext('2d');
     const g = ctx.createRadialGradient(128,128,10,128,128,120);
-    g.addColorStop(0, 'rgba(255,199,0,0.35)'); g.addColorStop(1, 'rgba(255,199,0,0)');
+    g.addColorStop(0, 'rgba(211,178,103,0.10)'); g.addColorStop(1, 'rgba(211,178,103,0)');
     ctx.fillStyle = g; ctx.fillRect(0,0,256,256); return new THREE.CanvasTexture(c);
   }
   const shTex = shadowTexture();
   const loader = new THREE.TextureLoader();
   const markers = [];
 
-  ERAS.forEach(era => {
+  scene.add(new THREE.HemisphereLight(0xd8e5f3, 0x16171b, .75));
+  const keyLight = new THREE.DirectionalLight(0xffecd4, .95);
+  keyLight.position.set(-30, 40, 60); scene.add(keyLight);
+  const edgeLight = new THREE.DirectionalLight(0xaac8ec, .55);
+  edgeLight.position.set(35, -10, 30); scene.add(edgeLight);
+
+  // One shared dial texture, with etched rings and a dark sunburst finish.
+  const dialCanvas = document.createElement('canvas'); dialCanvas.width = 512; dialCanvas.height = 512;
+  const dialCtx = dialCanvas.getContext('2d');
+  const dialShade = dialCtx.createRadialGradient(190, 145, 0, 256, 256, 260);
+  dialShade.addColorStop(0, '#2d3740'); dialShade.addColorStop(.55, '#17212a'); dialShade.addColorStop(1, '#0a1118');
+  dialCtx.fillStyle = dialShade; dialCtx.fillRect(0, 0, 512, 512);
+  for (let i = 0; i < 180; i++) {
+    const a = i * Math.PI / 90;
+    dialCtx.beginPath(); dialCtx.moveTo(256 + Math.cos(a) * 24, 256 + Math.sin(a) * 24);
+    dialCtx.lineTo(256 + Math.cos(a) * 244, 256 + Math.sin(a) * 244);
+    dialCtx.strokeStyle = i % 2 ? 'rgba(220,231,243,.025)' : 'rgba(0,0,0,.08)'; dialCtx.lineWidth = 1; dialCtx.stroke();
+  }
+  [184, 232, 242].forEach((r, i) => {
+    dialCtx.beginPath(); dialCtx.arc(256, 256, r, 0, Math.PI * 2);
+    dialCtx.strokeStyle = i === 0 ? 'rgba(207,190,151,.12)' : 'rgba(207,190,151,.3)'; dialCtx.lineWidth = 1; dialCtx.stroke();
+  });
+  const dialTexture = new THREE.CanvasTexture(dialCanvas);
+  const gold = new THREE.MeshPhongMaterial({ color: 0xc8af76, specular: 0xf8efd8, shininess: 95 });
+  const steel = new THREE.MeshPhongMaterial({ color: 0x626c77, specular: 0xe9f1fa, shininess: 100 });
+  const ivory = new THREE.MeshBasicMaterial({ color: 0xe6e9e9 });
+  const secondsMaterial = new THREE.MeshBasicMaterial({ color: 0xe1bd68 });
+  function hand(length, width, material, z, tail) {
+    const shape = new THREE.Shape();
+    shape.moveTo(-width * .5, -tail); shape.lineTo(-width * .5, length * .70);
+    shape.lineTo(0, length); shape.lineTo(width * .5, length * .70);
+    shape.lineTo(width * .5, -tail); shape.closePath();
+    const pivot = new THREE.Group(); pivot.position.z = z;
+    pivot.add(new THREE.Mesh(new THREE.ShapeGeometry(shape), material));
+    return pivot;
+  }
+
+  ERAS.forEach((era, eraIndex) => {
     const group = new THREE.Group(); group.position.x = era.x;
-    const clock = new THREE.Group(); clock.position.set(0, 1.95, 0.1);
-    clock.add(new THREE.Mesh(new THREE.CircleGeometry(1.06, 48), new THREE.MeshBasicMaterial({ color: 0xffffff })));
-    const rim = new THREE.Mesh(new THREE.RingGeometry(1.06, 1.25, 48), new THREE.MeshBasicMaterial({ color: COL.acento, side: THREE.DoubleSide })); rim.position.z = 0.01; clock.add(rim);
-    for (let i = 0; i < 12; i++) { const major = i % 3 === 0;
-      const tkm = new THREE.Mesh(new THREE.PlaneGeometry(major ? 0.08 : 0.04, major ? 0.24 : 0.14), new THREE.MeshBasicMaterial({ color: 0x111111 }));
-      const a = (i / 12) * Math.PI * 2, r = 0.88; tkm.position.set(Math.sin(a) * r, Math.cos(a) * r, 0.02); tkm.rotation.z = -a; clock.add(tkm); }
-    const minuteHand = new THREE.Group(); const mh = new THREE.Mesh(new THREE.PlaneGeometry(0.07, 0.84), new THREE.MeshBasicMaterial({ color: 0x111111 })); mh.position.y = 0.39; minuteHand.add(mh); minuteHand.position.z = 0.03; minuteHand.rotation.z = Math.random() * Math.PI * 2; clock.add(minuteHand);
-    const hourHand = new THREE.Group(); const hh = new THREE.Mesh(new THREE.PlaneGeometry(0.09, 0.56), new THREE.MeshBasicMaterial({ color: 0x111111 })); hh.position.y = 0.25; hourHand.add(hh); hourHand.position.z = 0.04; hourHand.rotation.z = Math.random() * Math.PI * 2; clock.add(hourHand);
-    const pin = new THREE.Mesh(new THREE.CircleGeometry(0.08, 20), new THREE.MeshBasicMaterial({ color: COL.acento })); pin.position.z = 0.05; clock.add(pin);
-    group.add(clock); markers.push({ minute: minuteHand, hour: hourHand });
+    const clock = new THREE.Group(); clock.position.set(0, 2.05, .1); clock.scale.setScalar(1.25);
+    const casing = new THREE.Mesh(new THREE.CylinderGeometry(1.14, 1.14, .16, 96), steel);
+    casing.rotation.x = Math.PI / 2; casing.position.z = -.035; clock.add(casing);
+    const face = new THREE.Mesh(new THREE.CircleGeometry(1.075, 96), new THREE.MeshBasicMaterial({ map: dialTexture }));
+    face.position.z = .06; clock.add(face);
+    [[1.115, .035, steel], [1.075, .018, gold]].forEach(([radius, tube, material]) => {
+      const rim = new THREE.Mesh(new THREE.TorusGeometry(radius, tube, 12, 96), material);
+      rim.position.z = .075; clock.add(rim);
+    });
+    for (let i = 0; i < 60; i++) {
+      const major = i % 5 === 0, cardinal = i % 15 === 0;
+      const tick = new THREE.Mesh(new THREE.PlaneGeometry(major ? .035 : .013, cardinal ? .18 : (major ? .14 : .055)), major ? ivory : gold);
+      const a = i * Math.PI / 30, r = major ? .89 : .96;
+      tick.position.set(Math.sin(a) * r, Math.cos(a) * r, .09); tick.rotation.z = -a; clock.add(tick);
+    }
+    const minuteHand = hand(.79, .045, ivory, .12, .10);
+    const hourHand = hand(.53, .065, ivory, .14, .08);
+    const secondHand = hand(.88, .015, secondsMaterial, .16, .22);
+    minuteHand.rotation.z = -Math.PI / 3 - eraIndex * .22;
+    hourHand.rotation.z = Math.PI / 3 - eraIndex * .12;
+    secondHand.rotation.z = -Math.PI * .82;
+    clock.add(minuteHand, hourHand, secondHand);
+    const pin = new THREE.Mesh(new THREE.CircleGeometry(.052, 32), gold); pin.position.z = .18; clock.add(pin);
+    group.add(clock); markers.push({ minute: minuteHand, hour: hourHand, second: secondHand });
 
     const tex = loader.load(PHOTOS[era.photo]); tex.anisotropy = 8;
     const panel = new THREE.Mesh(new THREE.PlaneGeometry(32, 18), new THREE.MeshBasicMaterial({ map: tex })); panel.position.set(0, 13.5, 0); group.add(panel);
@@ -162,7 +266,7 @@ window.initViaje = function (slideEl) {
     }
   }
 
-  window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+  window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); starUniforms.pixelRatio.value = renderer.getPixelRatio(); });
 
   function cursorFromCamX(x) {
     const pts = ERAS.map(e => ({ x: e.x, p: mapPos(e.year) }));
@@ -176,9 +280,10 @@ window.initViaje = function (slideEl) {
     if (!active) { lastNow = 0; return; }
     frameId = requestAnimationFrame(animate);
     const t = now * 0.001, dt = lastNow ? (now - lastNow) / 1000 : 0; lastNow = now;
-    let spinRate = 0.55;
+    starUniforms.time.value = t;
+    let spinRate = 0.045;
     if (flight) { const kk = Math.min(1, (now - flight.t0) / flight.dur); const bump = Math.sin(kk * Math.PI); const dir = Math.sign(flight.yearTo - flight.yearFrom) || 1; spinRate = dir * (2 + 30 * bump); }
-    markers.forEach(ck => { ck.minute.rotation.z -= dt * spinRate; ck.hour.rotation.z -= dt * spinRate / 12; });
+    markers.forEach(ck => { ck.minute.rotation.z -= dt * spinRate; ck.hour.rotation.z -= dt * spinRate / 12; ck.second.rotation.z -= dt * (flight ? spinRate * 1.6 : Math.PI / 30); });
     if (zoomAnim) {
       const k = (now - zoomAnim.t0) / zoomAnim.dur;
       if (k >= 1) { camPos.copy(zoomAnim.to); camLook.copy(zoomAnim.lookTo); const wasOut = zoomAnim.mode === 'out'; zoomAnim = null;
