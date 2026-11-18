@@ -26,7 +26,6 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 /* Opening titles connect the silicon imagery to the closing sand sequence. */
 .cover::before { content:''; position:absolute; inset:0; z-index:0; background:linear-gradient(90deg,rgba(5,9,13,.96) 0%,rgba(5,9,13,.77) 48%,rgba(5,9,13,.14) 100%),url('img/gpu.png') center/cover; }
 .cover.on::before { animation:slow-reveal 9s var(--ease) both; }
-.cover::after { content:''; position:absolute; left:8vw; top:0; height:8vh; width:2px; background:var(--acento); }
 .cover .inner { padding-top:4vh; }
 .cover .kicker { margin-bottom:7vh; }
 .cover .gigante { max-width:1180px; font-size:clamp(46px,6.7vw,108px); line-height:1.03; }
