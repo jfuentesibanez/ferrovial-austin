@@ -656,3 +656,5 @@ body.sentinel-slide .pie,body.sentinel-slide #pag { color:rgba(253,246,227,.45);
 /* "What stays with you" builds one responsibility per click; earlier ones recede until all four are up. */
 .nondelegable-grid > .step { transition:opacity .6s var(--ease),transform .65s var(--ease); }
 .nondelegable-grid:not(:has(> .step:last-child.on)) > .step.on:has(~ .step.on) { opacity:.4; }
+
+.gigante.agenda-four { font-size:clamp(40px,6.2vw,104px); line-height:1.04; }
