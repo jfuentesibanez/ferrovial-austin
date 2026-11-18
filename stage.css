@@ -524,3 +524,37 @@ html.motion-off *,html.motion-off *::before,html.motion-off *::after { animation
  .shift-practice .practice-prompt { font-size:23px; }
  .shift-practice .practice-reveal { font-size:17px; }
 }
+
+/* The Independent Sentinel: full-screen ember sign-off, borrowed from the workshop site's newsletter card. */
+.slide.sentinel { padding:0; color:#FDF6E3; background:linear-gradient(135deg,#120805 0%,#2d1410 45%,#4a1d1a 100%); }
+.sentinel-glow { position:absolute; inset:-20%; z-index:0; background:
+  radial-gradient(circle at 78% 26%,rgba(255,140,60,.55),transparent 38%),
+  radial-gradient(circle at 20% 82%,rgba(220,60,80,.42),transparent 36%),
+  radial-gradient(circle at 62% 40%,rgba(255,190,110,.20),transparent 30%); }
+.slide.sentinel.on .sentinel-glow { animation:sentinel-drift 22s ease-in-out infinite alternate; }
+.sentinel-grain { position:absolute; inset:0; z-index:1; opacity:.22; mix-blend-mode:overlay; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.slide.sentinel::after { content:""; position:absolute; inset:0; z-index:1; box-shadow:inset 0 0 22vw rgba(0,0,0,.6); pointer-events:none; }
+.sentinel-body { position:absolute; inset:0; z-index:2; display:grid; grid-template-columns:1fr auto; align-items:center; gap:6vw; padding:9vh 7vw 11vh 8vw; }
+.sentinel-eyebrow { display:flex; align-items:center; gap:1.2vw; margin:0 0 4vh; color:#F2B872; font:600 clamp(13px,1.15vw,20px) var(--sans); letter-spacing:.24em; text-transform:uppercase; }
+.sentinel-eyebrow::before { content:""; width:5vw; height:1px; background:linear-gradient(90deg,#F2B872,transparent); }
+.sentinel-title { display:block; width:min(58vw,1100px); height:auto; margin:0 0 4.5vh -0.6vw; filter:brightness(0) invert(1) drop-shadow(0 .4vw 1.6vw rgba(0,0,0,.55)) drop-shadow(0 0 2.4vw rgba(255,150,70,.35)); }
+.sentinel-desc { max-width:46vw; margin:0 0 4.5vh; color:rgba(253,246,227,.86); font:400 clamp(19px,1.75vw,31px)/1.45 var(--sans); }
+.sentinel-desc strong { color:#FFB347; font-weight:600; }
+.sentinel-url { margin:0; font:500 clamp(15px,1.3vw,23px) "SF Mono",Menlo,Monaco,monospace; letter-spacing:.02em; }
+.sentinel-url a { color:#FDF6E3; text-decoration:none; padding:.7em 1.3em; border-radius:100px; border:1px solid rgba(255,179,71,.6); background:rgba(26,14,8,.45); display:inline-block; }
+.sentinel-url a:hover,.sentinel-url a:focus-visible { background:linear-gradient(135deg,#FFB347,#FF7E47); color:#1a0e08; }
+.sentinel-qr { background:#FFF4E0; padding:1.6vh; border-radius:1.4vh; text-align:center; box-shadow:0 2vh 6vh rgba(0,0,0,.45),0 0 8vh rgba(255,126,71,.35); }
+.sentinel-qr img { display:block; width:38vh; height:38vh; border-radius:.5vh; image-rendering:pixelated; }
+.sentinel-qr span { display:block; margin-top:1.4vh; color:#4a1d1a; font:700 clamp(12px,1.05vw,18px) var(--sans); letter-spacing:.2em; text-transform:uppercase; }
+.slide.sentinel.on .sentinel-eyebrow,.slide.sentinel.on .sentinel-title,.slide.sentinel.on .sentinel-desc,.slide.sentinel.on .sentinel-url,.slide.sentinel.on .sentinel-qr { animation:sentinel-rise 1s var(--ease) both; }
+.slide.sentinel.on .sentinel-title { animation-delay:.25s; animation-duration:1.4s; }
+.slide.sentinel.on .sentinel-desc { animation-delay:.7s; }
+.slide.sentinel.on .sentinel-url { animation-delay:.95s; }
+.slide.sentinel.on .sentinel-qr { animation-delay:1.15s; }
+@keyframes sentinel-rise { from { opacity:0; transform:translateY(3vh); } to { opacity:1; transform:none; } }
+@keyframes sentinel-drift { from { transform:translate3d(-3%,2%,0) scale(1); } to { transform:translate3d(4%,-3%,0) scale(1.12); } }
+body.sentinel-slide .pie,body.sentinel-slide #pag { color:rgba(253,246,227,.45); }
+.motion-off .slide.sentinel.on * { animation:none !important; }
+@media (prefers-reduced-motion:reduce) { .slide.sentinel.on * { animation:none !important; } }
+@media (max-width:820px) { .sentinel-body { grid-template-columns:1fr; gap:4vh; padding:8vh 7vw; } .sentinel-title { width:84vw; } .sentinel-desc { max-width:none; } .sentinel-qr { justify-self:start; } .sentinel-qr img { width:24vh; height:24vh; } }
