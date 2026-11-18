@@ -639,3 +639,16 @@ body.sentinel-slide .pie,body.sentinel-slide #pag { color:rgba(253,246,227,.45);
 .enabling-shift .role-evolution > div:has(+ .step.on) b { opacity:.4; }
 .enabling-shift .role-evolution > div:has(+ .step.on) span { opacity:.45; }
 .enabling-shift .enabling-payoff .sub { margin-top:3vh; }
+
+/* YET lands on the presenter's click: it slams in from oversized and settles. */
+.yet-word.step { transform:none; transform-origin:left center; transition:none; }
+.yet-word.step.on { animation:yet-slam .7s cubic-bezier(.16,1.25,.3,1) both; }
+@keyframes yet-slam {
+  0% { opacity:0; transform:scale(2.6); filter:blur(14px); }
+  55% { opacity:1; transform:scale(.94); filter:blur(0); }
+  72% { transform:scale(1.04) translateX(.4vw); }
+  86% { transform:scale(.99) translateX(-.2vw); }
+  100% { opacity:1; transform:scale(1); filter:none; }
+}
+.motion-off .yet-word.step.on { animation:none; }
+@media (prefers-reduced-motion:reduce) { .yet-word.step.on { animation:none; } }
