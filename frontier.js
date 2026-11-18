@@ -3,7 +3,16 @@
 const slide=document.querySelector('.frontier-tour');
 if(!slide)return;
 const svg=slide.querySelector('svg'), beats=[...slide.querySelectorAll('.frontier-beat')];
-let previous='', raf=0, box=[0,0,1800,650];
+// Keep each human circle and its AI boundary together. Large later boundaries
+// must not cover the example currently being discussed.
+const stages=[...svg.querySelectorAll(':scope > circle')].map(circle=>{
+ const boundary=circle.nextElementSibling;
+ const group=document.createElementNS('http://www.w3.org/2000/svg','g');
+ svg.insertBefore(group,circle);group.append(circle,boundary);
+ return group;
+});
+const arrows=[...svg.querySelectorAll(':scope > path')];
+let previous='', raf=0, box=[0,-20,2000,740];
 function update(force=false){
  const index=beats.reduce((last,e,i)=>e.classList.contains('on')?i:last,-1);
  const still=document.documentElement.classList.contains('motion-off');
@@ -11,8 +20,12 @@ function update(force=false){
  if(!force&&key===previous)return;previous=key;
  slide.classList.toggle('has-focus',index>=0);
  beats.forEach((e,i)=>e.classList.toggle('frontier-active',i===index));
- let target=[0,0,1800,650];
- if(index>=0&&!still&&index<beats.length-1){
+ const focused=index>=0&&index<beats.length-1;
+ const visible=focused?beats[index].dataset.focus.split(',').map(Number):null;
+ stages.forEach((g,i)=>{g.style.transition=still?'none':'opacity .35s ease';g.style.opacity=!visible||visible.includes(i)?'1':'0';});
+ arrows.forEach(p=>{p.style.opacity=focused?'0':'.45';});
+ let target=[0,-20,2000,740];
+ if(focused){
   const [cx,cy,w]=beats[index].dataset.camera.split(',').map(Number);
   const rect=svg.getBoundingClientRect(),aspect=rect.width/rect.height||2.77;
   const height=Math.max(w/aspect,Number(beats[index].dataset.minHeight)||0),width=height*aspect;

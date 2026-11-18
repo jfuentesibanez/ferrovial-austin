@@ -13,10 +13,10 @@
     process: { x:40, y:195, w:714, h:286 },
     steps: { x:40, y:476, w:714, h:343 },
     pain: { x:40, y:818, w:714, h:215 },
-    layers: { x:870, y:148, w:714, h:190 },
-    human: { x:870, y:337, w:714, h:154 },
-    trial: { x:870, y:492, w:714, h:284 },
-    priorities: { x:870, y:772, w:714, h:162 }
+    layers: { x:870, y:148, w:714, h:208 },
+    human: { x:870, y:354, w:714, h:158 },
+    trial: { x:870, y:509, w:714, h:283 },
+    priorities: { x:870, y:789, w:714, h:159 }
   };
   let lastKey = '';
   function update(force = false) {
