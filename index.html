@@ -121,7 +121,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 .pie { position: fixed; left: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .5; z-index: 9; }
 .cover .presenter-name { color:var(--papel); font-size:clamp(26px,2.6vw,42px); font-weight:600; letter-spacing:-.025em; line-height:1.2; margin-bottom:1.2vh; }
 </style>
-<link rel="stylesheet" href="stage.css?v=review-5">
+<link rel="stylesheet" href="stage.css?v=review-6">
 </head>
 <body>
 
@@ -189,7 +189,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <section class="slide proof-time" data-title="The machine did the work in under four days"><div class="inner">
   <div class="kicker">Two different clocks</div>
-  <div class="gigante">The machine did the work<br>in <strong>under four days.</strong></div>
+  <div class="gigante" aria-label="The machine did the work in under four days.">The machine did the work<br>in <strong><span class="crt-accent" data-text="under four days" aria-hidden="true">under four days</span>.</strong></div>
   <div class="proof-human">Trust and credit are still<br><strong>on human time.</strong></div>
   <p class="proof-context">A result for forced Navier–Stokes. Independent human confirmation pending.<br>The Clay problem remains open; the mathematical credit is disputed.</p>
 </div></section>
@@ -404,7 +404,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="sub">The same models that pass the bar exam. <strong>Capability is jagged, and you cannot see the edge from outside.</strong></div>
 </div></section>
 
-<section class="slide steps evidence single" data-title="Verify the output · Invented citations"><div class="inner">
+<section class="slide steps warning evidence single" data-title="Verify the output · Invented citations"><div class="inner">
   <div class="kicker">Verify the output</div>
   <div class="statement">A 237-page report for a government. Invented citations. A partial refund.<br><strong>The model did not sign the report. The firm did.</strong></div>
   <div class="clips">
@@ -500,6 +500,43 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
   <div class="kicker" style="text-align:center">One more trip in time</div>
   <div class="gigante" aria-label="It is November 2029. Describe your Monday.">It is November 2029.<br><strong><span class="crt-accent" data-text="Describe" aria-hidden="true">Describe</span> your Monday.</strong></div>
 </div></section>
+
+<!-- A Monday in 2029: follow one site decision across the room. -->
+<section class="slide monday-tour steps" data-chapter="Monday, 2029" data-title="Monday, 2029 · The duct and the beam">
+  <img class="monday-photo" src="img/monday-2029.jpg" alt="An engineering office with a monitor showing two duct routes, a phone showing a steel beam, a watch recording a note, and a mixed reality visor" width="1672" height="941">
+  <div class="monday-shade" aria-hidden="true"></div>
+  <div class="monday-intro">
+    <div class="monday-intro-title">
+      <div class="kicker">A morning on the project</div>
+      <h2>Monday, <strong>2029.</strong></h2>
+    </div>
+    <p>A duct clashes with a beam. Can we reroute it before the crew installs it?</p>
+  </div>
+  <div class="monday-beat step" data-view="right" data-frame=".233 .38 1.65">
+    <div class="kicker">08:10 · Computer</div>
+    <h2>Spot the <strong>clash.</strong></h2>
+    <p>AI compares the latest models and flags where the duct meets the beam.</p>
+  </div>
+  <div class="monday-beat step" data-view="right" data-frame=".467 .594 3">
+    <div class="kicker">09:05 · Phone</div>
+    <h2>Check the <strong>site.</strong></h2>
+    <p>The crew sends a photo of the beam. Compare what was built with what the model shows.</p>
+  </div>
+  <div class="monday-beat step" data-view="left" data-frame=".629 .658 3.7">
+    <div class="kicker">10:20 · Wearable</div>
+    <h2>Capture what <strong>changed.</strong></h2>
+    <p>On the site walk, dictate which clearance needs measuring. The note goes straight to the open issue.</p>
+  </div>
+  <div class="monday-beat step" data-view="left" data-frame=".838 .572 2.12">
+    <div class="kicker">11:30 · Mixed reality</div>
+    <h2>Walk both <strong>routes.</strong></h2>
+    <p>Review both options at full scale. Can the crew install the duct and still reach it for maintenance?</p>
+  </div>
+  <div class="monday-beat step" data-view="wide">
+    <div class="kicker">Back to your Monday</div>
+    <h2>What could you see<br><strong>before you decide?</strong></h2>
+  </div>
+</section>
 
 <!-- OPEN -->
 <section class="slide"><div class="inner">
@@ -965,5 +1002,6 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 <script src="closing.js?v=executive-1"></script>
 <script src="frontier.js?v=tour-3"></script>
 <script src="sheet-tour.js?v=2"></script>
+<script src="monday.js?v=1"></script>
 </body>
 </html>

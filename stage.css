@@ -35,6 +35,8 @@ body { cursor:default; -webkit-font-smoothing:antialiased; }
 .crt-accent {
   --crt-color:#ffc700; --crt-stripe:#bc9100;
   position:relative; display:inline-block; white-space:nowrap;
+  /* Let tightly spaced glyphs paint past the text advance without moving adjacent text. */
+  padding-inline-end:.12em; margin-inline-end:-.12em;
   color:var(--crt-color); -webkit-text-fill-color:transparent;
   background:repeating-linear-gradient(0deg,var(--crt-color) 0px,var(--crt-color) 2px,var(--crt-stripe) 2px,var(--crt-stripe) 3px);
   -webkit-background-clip:text; background-clip:text;
@@ -117,7 +119,7 @@ html.motion-off .crt-accent { background:none; -webkit-text-fill-color:currentCo
 .question::before { content:attr(data-mark); position:absolute; left:7.5vw; top:50%; transform:translateY(-50%); font-size:clamp(140px,20vw,340px); line-height:1; font-weight:500; letter-spacing:-.09em; color:#c9c7bc; }
 .question:has(.question-number)::before { content:none; }
 .question-number { position:absolute; left:7.5vw; top:50%; transform:translateY(-50%); font-size:clamp(140px,20vw,340px); line-height:1; font-weight:500; letter-spacing:-.09em; }
-.question-number .crt-accent { --crt-color:#9d9b91; --crt-stripe:#b7b5aa; padding-right:.12em; margin-right:-.12em; }
+.question-number .crt-accent { --crt-color:#9d9b91; --crt-stripe:#b7b5aa; }
 .question .num { color:#585a55; }
 .question .statement { font-size:clamp(30px,4vw,67px); }
 .question .statement strong { color:#17191b; text-decoration:underline; text-decoration-color:#d8a600; text-decoration-thickness:.055em; text-underline-offset:.13em; }
@@ -477,6 +479,71 @@ html.motion-off *,html.motion-off *::before,html.motion-off *::after { animation
 .suspect-beat.evidence.single .statement { font-size:clamp(37px,4.25vw,70px); line-height:1.12; }
 .fourth-provocation .gigante { font-size:clamp(46px,6.5vw,108px); text-align:left; }
 .fourth-provocation .sub { font-size:clamp(24px,2.5vw,40px); color:var(--papel); }
+
+/* The presenter follows a single project decision through four camera positions. */
+.slide.monday-tour { padding:0; background:#080b0e; }
+.monday-photo {
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  transform-origin:0 0;
+  transform:translate(var(--monday-x,0px),var(--monday-y,0px)) scale(var(--monday-scale,1));
+  transition:transform 1.45s var(--ease);
+}
+.monday-shade,.monday-shade::before,.monday-shade::after {
+  position:absolute; inset:0; pointer-events:none;
+}
+.monday-shade {
+  background:linear-gradient(180deg,#080b0e80,transparent 32%,transparent 64%,#080b0ef0);
+  transition:background-color .6s;
+}
+.monday-shade::before,.monday-shade::after {
+  content:""; opacity:0; transition:opacity .65s;
+}
+.monday-shade::before { background:linear-gradient(90deg,#080b0ef8 8%,#080b0ee0 33%,#080b0e58 52%,transparent 69%); }
+.monday-shade::after { background:linear-gradient(270deg,#080b0ef8 8%,#080b0ee0 33%,#080b0e58 52%,transparent 69%); }
+.monday-tour[data-view="left"] .monday-shade::before,
+.monday-tour[data-view="right"] .monday-shade::after { opacity:1; }
+.monday-tour[data-view="wide"] .monday-shade { background-color:#080b0ebf; }
+
+.monday-intro { position:absolute; inset:0; }
+.monday-intro-title { position:absolute; left:6vw; top:5vh; }
+.monday-intro-title .kicker { margin-bottom:1vh; }
+.monday-intro p {
+  position:absolute; left:6vw; right:6vw; bottom:8vh;
+  color:var(--papel); font-size:clamp(17px,1.85vw,30px); line-height:1.3;
+}
+.monday-tour[data-view] .monday-intro { visibility:hidden; }
+.monday-tour h2 {
+  color:var(--papel); font-size:clamp(36px,4.8vw,86px); font-weight:650;
+  line-height:1.03; letter-spacing:-.05em; text-wrap:balance;
+}
+.monday-tour h2 strong { color:var(--acento); font-weight:inherit; }
+.monday-beat {
+  position:absolute; top:15%; bottom:15%; width:37%;
+  display:flex; flex-direction:column; justify-content:center;
+}
+.monday-beat[data-view="left"] { left:6%; }
+.monday-beat[data-view="right"] { right:6%; }
+.monday-beat[data-view="wide"] { inset:13% 8%; width:auto; text-align:center; }
+.monday-beat p {
+  margin-top:2.8vh; color:#e5e5e4; font-size:clamp(18px,1.9vw,32px);
+  line-height:1.35; max-width:28em; text-wrap:pretty;
+}
+.monday-beat.step:not(.monday-current) { visibility:hidden; opacity:0; }
+.monday-beat.step.monday-current {
+  visibility:visible; opacity:1; transform:none;
+  transition:opacity .55s ease .32s,transform .55s ease .32s;
+}
+@media (max-aspect-ratio:1/1) {
+  .monday-tour h2 { font-size:clamp(31px,7.5vw,60px); }
+  .monday-beat[data-view="left"],.monday-beat[data-view="right"] {
+    left:7%; right:7%; top:56%; bottom:8%; width:auto;
+  }
+  .monday-beat .kicker { margin-bottom:1.2vh; }
+  .monday-beat p { font-size:clamp(15px,3.8vw,25px); margin-top:1.6vh; }
+  .monday-shade::before,.monday-shade::after {
+    background:linear-gradient(0deg,#080b0ef8 22%,#080b0ec9 44%,transparent 62%);
+  }
+}
 
 /* A camera tour over the actual worksheet, with live captions beside each focus. */
 .slide.sheet-tour { padding:0; background:#0c1014; }
