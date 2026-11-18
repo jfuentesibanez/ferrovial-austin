@@ -121,7 +121,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 .pie { position: fixed; left: 2vw; bottom: 2vh; font-family: var(--mono); font-size: 12px; color: var(--papel-suave); opacity: .5; z-index: 9; }
 .cover .presenter-name { color:var(--papel); font-size:clamp(26px,2.6vw,42px); font-weight:600; letter-spacing:-.025em; line-height:1.2; margin-bottom:1.2vh; }
 </style>
-<link rel="stylesheet" href="stage.css?v=review-6">
+<link rel="stylesheet" href="stage.css?v=review-7">
 </head>
 <body>
 
@@ -200,7 +200,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 <section class="slide steps evidence single prediction-beat" data-chapter="The accelerating frontier"><div class="inner">
   <div class="kicker">The pace is accelerating</div>
   <div class="statement">The curve is steepening.<br><strong>Progress now runs about twice as fast.</strong></div>
-  <div class="prediction-punch" role="heading" aria-level="2" aria-label="Predictions are useless.">Predictions are<br><span class="crt-accent" data-text="useless" aria-hidden="true">useless</span>.</div>
+  <div class="prediction-punch" role="heading" aria-level="2" aria-label="Precise predictions are useless. The direction is not.">Precise predictions<br>are <span class="crt-accent" data-text="useless" aria-hidden="true">useless</span>.<small class="prediction-turn">The direction is not.</small></div>
   <div class="clips">
     <div class="clip r1 big step"><img src="img/clip-metr-aeci.png" alt="Chart: METR estimate of the acceleration of Anthropic model capability" decoding="sync"><div class="src">METR · November 2026 · acceleration 1.9× · 95% CI 1.5×–2.8×</div></div>
   </div>
@@ -646,21 +646,22 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 <section class="slide chapter" data-mark="07" data-chapter="Seven shifts"><div class="inner">
   <div class="kicker">Seven shifts</div>
   <div class="gigante">Seven shifts<br>in <strong>your job.</strong></div>
+  <div class="sub">Each shift ends with one question and three options. You answer with a show of hands.</div>
 </div></section>
 
 <section class="slide shift enabling-shift" data-title="Shift 1 · Doing → reviewing → enabling"><div class="inner">
   <div class="num">SHIFT 1</div>
   <div class="role-evolution">
-    <div><b>Doing</b><span>Write the code.</span></div>
-    <div><b>Reviewing</b><span>Check AI’s code.</span></div>
-    <div><b>Enabling</b><span>Help AI write better code.</span></div>
+    <div><b>Doing</b><span>Do the work yourself.</span></div>
+    <div><b>Reviewing</b><span>Check AI’s work.</span></div>
+    <div><b>Enabling</b><span>Help AI do better work.</span></div>
   </div>
   <div class="statement">Your job is to create the conditions<br><strong>for AI to do good work.</strong></div>
   <div class="sub">Clear goals. Relevant context. Tools, boundaries and feedback.<br>You still need to understand and own the result.</div>
 </div></section>
 
 <section class="slide butler-quote" data-title="Bart Butler · Your job has fundamentally changed"><div class="inner">
-  <div class="kicker">Shift 1 · In practice</div>
+  <div class="kicker">Shift 1 · It started in software</div>
   <div class="butler-layout">
     <figure class="butler-portrait">
       <img src="img/bart-butler.jpg" alt="Bart Butler, CTO of Proton" decoding="sync" width="400" height="384">
@@ -672,7 +673,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <!-- SHIFT 1: PARTICIPATION -->
 <section class="slide steps shift-practice" data-title="Shift 1 · What would help AI get it right?"><div class="inner">
-  <div class="practice-top"><div class="kicker">Shift 1 · Your turn</div></div>
+  <div class="practice-top"><div class="kicker">Shift 1 · Hands up: which one?</div></div>
   <div class="statement">AI keeps getting it wrong.<br><strong>What would you change?</strong></div>
   <p class="practice-scenario"><b>Scenario</b> AI drafts a bid summary but misses what matters to the client.</p>
   <div class="practice-flow"><span>Rewrite it yourself</span><span>Ask it to try again</span><span data-answer>Give it criteria and examples</span></div>
@@ -691,7 +692,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <!-- SHIFT 2: PARTICIPATION -->
 <section class="slide steps shift-practice" data-title="Shift 2 · Delegation"><div class="inner">
-  <div class="practice-top"><div class="kicker">Shift 2 · Your turn</div></div>
+  <div class="practice-top"><div class="kicker">Shift 2 · Hands up: which one?</div></div>
   <div class="statement">Which task needs<br><strong>your approval?</strong></div>
   <p class="practice-scenario"><b>Scenario</b> An agent handles supplier queries about payment status.</p>
   <div class="practice-flow"><span>Check payment status</span><span>Draft a reply</span><span data-answer>Change bank details</span></div>
@@ -710,7 +711,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <!-- SHIFT 3: PARTICIPATION -->
 <section class="slide steps shift-practice" data-title="Shift 3 · Early warning"><div class="inner">
-  <div class="practice-top"><div class="kicker">Shift 3 · Your turn</div></div>
+  <div class="practice-top"><div class="kicker">Shift 3 · Hands up: which one?</div></div>
   <div class="statement">The report is green.<br><strong>What would warn you early?</strong></div>
   <p class="practice-scenario"><b>Scenario</b> A supplier usually replies in one day. This week, it takes five.</p>
   <div class="practice-flow"><span>The next weekly report</span><span data-answer>The slower replies</span><span>A missed delivery</span></div>
@@ -726,7 +727,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <!-- SHIFT 4: PARTICIPATION -->
 <section class="slide steps shift-practice" data-title="Shift 4 · Orchestration"><div class="inner">
-  <div class="practice-top"><div class="kicker">Shift 4 · Your turn</div></div>
+  <div class="practice-top"><div class="kicker">Shift 4 · Hands up: which one?</div></div>
   <div class="statement">The client changes the scope.<br><strong>What would you give AI first?</strong></div>
   <p class="practice-scenario"><b>Scenario</b> New drawings arrive Thursday. Your revised price is due Friday.</p>
   <div class="practice-flow"><span data-answer>Compare the drawings</span><span>Set the final price</span><span>Promise the deadline</span></div>
@@ -743,7 +744,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <!-- SHIFT 5: PARTICIPATION -->
 <section class="slide steps shift-practice" data-title="Shift 5 · Capacity"><div class="inner">
-  <div class="practice-top"><div class="kicker">Shift 5 · Your turn</div></div>
+  <div class="practice-top"><div class="kicker">Shift 5 · Hands up: which one?</div></div>
   <div class="statement">AI drafts bids twice as fast.<br><strong>Can you take more work?</strong></div>
   <p class="practice-scenario"><b>Scenario</b> Every bid still waits three days for expert review.</p>
   <div class="practice-flow"><span>Yes: drafts are faster</span><span data-answer>Not yet: review is the bottleneck</span><span>Only if we hire more people</span></div>
@@ -759,7 +760,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <!-- SHIFT 6: PARTICIPATION -->
 <section class="slide steps shift-practice" data-title="Shift 6 · Process ownership"><div class="inner">
-  <div class="practice-top"><div class="kicker">Shift 6 · Your turn</div></div>
+  <div class="practice-top"><div class="kicker">Shift 6 · Hands up: which one?</div></div>
   <div class="statement">One process you own.<br><strong>Which step would you automate?</strong></div>
   <p class="practice-scenario"><b>Scenario</b> A supplier emails for a payment update. Your team handles the request.</p>
   <div class="practice-flow"><span>Read the request</span><span data-answer>Check payment status</span><span>Reply or resolve a dispute</span></div>
@@ -778,7 +779,7 @@ body { font-family: var(--serif); background: var(--fondo); color: var(--papel);
 
 <!-- SHIFT 7: PARTICIPATION -->
 <section class="slide steps shift-practice" data-title="Shift 7 · Learning cadence"><div class="inner">
-  <div class="practice-top"><div class="kicker">Shift 7 · Your turn</div></div>
+  <div class="practice-top"><div class="kicker">Shift 7 · Hands up: which one?</div></div>
   <div class="statement">A tool promises faster bids.<br><strong>How would you test it?</strong></div>
   <p class="practice-scenario"><b>Scenario</b> You have seen the demo. Your team has not used it yet.</p>
   <div class="practice-flow"><span>Roll it out to everyone</span><span>Wait until it is proven</span><span data-answer>Try it on a few real bids</span></div>
