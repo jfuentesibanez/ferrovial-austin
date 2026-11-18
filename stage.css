@@ -633,3 +633,9 @@ body.sentinel-slide .pie,body.sentinel-slide #pag { color:rgba(253,246,227,.45);
 .shift-practice .practice-flow > span { counter-increment:opt; }
 .shift-practice .practice-flow > span::before { content:counter(opt,upper-alpha); display:block; margin-bottom:.5vh; font-size:.62em; font-weight:700; letter-spacing:.16em; color:#63d9ef; }
 .shift-practice:has(.practice-reveal.on) .practice-flow [data-answer]::before { color:var(--acento); }
+
+/* Shift 1 builds phase by phase: earlier phases recede as the next one lands. */
+.enabling-shift .role-evolution > div b,.enabling-shift .role-evolution > div span { transition:opacity .6s var(--ease); }
+.enabling-shift .role-evolution > div:has(+ .step.on) b { opacity:.4; }
+.enabling-shift .role-evolution > div:has(+ .step.on) span { opacity:.45; }
+.enabling-shift .enabling-payoff .sub { margin-top:3vh; }
